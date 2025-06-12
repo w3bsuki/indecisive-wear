@@ -1,0 +1,46 @@
+/* EMERGENCY TAILWIND CSS - DIRECT INJECTION */
+
+.bg-blue-500 { background-color: #3b82f6 !important; }
+.bg-red-500 { background-color: #ef4444 !important; }
+.bg-green-500 { background-color: #10b981 !important; }
+.bg-purple-500 { background-color: #8b5cf6 !important; }
+.bg-pink-500 { background-color: #ec4899 !important; }
+.bg-yellow-500 { background-color: #f59e0b !important; }
+
+.text-white { color: #ffffff !important; }
+.text-black { color: #000000 !important; }
+
+.p-1 { padding: 0.25rem !important; }
+.p-2 { padding: 0.5rem !important; }
+.p-4 { padding: 1rem !important; }
+.p-8 { padding: 2rem !important; }
+
+.m-1 { margin: 0.25rem !important; }
+.m-2 { margin: 0.5rem !important; }
+.m-4 { margin: 1rem !important; }
+.m-8 { margin: 2rem !important; }
+
+.rounded { border-radius: 0.25rem !important; }
+.rounded-lg { border-radius: 0.5rem !important; }
+.rounded-xl { border-radius: 0.75rem !important; }
+
+.shadow { box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important; }
+.shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important; }
+
+.bg-gradient-to-r { background-image: linear-gradient(to right, var(--tw-gradient-stops)) !important; }
+.from-purple-500 { --tw-gradient-from: #8b5cf6 !important; --tw-gradient-to: rgba(139, 92, 246, 0) !important; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important; }
+.to-pink-500 { --tw-gradient-to: #ec4899 !important; }
+
+/* Flex utilities */
+.flex { display: flex !important; }
+.flex-col { flex-direction: column !important; }
+.items-center { align-items: center !important; }
+.justify-center { justify-content: center !important; }
+
+/* Width/Height */
+.w-full { width: 100% !important; }
+.h-full { height: 100% !important; }
+.min-h-screen { min-height: 100vh !important; }
+
+/* Container */
+.container { width: 100% !important; margin-left: auto !important; margin-right: auto !important; padding-left: 1rem !important; padding-right: 1rem !important; }

@@ -1,0 +1,147 @@
+{
+  "title": "Checkout",
+  "steps": {
+    "shipping": "Shipping",
+    "payment": "Payment",
+    "review": "Review",
+    "confirmation": "Confirmation"
+  },
+  "shipping": {
+    "title": "Shipping Information",
+    "subtitle": "Where should we send your order?",
+    "address": {
+      "title": "Shipping Address",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "company": "Company (optional)",
+      "address1": "Address",
+      "address2": "Apartment, suite, etc. (optional)",
+      "city": "City",
+      "state": "State / Province",
+      "zipCode": "ZIP / Postal Code",
+      "country": "Country",
+      "phone": "Phone Number"
+    },
+    "method": {
+      "title": "Shipping Method",
+      "standard": "Standard Shipping",
+      "express": "Express Shipping",
+      "overnight": "Overnight Shipping",
+      "pickup": "Store Pickup",
+      "free": "Free",
+      "businessDays": "{{count}} business days",
+      "estimated": "Estimated delivery: {{date}}"
+    },
+    "options": {
+      "saveAddress": "Save this address for future orders",
+      "billingDifferent": "My billing address is different",
+      "gift": "This is a gift",
+      "giftMessage": "Gift message (optional)",
+      "signature": "Require signature on delivery",
+      "instructions": "Delivery instructions (optional)"
+    }
+  },
+  "billing": {
+    "title": "Billing Information",
+    "subtitle": "How would you like to pay?",
+    "sameAsShipping": "Same as shipping address",
+    "differentAddress": "Use a different billing address",
+    "address": {
+      "title": "Billing Address",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "company": "Company (optional)",
+      "address1": "Address",
+      "address2": "Apartment, suite, etc. (optional)",
+      "city": "City",
+      "state": "State / Province",
+      "zipCode": "ZIP / Postal Code",
+      "country": "Country"
+    }
+  },
+  "payment": {
+    "title": "Payment Method",
+    "subtitle": "All transactions are secure and encrypted",
+    "methods": {
+      "creditCard": "Credit Card",
+      "paypal": "PayPal",
+      "applePay": "Apple Pay",
+      "googlePay": "Google Pay",
+      "shopPay": "Shop Pay",
+      "afterpay": "Afterpay",
+      "klarna": "Klarna"
+    },
+    "creditCard": {
+      "number": "Card Number",
+      "expiry": "MM / YY",
+      "cvv": "CVV",
+      "name": "Name on Card",
+      "saveCard": "Save this card for future purchases"
+    },
+    "security": {
+      "title": "Your payment information is secure",
+      "ssl": "SSL encrypted",
+      "pci": "PCI DSS compliant",
+      "secure": "Secure checkout"
+    }
+  },
+  "review": {
+    "title": "Review Your Order",
+    "subtitle": "Please review your order before completing your purchase",
+    "orderSummary": "Order Summary",
+    "shippingAddress": "Shipping Address",
+    "billingAddress": "Billing Address",
+    "shippingMethod": "Shipping Method",
+    "paymentMethod": "Payment Method",
+    "edit": "Edit",
+    "change": "Change",
+    "items": "Items ({{count}})",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "tax": "Tax",
+    "discount": "Discount",
+    "total": "Total",
+    "placeOrder": "Place Order",
+    "terms": "By placing your order, you agree to our {{termsLink}} and {{privacyLink}}",
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacy Policy"
+  },
+  "confirmation": {
+    "title": "Order Confirmed!",
+    "subtitle": "Thank you for your purchase",
+    "orderNumber": "Order #{{number}}",
+    "email": "A confirmation email has been sent to {{email}}",
+    "estimated": "Estimated delivery: {{date}}",
+    "tracking": "You'll receive tracking information once your order ships",
+    "continueShopping": "Continue Shopping",
+    "viewOrder": "View Order Details",
+    "support": "Need help? {{contactLink}}",
+    "contactUs": "Contact us"
+  },
+  "errors": {
+    "general": "Something went wrong. Please try again.",
+    "payment": "Payment failed. Please check your payment information and try again.",
+    "inventory": "Some items in your cart are no longer available.",
+    "shipping": "Shipping to this address is not available.",
+    "validation": "Please check your information and try again.",
+    "network": "Network error. Please check your connection and try again."
+  },
+  "discounts": {
+    "title": "Discount Code",
+    "placeholder": "Enter discount code",
+    "apply": "Apply",
+    "remove": "Remove",
+    "invalid": "Invalid discount code",
+    "expired": "This discount code has expired",
+    "notEligible": "Your order doesn't qualify for this discount",
+    "applied": "Discount applied successfully!"
+  },
+  "guestCheckout": {
+    "title": "Checkout as Guest",
+    "subtitle": "No account required",
+    "email": "Email Address",
+    "createAccount": "Create an account for faster checkout next time",
+    "alreadyHaveAccount": "Already have an account? {{loginLink}}",
+    "signIn": "Sign in"
+  }
+}

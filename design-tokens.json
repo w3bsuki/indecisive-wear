@@ -1,0 +1,106 @@
+{
+  "global": {
+    "color": {
+      "brand": {
+        "primary": {
+          "value": "hsl(322, 59%, 59%)",
+          "type": "color",
+          "description": "Primary brand color - Barbie Pink"
+        },
+        "secondary": {
+          "value": "hsl(322, 59%, 45%)",
+          "type": "color",
+          "description": "Secondary brand color - Darker Barbie Pink"
+        }
+      },
+      "neutral": {
+        "0": {
+          "value": "hsl(0, 0%, 100%)",
+          "type": "color"
+        },
+        "50": {
+          "value": "hsl(210, 40%, 98%)",
+          "type": "color"
+        },
+        "900": {
+          "value": "hsl(222.2, 84%, 4.9%)",
+          "type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "scale": {
+        "4": {
+          "value": "4px",
+          "type": "spacing"
+        },
+        "8": {
+          "value": "8px", 
+          "type": "spacing"
+        },
+        "16": {
+          "value": "16px",
+          "type": "spacing"
+        },
+        "24": {
+          "value": "24px",
+          "type": "spacing"
+        },
+        "32": {
+          "value": "32px",
+          "type": "spacing"
+        },
+        "48": {
+          "value": "48px",
+          "type": "spacing"
+        }
+      }
+    },
+    "radius": {
+      "sm": {
+        "value": "4px",
+        "type": "borderRadius"
+      },
+      "md": {
+        "value": "8px",
+        "type": "borderRadius"
+      },
+      "lg": {
+        "value": "12px",
+        "type": "borderRadius"
+      }
+    }
+  },
+  "light": {
+    "semantic": {
+      "surface": {
+        "primary": {
+          "value": "{global.color.neutral.0}",
+          "type": "color"
+        }
+      },
+      "text": {
+        "primary": {
+          "value": "{global.color.neutral.900}",
+          "type": "color"
+        }
+      }
+    }
+  },
+  "dark": {
+    "semantic": {
+      "surface": {
+        "primary": {
+          "value": "{global.color.neutral.900}",
+          "type": "color"
+        }
+      },
+      "text": {
+        "primary": {
+          "value": "{global.color.neutral.0}",
+          "type": "color"
+        }
+      }
+    }
+  }
+}

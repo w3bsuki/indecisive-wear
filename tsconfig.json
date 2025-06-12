@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["dom", "dom.iterable", "es2022"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "exactOptionalPropertyTypes": false,
+    "noImplicitReturns": false,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": false,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": ".",
+    "types": ["vitest/globals"],
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/lib/*": ["./src/lib/*"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/types/*": ["./src/lib/types/*"],
+      "@/stores/*": ["./src/stores/*"],
+      "@/app/*": ["./src/app/*"],
+      "@/styles/*": ["./src/styles/*"],
+      "@/atoms": ["./src/components/atoms"],
+      "@/molecules": ["./src/components/molecules"],
+      "@/organisms": ["./src/components/organisms"],
+      "@/templates": ["./src/components/templates"],
+      "@/design-tokens": ["./src/lib/design-tokens"],
+      "@/composition": ["./src/lib/component-composition"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", "medusa-backend", "scripts/**/*", "store/**/*"]
+}

@@ -1,0 +1,216 @@
+/* Critical CSS - Above the fold styles */
+@layer critical {
+  /* Reset and base styles */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Prevent layout shift from scrollbar */
+    scrollbar-gutter: stable;
+    /* Optimize touch scrolling */
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  body {
+    margin: 0;
+    min-height: 100vh;
+    line-height: 1.5;
+    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Reserve space for fixed header */
+    scroll-padding-top: 72px;
+  }
+  
+  /* Critical layout styles */
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    /* Prevent reflow during scroll */
+    contain: layout style;
+    will-change: transform;
+  }
+  
+  /* Font loading optimization */
+  .font-cal {
+    font-family: var(--font-cal), serif;
+    font-display: swap;
+  }
+  
+  /* Prevent FOUC and layout shifts */
+  .font-inter {
+    font-family: var(--font-inter), system-ui, sans-serif;
+    font-display: swap;
+  }
+  
+  /* Image optimization */
+  img {
+    max-width: 100%;
+    height: auto;
+    /* Preserve aspect ratio */
+    aspect-ratio: attr(width) / attr(height);
+  }
+  
+  /* Skeleton loading states */
+  .skeleton {
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.05) 25%,
+      rgba(0, 0, 0, 0.1) 50%,
+      rgba(0, 0, 0, 0.05) 75%
+    );
+    background-size: 200% 100%;
+  }
+  
+  @keyframes skeleton-loading {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Base colors */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    
+    /* Card colors */
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    
+    /* Popover colors */
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    
+    /* Primary (Barbie Pink) */
+    --primary: 322 59% 59%;
+    --primary-foreground: 210 40% 98%;
+    
+    /* Secondary */
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    
+    /* Muted */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    
+    /* Accent */
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    
+    /* Destructive */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    
+    /* Border and input */
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 322 59% 59%;
+    
+    /* Radius */
+    --radius: 0.75rem;
+    
+    /* Custom Barbie Theme */
+    --barbie-pink: 322 59% 59%;
+    --barbie-pink-foreground: 0 0% 100%;
+    --barbie-glass: 0 0% 100% / 0.9;
+    --barbie-glass-foreground: 222.2 84% 4.9%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    
+    --primary: 322 59% 59%;
+    --primary-foreground: 222.2 84% 4.9%;
+    
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 322 59% 59%;
+    
+    /* Dark mode Barbie adjustments */
+    --barbie-pink: 322 59% 69%;
+    --barbie-pink-foreground: 222.2 84% 4.9%;
+    --barbie-glass: 222.2 84% 4.9% / 0.9;
+    --barbie-glass-foreground: 210 40% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom utility classes for Barbie theme */
+@layer utilities {
+  .glass-morphism {
+    @apply bg-white/90 backdrop-blur-xl border border-white/20;
+  }
+  
+  .barbie-gradient {
+    @apply bg-gradient-to-r from-primary via-primary/80 to-primary/60;
+  }
+  
+  .barbie-text-gradient {
+    @apply bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent;
+  }
+  
+  @keyframes bounce-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  .animate-bounce-in {
+    animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}

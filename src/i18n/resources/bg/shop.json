@@ -1,0 +1,195 @@
+{
+  "title": "Магазин",
+  "subtitle": "Изрази своя красиво нерешителен стил",
+  "banner": {
+    "title": "Не можеш да решиш какво да облечеш? Перфектно.",
+    "description": "Премиум streetwear за красиво нерешителни моменти. Изрази автентичното си аз.",
+    "trustSignals": {
+      "freeShipping": "Безплатна доставка",
+      "returns": "30-дневно връщане", 
+      "reviews": "4.9/5 (5k+ отзива)"
+    }
+  },
+  "filters": {
+    "title": "Филтри",
+    "clear": "Изчисти всички",
+    "apply": "Приложи филтри",
+    "category": {
+      "title": "Категория",
+      "all": "Всички категории",
+      "hats": "Шапки",
+      "apparel": "Облекло",
+      "accessories": "Аксесоари"
+    },
+    "size": {
+      "title": "Размер",
+      "oneSize": "Един размер",
+      "xs": "XS",
+      "s": "S", 
+      "m": "M",
+      "l": "L",
+      "xl": "XL",
+      "xxl": "XXL"
+    },
+    "color": {
+      "title": "Цвят",
+      "black": "Черно",
+      "white": "Бяло",
+      "gray": "Сиво",
+      "navy": "Тъмносиньо",
+      "red": "Червено",
+      "pink": "Розово",
+      "purple": "Лилаво",
+      "blue": "Синьо",
+      "green": "Зелено",
+      "yellow": "Жълто",
+      "orange": "Оранжево"
+    },
+    "price": {
+      "title": "Ценова гама",
+      "under25": "Под 50 лв",
+      "25to50": "50 - 100 лв",
+      "50to100": "100 - 200 лв", 
+      "over100": "Над 200 лв",
+      "min": "Мин",
+      "max": "Макс"
+    },
+    "availability": {
+      "title": "Наличност",
+      "inStock": "Само в наличност",
+      "onSale": "В промоция",
+      "newArrivals": "Новопристигнали"
+    },
+    "brand": {
+      "title": "Марка",
+      "indecisiveWear": "Indecisive Wear"
+    }
+  },
+  "sorting": {
+    "title": "Сортирай по",
+    "featured": "Препоръчани",
+    "newest": "Най-нови",
+    "priceAsc": "Цена: от ниска към висока",
+    "priceDesc": "Цена: от висока към ниска",
+    "name": "Име",
+    "popularity": "Популярност",
+    "rating": "Потребителска оценка"
+  },
+  "grid": {
+    "layout": "Вид на мрежата",
+    "columns2": "2 колони",
+    "columns3": "3 колони", 
+    "columns4": "4 колони",
+    "list": "Списъчен изглед"
+  },
+  "results": {
+    "showing": "Показани {{start}}-{{end}} от {{total}} продукта",
+    "found": "{{count}} продукта намерени",
+    "noResults": "Няма намерени продукти",
+    "noResultsDesc": "Опитай да промениш търсенето или филтрите, за да намериш това, което търсиш.",
+    "clearFilters": "Изчисти всички филтри",
+    "loadMore": "Зареди още продукти"
+  },
+  "product": {
+    "quickView": "Бърз преглед",
+    "addToWishlist": "Добави в любими",
+    "removeFromWishlist": "Премахни от любими",
+    "addToCompare": "Добави за сравнение",
+    "removeFromCompare": "Премахни от сравнение",
+    "originalPrice": "Първоначална цена",
+    "salePrice": "Промоционална цена",
+    "saveAmount": "Спести {{amount}}",
+    "inStock": "В наличност",
+    "outOfStock": "Изчерпан",
+    "limitedStock": "Остават само {{count}}!",
+    "backorder": "Достъпен за предварителна поръчка",
+    "preorder": "Предварителна поръчка",
+    "comingSoon": "Очаквайте скоро",
+    "freeShipping": "Безплатна доставка",
+    "fastDelivery": "Бърза доставка",
+    "ecoFriendly": "Екологично",
+    "newArrival": "Новопристигнал",
+    "bestseller": "Бестселър", 
+    "onSale": "В промоция",
+    "exclusive": "Ексклузивно",
+    "limitedEdition": "Лимитирано издание",
+    "reviews": {
+      "rating": "{{rating}} от 5 звезди",
+      "count": "{{count}} отзива",
+      "noReviews": "Все още няма отзиви",
+      "writeReview": "Напиши отзив",
+      "readReviews": "Прочети отзиви"
+    },
+    "variants": {
+      "color": "Цвят",
+      "size": "Размер",
+      "selectColor": "Избери цвят",
+      "selectSize": "Избери размер"
+    },
+    "quantity": {
+      "label": "Количество",
+      "increase": "Увеличи количеството",
+      "decrease": "Намали количеството",
+      "max": "Максимум {{max}} за поръчка"
+    },
+    "actions": {
+      "addToCart": "Добави в количката",
+      "buyNow": "Купи сега",
+      "notify": "Уведоми при наличност",
+      "preorder": "Предварителна поръчка"
+    },
+    "details": {
+      "description": "Описание",
+      "specifications": "Спецификации",
+      "shipping": "Доставка и връщане",
+      "sizeGuide": "Ръководство за размери",
+      "careInstructions": "Инструкции за грижа"
+    },
+    "share": {
+      "title": "Сподели този продукт",
+      "facebook": "Сподели във Facebook",
+      "twitter": "Сподели в Twitter", 
+      "pinterest": "Сподели в Pinterest",
+      "email": "Сподели по имейл",
+      "copyLink": "Копирай връзка"
+    }
+  },
+  "cart": {
+    "title": "Количка за пазаруване",
+    "empty": "Количката ти е празна",
+    "emptyDesc": "Изглежда все още не си добавил нищо.",
+    "continueShopping": "Продължи пазаруването",
+    "item": "артикул",
+    "items": "артикула",
+    "subtotal": "Междинна сума",
+    "tax": "Данък",
+    "shipping": "Доставка",
+    "total": "Общо",
+    "remove": "Премахни",
+    "update": "Обнови",
+    "moveToWishlist": "Премести в любими",
+    "quantity": "Кол-во",
+    "checkout": "Продължи към поръчка",
+    "estimatedDelivery": "Очаквана доставка: {{date}}",
+    "freeShippingNote": "Имаш право на безплатна доставка!",
+    "almostFreeShipping": "Добави още {{amount}} за безплатна доставка"
+  },
+  "wishlist": {
+    "title": "Любими",
+    "empty": "Списъкът с любими е празен",
+    "emptyDesc": "Запази артикули, които харесваш за по-късно.",
+    "addToCart": "Добави в количката",
+    "remove": "Премахни",
+    "share": "Сподели любими",
+    "itemCount": "{{count}} артикула"
+  },
+  "compare": {
+    "title": "Сравни продукти",
+    "empty": "Няма продукти за сравнение",
+    "emptyDesc": "Добави продукти за да сравниш техните характеристики.",
+    "clear": "Изчисти всички",
+    "addToCart": "Добави в количката",
+    "remove": "Премахни",
+    "maxItems": "Можеш да сравниш до {{max}} продукта"
+  }
+}

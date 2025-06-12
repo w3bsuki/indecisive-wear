@@ -1,0 +1,65 @@
+{
+  "name": "INDECISIVEWEAR",
+  "short_name": "INDECISIVE",
+  "description": "INDECISIVEWEAR - Coming Soon",
+  "start_url": "/",
+  "id": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui", "browser"],
+  "background_color": "#ffffff",
+  "theme_color": "#EC4899",
+  "orientation": "portrait",
+  "scope": "/",
+  "prefer_related_applications": false,
+  "categories": ["fashion", "shopping", "lifestyle"],
+  "launch_handler": {
+    "client_mode": ["navigate-existing", "auto"]
+  },
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "shortcuts": [
+    {
+      "name": "Join Waitlist",
+      "url": "/?action=join",
+      "description": "Join our exclusive waitlist",
+      "icons": [
+        {
+          "src": "/icons/icon-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/icons/screenshot1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Home Screen"
+    },
+    {
+      "src": "/icons/screenshot2.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Mobile View" 
+    }
+  ],
+  "icons": [
+    {
+      "src": "/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+} 

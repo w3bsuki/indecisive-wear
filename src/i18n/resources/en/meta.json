@@ -1,0 +1,129 @@
+{
+  "site": {
+    "name": "Indecisive Wear",
+    "description": "Premium streetwear for beautifully indecisive moments. Express your authentic self with quality clothing that understands the struggle.",
+    "keywords": "streetwear, fashion, indecisive, clothing, hats, premium, authentic, style",
+    "author": "Indecisive Wear",
+    "twitter": "@indecisivewear",
+    "url": "https://indecisivewear.com"
+  },
+  "pages": {
+    "home": {
+      "title": "Indecisive Wear - Premium Streetwear for Beautifully Indecisive Moments",
+      "description": "Express your authentic self with premium streetwear that celebrates indecision. Shop hats, apparel, and accessories for the beautifully uncertain.",
+      "keywords": "indecisive wear, streetwear, premium clothing, authentic fashion, hats, caps"
+    },
+    "shop": {
+      "title": "Shop - Premium Streetwear Collection | Indecisive Wear",
+      "description": "Browse our collection of premium streetwear hats and accessories. Express your indecisive style with confidence.",
+      "keywords": "shop streetwear, buy hats, premium caps, indecisive clothing, fashion accessories"
+    },
+    "product": {
+      "title": "{{productName}} | Indecisive Wear",
+      "description": "{{productDescription}} Premium quality streetwear for beautifully indecisive moments.",
+      "keywords": "{{productName}}, streetwear, premium clothing, indecisive wear"
+    },
+    "cart": {
+      "title": "Shopping Cart | Indecisive Wear",
+      "description": "Review your selected items and proceed to checkout. Premium streetwear for beautifully indecisive moments.",
+      "keywords": "shopping cart, checkout, indecisive wear, streetwear"
+    },
+    "checkout": {
+      "title": "Checkout | Indecisive Wear",
+      "description": "Complete your purchase securely. Premium streetwear for beautifully indecisive moments.",
+      "keywords": "checkout, buy now, secure payment, indecisive wear"
+    },
+    "about": {
+      "title": "About Us - Celebrating Beautiful Indecision | Indecisive Wear",
+      "description": "Learn about our mission to celebrate authenticity and embrace the beauty of indecision through premium streetwear.",
+      "keywords": "about indecisive wear, our story, mission, authentic fashion, streetwear brand"
+    },
+    "contact": {
+      "title": "Contact Us | Indecisive Wear",
+      "description": "Get in touch with our team. We're here to help with any questions about our premium streetwear.",
+      "keywords": "contact indecisive wear, customer service, support, help"
+    },
+    "account": {
+      "title": "My Account | Indecisive Wear",
+      "description": "Manage your account, view orders, and update your preferences.",
+      "keywords": "my account, order history, profile, indecisive wear"
+    },
+    "wishlist": {
+      "title": "My Wishlist | Indecisive Wear",
+      "description": "Save your favorite items for later. Build your perfect indecisive wardrobe.",
+      "keywords": "wishlist, favorites, save items, indecisive wear"
+    },
+    "search": {
+      "title": "Search Results for \"{{query}}\" | Indecisive Wear",
+      "description": "Find the perfect pieces for your indecisive style. Search results for {{query}}.",
+      "keywords": "search, find products, {{query}}, indecisive wear"
+    },
+    "404": {
+      "title": "Page Not Found | Indecisive Wear",
+      "description": "The page you're looking for doesn't exist. Explore our premium streetwear collection instead.",
+      "keywords": "page not found, 404, indecisive wear"
+    }
+  },
+  "openGraph": {
+    "site": {
+      "title": "Indecisive Wear - Premium Streetwear",
+      "description": "Premium streetwear for beautifully indecisive moments. Express your authentic self.",
+      "image": "/images/og-image.jpg",
+      "imageAlt": "Indecisive Wear - Premium Streetwear Collection"
+    },
+    "product": {
+      "title": "{{productName}} - Premium Streetwear",
+      "description": "{{productDescription}}",
+      "image": "{{productImage}}",
+      "imageAlt": "{{productName}} from Indecisive Wear",
+      "price": "{{price}}",
+      "currency": "{{currency}}",
+      "availability": "{{availability}}"
+    }
+  },
+  "twitter": {
+    "site": {
+      "title": "Indecisive Wear - Premium Streetwear for Beautifully Indecisive Moments",
+      "description": "Express your authentic self with premium streetwear that celebrates indecision.",
+      "image": "/images/twitter-card.jpg",
+      "imageAlt": "Indecisive Wear - Premium Streetwear Collection"
+    }
+  },
+  "schema": {
+    "organization": {
+      "name": "Indecisive Wear",
+      "url": "https://indecisivewear.com",
+      "logo": "https://indecisivewear.com/images/logo.png",
+      "description": "Premium streetwear brand celebrating beautifully indecisive moments",
+      "address": {
+        "streetAddress": "",
+        "addressLocality": "",
+        "postalCode": "",
+        "addressCountry": "US"
+      },
+      "contactPoint": {
+        "telephone": "",
+        "contactType": "customer service",
+        "email": "hello@indecisivewear.com"
+      },
+      "sameAs": [
+        "https://instagram.com/indecisivewear",
+        "https://twitter.com/indecisivewear",
+        "https://tiktok.com/@indecisivewear"
+      ]
+    },
+    "product": {
+      "name": "{{productName}}",
+      "description": "{{productDescription}}",
+      "image": "{{productImage}}",
+      "brand": "Indecisive Wear",
+      "sku": "{{productSku}}",
+      "offers": {
+        "price": "{{price}}",
+        "currency": "{{currency}}",
+        "availability": "{{availability}}",
+        "url": "{{productUrl}}"
+      }
+    }
+  }
+}

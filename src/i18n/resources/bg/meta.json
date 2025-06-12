@@ -1,0 +1,39 @@
+{
+  "siteName": "Indecisive Wear",
+  "siteDescription": "Премиум streetwear за красиво нерешителни моменти. Изрази своя автентичен стил.",
+  "keywords": "streetwear, мода, нерешителен, стил, дрехи, шапки, премиум",
+  "author": "Indecisive Wear Team",
+  "robots": "index, follow",
+  "viewport": "width=device-width, initial-scale=1",
+  "themeColor": "#ec4899",
+  "pages": {
+    "home": {
+      "title": "Indecisive Wear - Премиум Streetwear за нерешителни моменти",
+      "description": "Открий премиум streetwear колекцията за красиво нерешителни моменти. Шапки, дрехи и аксесоари, които изразяват автентичността ти."
+    },
+    "shop": {
+      "title": "Магазин - Indecisive Wear",
+      "description": "Разгледай нашата пълна колекция от премиум streetwear. Шапки, облекло и аксесоари за всеки стил."
+    },
+    "about": {
+      "title": "За нас - Indecisive Wear",
+      "description": "Научи повече за Indecisive Wear и нашата мисия да празнуваме красотата на нерешителността."
+    },
+    "contact": {
+      "title": "Контакт - Indecisive Wear",
+      "description": "Свържи се с екипа на Indecisive Wear. Тук сме да отговорим на всички твои въпроси."
+    }
+  },
+  "openGraph": {
+    "type": "website",
+    "locale": "bg_BG",
+    "site_name": "Indecisive Wear",
+    "image": "/images/og-image-bg.jpg",
+    "imageAlt": "Indecisive Wear - Премиум Streetwear"
+  },
+  "twitter": {
+    "card": "summary_large_image",
+    "site": "@indecisivewear",
+    "creator": "@indecisivewear"
+  }
+}

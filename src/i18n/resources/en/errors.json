@@ -1,0 +1,111 @@
+{
+  "general": {
+    "unknown": "An unexpected error occurred",
+    "tryAgain": "Please try again",
+    "contact": "If the problem persists, please contact support",
+    "reload": "Reload Page"
+  },
+  "network": {
+    "offline": "You appear to be offline",
+    "timeout": "Request timed out",
+    "failed": "Network request failed",
+    "connectionLost": "Connection lost"
+  },
+  "validation": {
+    "required": "This field is required",
+    "email": "Please enter a valid email address",
+    "phone": "Please enter a valid phone number",
+    "url": "Please enter a valid URL",
+    "password": "Password must be at least 8 characters",
+    "passwordMatch": "Passwords do not match",
+    "creditCard": "Please enter a valid credit card number",
+    "expiry": "Please enter a valid expiry date",
+    "cvv": "Please enter a valid CVV",
+    "zipCode": "Please enter a valid ZIP code",
+    "minLength": "Must be at least {{min}} characters",
+    "maxLength": "Must be no more than {{max}} characters",
+    "min": "Must be at least {{min}}",
+    "max": "Must be no more than {{max}}",
+    "pattern": "Invalid format"
+  },
+  "auth": {
+    "invalidCredentials": "Invalid email or password",
+    "accountLocked": "Account has been locked",
+    "sessionExpired": "Your session has expired",
+    "unauthorized": "You are not authorized to access this resource",
+    "emailNotVerified": "Please verify your email address",
+    "passwordReset": "Password reset link has been sent",
+    "accountNotFound": "Account not found",
+    "emailInUse": "This email is already in use",
+    "weakPassword": "Password is too weak",
+    "tooManyAttempts": "Too many failed attempts. Please try again later"
+  },
+  "cart": {
+    "itemNotFound": "Item not found in cart",
+    "outOfStock": "This item is no longer in stock",
+    "quantityUnavailable": "Only {{available}} items available",
+    "priceChanged": "Price has changed since adding to cart",
+    "cartEmpty": "Your cart is empty",
+    "maxQuantity": "Maximum quantity per item is {{max}}",
+    "minQuantity": "Minimum quantity per item is {{min}}"
+  },
+  "checkout": {
+    "paymentFailed": "Payment could not be processed",
+    "shippingUnavailable": "Shipping to this address is not available",
+    "invalidDiscount": "Discount code is not valid",
+    "expiredDiscount": "Discount code has expired",
+    "inventoryError": "Some items are no longer available",
+    "addressInvalid": "Please check your address",
+    "taxCalculationFailed": "Could not calculate tax"
+  },
+  "product": {
+    "notFound": "Product not found",
+    "unavailable": "Product is currently unavailable",
+    "variantNotFound": "Selected variant is not available",
+    "imageLoadFailed": "Failed to load product image",
+    "reviewsFailed": "Could not load reviews"
+  },
+  "search": {
+    "noResults": "No results found for \"{{query}}\"",
+    "searchFailed": "Search request failed",
+    "invalidQuery": "Search query is invalid"
+  },
+  "account": {
+    "updateFailed": "Failed to update account information",
+    "passwordChangeFailed": "Failed to change password",
+    "addressSaveFailed": "Failed to save address",
+    "orderNotFound": "Order not found",
+    "orderCancelFailed": "Failed to cancel order"
+  },
+  "wishlist": {
+    "addFailed": "Failed to add item to wishlist",
+    "removeFailed": "Failed to remove item from wishlist",
+    "loadFailed": "Failed to load wishlist",
+    "notFound": "Wishlist not found"
+  },
+  "newsletter": {
+    "subscribeFailed": "Failed to subscribe to newsletter",
+    "unsubscribeFailed": "Failed to unsubscribe from newsletter",
+    "alreadySubscribed": "You are already subscribed",
+    "invalidEmail": "Please enter a valid email address"
+  },
+  "file": {
+    "uploadFailed": "File upload failed",
+    "invalidFormat": "Invalid file format",
+    "tooLarge": "File is too large",
+    "tooSmall": "File is too small"
+  },
+  "form": {
+    "submissionFailed": "Form submission failed",
+    "invalidData": "Please check your information",
+    "missingFields": "Please fill in all required fields"
+  },
+  "api": {
+    "serverError": "Server error occurred",
+    "serviceUnavailable": "Service is temporarily unavailable",
+    "rateLimited": "Too many requests. Please wait and try again",
+    "badRequest": "Invalid request",
+    "notFound": "Resource not found",
+    "forbidden": "Access denied"
+  }
+}
