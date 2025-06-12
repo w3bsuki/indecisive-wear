@@ -162,10 +162,12 @@ export function HomePage() {
                 
                 {/* Hero Section - Full viewport on mobile */}
                 <section className="-mx-4 sm:-mx-6 md:-mx-8 lg:-mx-12">
-                  <HeroSection 
-                    hatImages={hatImages} 
-                    scrollToProducts={scrollToProducts} 
-                  />
+                  <div className="px-4 sm:px-6 md:px-8 lg:px-12">
+                    <HeroSection 
+                      hatImages={hatImages} 
+                      scrollToProducts={scrollToProducts} 
+                    />
+                  </div>
                 </section>
 
                 {/* Featured Products Section */}

@@ -81,13 +81,11 @@ function HeroSectionComponent({ hatImages, scrollToProducts: _scrollToProducts, 
         <div className="absolute inset-0 bg-[radial-gradient(#ec4899_1px,transparent_1px)] [background-size:16px_16px]" />
       </div>
       
-      {/* ONE unified hero container */}
+      {/* Hero content with single container */}
       <div className={cn(
-        "relative z-10 h-full flex flex-col w-full",
-        "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+        "relative z-10 h-full flex flex-col justify-center",
         "pt-20 sm:pt-24 pb-4"
       )}>
-        
         {/* Unified Hero Container */}
         <div className={cn(
           "bg-white/90 backdrop-blur-xl",

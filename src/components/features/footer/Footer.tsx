@@ -34,7 +34,6 @@ const FooterComponent = () => {
         "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
         "pt-8 sm:pt-12 pb-6"
       )}>
-        
         {/* Unified Footer Container */}
         <div className={cn(
           "bg-white/90 backdrop-blur-xl",
