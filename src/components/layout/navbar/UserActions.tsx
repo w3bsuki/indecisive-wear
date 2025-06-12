@@ -50,13 +50,13 @@ export const UserActions = React.memo(function UserActions({
           size="icon"
           aria-label="Open search"
           className={cn(
-            "w-9 h-9 rounded-full bg-transparent",
+            "w-10 h-10 rounded-full bg-transparent",
             "text-pink-500 hover:text-white hover:bg-pink-500/90",
             "transition-all duration-200 ease-mobile active:scale-95",
             "touch-manipulation transform-gpu shadow-sm hover:shadow-md"
           )}
         >
-          <Search className="h-4 w-4" strokeWidth={1.5} />
+          <Search className="h-5 w-5" strokeWidth={1.5} />
         </Button>
       </div>
 
@@ -69,13 +69,13 @@ export const UserActions = React.memo(function UserActions({
             type="button"
             aria-label={`Notifications${notificationCount > 0 ? ` (${notificationCount} unread)` : ''}`}
             className={cn(
-              "w-9 h-9 rounded-full bg-transparent",
+              "w-10 h-10 rounded-full bg-transparent",
               "text-pink-500 hover:text-white hover:bg-pink-500/90",
               "transition-all duration-200 ease-mobile active:scale-95",
               "touch-manipulation transform-gpu relative shadow-sm hover:shadow-md"
             )}
           >
-            <Bell className="h-4 w-4" strokeWidth={1.5} />
+            <Bell className="h-5 w-5" strokeWidth={1.5} />
             <NotificationBadge count={notificationCount} />
           </Button>
         </HoverCardTrigger>
@@ -126,7 +126,7 @@ export const UserActions = React.memo(function UserActions({
       {/* Shop Icons Badge */}
       <div className="relative">
         <div className="absolute inset-0 bg-pink-500/10 blur-md rounded-full" />
-        <div className="relative bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full border border-pink-500/20 shadow-[0_0_10px_rgba(236,72,153,0.15)] flex items-center gap-2">
+        <div className="relative bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-pink-500/20 shadow-[0_0_10px_rgba(236,72,153,0.15)] flex items-center gap-3">
           {/* Wishlist */}
           <HoverCard openDelay={0} closeDelay={100}>
             <HoverCardTrigger asChild>
@@ -136,14 +136,14 @@ export const UserActions = React.memo(function UserActions({
                 type="button"
                 aria-label={`Wishlist${wishlistCount > 0 ? ` (${wishlistCount} items)` : ''}`}
                 className={cn(
-                  "w-8 h-8 rounded-full bg-transparent",
+                  "w-9 h-9 rounded-full bg-transparent",
                   "text-pink-500 hover:text-white hover:bg-pink-500/90",
                   "border border-pink-500/50 hover:border-pink-500",
                   "transition-all duration-200 ease-mobile active:scale-95",
                   "touch-manipulation transform-gpu relative"
                 )}
               >
-                <Heart className="h-3.5 w-3.5" strokeWidth={1.5} />
+                <Heart className="h-4 w-4" strokeWidth={1.5} />
                 <NotificationBadge count={wishlistCount} size="small" className="-top-2 -right-1" />
               </Button>
             </HoverCardTrigger>
@@ -199,7 +199,7 @@ export const UserActions = React.memo(function UserActions({
                 elements: {
                   rootBox: "relative",
                   avatarBox: cn(
-                    "w-8 h-8 rounded-full",
+                    "w-9 h-9 rounded-full",
                     "ring-2 ring-pink-500/50 hover:ring-pink-500",
                     "transition-all duration-200 ease-mobile",
                     "shadow-sm hover:shadow-md"
@@ -228,14 +228,14 @@ export const UserActions = React.memo(function UserActions({
                 type="button"
                 aria-label="Sign in"
                 className={cn(
-                  "w-8 h-8 rounded-full bg-transparent",
+                  "w-9 h-9 rounded-full bg-transparent",
                   "text-pink-500 hover:text-white hover:bg-pink-500/90",
                   "border border-pink-500/50 hover:border-pink-500",
                   "transition-all duration-200 ease-mobile active:scale-95",
                   "touch-manipulation transform-gpu relative"
                 )}
               >
-                <User className="h-3.5 w-3.5" strokeWidth={1.5} />
+                <User className="h-4 w-4" strokeWidth={1.5} />
               </Button>
             </SignInButton>
           </SignedOut>
@@ -251,14 +251,14 @@ export const UserActions = React.memo(function UserActions({
                 type="button"
                 aria-label={`Shopping cart${cartCount > 0 ? ` (${cartCount} items)` : ''}`}
                 className={cn(
-                  "w-8 h-8 rounded-full bg-transparent",
+                  "w-9 h-9 rounded-full bg-transparent",
                   "text-pink-500 hover:text-white hover:bg-pink-500/90",
                   "border border-pink-500/50 hover:border-pink-500",
                   "transition-all duration-200 ease-mobile active:scale-95",
                   "touch-manipulation transform-gpu relative"
                 )}
               >
-                <ShoppingBag className="h-3.5 w-3.5" strokeWidth={1.5} />
+                <ShoppingBag className="h-4 w-4" strokeWidth={1.5} />
                 <NotificationBadge count={cartCount} size="small" className="-top-2 -right-1" />
               </Button>
             </HoverCardTrigger>

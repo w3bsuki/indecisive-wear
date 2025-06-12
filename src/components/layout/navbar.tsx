@@ -82,8 +82,8 @@ const Navbar = React.memo(function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-30 transition-all duration-300",
           isScrolled 
-            ? "py-2" // 16px - increased from 12px
-            : "py-3"   // 24px - increased from 16px for better mobile presence
+            ? "py-2.5" // 20px
+            : "py-4"   // 32px for better proportion with taller navbar
         )}
         aria-label="Site header"
         role="banner"
@@ -112,7 +112,7 @@ const Navbar = React.memo(function Navbar() {
               "rounded-2xl overflow-hidden"
             )}>
               <div className={cn(
-                "h-16 sm:h-18 lg:h-[72px]", // Increased mobile height from h-14 to h-16
+                "h-18 sm:h-20 lg:h-[80px]", // Increased height for better proportion
                 "px-3 sm:px-6 md:px-10",
                 "flex items-center justify-between", // Simple flex on mobile, grid on desktop
                 "lg:grid lg:grid-cols-[1fr_auto_1fr]",
