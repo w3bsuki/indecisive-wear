@@ -3,7 +3,7 @@ services:
     name: indecisive-wear-medusa
     runtime: node
     rootDir: store
-    buildCommand: npm install && npm run build
+    buildCommand: ./render-build.sh
     startCommand: npm run start
     envVars:
       - key: NODE_ENV
@@ -29,6 +29,11 @@ services:
           type: redis
           name: indecisive-wear-redis
           property: connectionString
+      - key: MEDUSA_BACKEND_URL
+        fromService:
+          type: web
+          name: indecisive-wear-medusa
+          property: hostport
 
 databases:
   - name: indecisive-wear-db

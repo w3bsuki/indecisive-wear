@@ -15,8 +15,8 @@ module.exports = defineConfig({
     redisUrl: process.env.REDIS_URL,
   },
   admin: {
-    backendUrl: process.env.MEDUSA_ADMIN_BACKEND_URL || "http://localhost:9000",
-    path: (process.env.MEDUSA_ADMIN_BASE_PATH || "/app") as `/${string}`,
+    backendUrl: process.env.MEDUSA_ADMIN_BACKEND_URL || process.env.MEDUSA_BACKEND_URL || "http://localhost:9000",
+    path: "/app" as `/${string}`,
   },
   modules: {
     // Disable problematic modules for initial deployment
