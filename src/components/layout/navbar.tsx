@@ -88,14 +88,15 @@ const Navbar = React.memo(function Navbar() {
         aria-label="Site header"
         role="banner"
       >
-        <div className="w-full px-4 sm:px-6 lg:px-8 2xl:px-12">
-          {/* Main navbar content */}
-          <motion.div 
-            className="relative"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-          >
+        <div className="w-full">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Main navbar content */}
+            <motion.div 
+              className="relative"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
             {/* Enhanced glass morphism background */}
             <div className={cn(
               "absolute inset-0",
@@ -146,6 +147,7 @@ const Navbar = React.memo(function Navbar() {
               </div>
             </div>
           </motion.div>
+          </div>
         </div>
       </header>
       
