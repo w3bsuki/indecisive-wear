@@ -13,10 +13,10 @@ module.exports = defineConfig({
       cookieSecret: process.env.COOKIE_SECRET || require('crypto').randomBytes(64).toString('hex'),
     },
     redisUrl: process.env.REDIS_URL,
-    admin: {
-      backendUrl: process.env.MEDUSA_ADMIN_BACKEND_URL || "http://localhost:9000",
-      path: process.env.MEDUSA_ADMIN_BASE_PATH || "/app",
-    }
+  },
+  admin: {
+    backendUrl: process.env.MEDUSA_ADMIN_BACKEND_URL || "http://localhost:9000",
+    path: process.env.MEDUSA_ADMIN_BASE_PATH || "/app",
   },
   modules: {
     // Disable problematic modules for initial deployment
