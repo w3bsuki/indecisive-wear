@@ -5,7 +5,6 @@ import { SocialMediaSection } from "@/components/features/marketing/social/Socia
 import { HeroSection } from "@/components/features/marketing/HeroSection"
 import { FeaturedProducts } from "@/components/features/marketing/FeaturedProducts"
 import { ComingSoonCarousel } from "@/components/features/marketing/ComingSoonCarousel"
-import { Footer } from "@/components/features/footer/Footer"
 import { cleanDesignSystem } from "@/lib/design-system/clean-tokens"
 import { cn } from "@/lib/utils"
 
@@ -207,9 +206,6 @@ export function HomePage() {
           </div>
         </div>
       </div>
-      
-      {/* Footer inside the main container */}
-      <Footer />
     </main>
   )
 }

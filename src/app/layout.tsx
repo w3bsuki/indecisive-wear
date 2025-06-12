@@ -172,6 +172,7 @@ export default function RootLayout({
                     <main id="main-content" className="flex-1 px-safe">
                       {children}
                     </main>
+                    <Footer />
                   </div>
                   {/* Toast notifications */}
                   <Toaster />
