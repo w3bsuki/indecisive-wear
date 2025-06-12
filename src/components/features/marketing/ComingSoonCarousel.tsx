@@ -138,7 +138,7 @@ const ComingSoonCarouselComponent = ({ className }: ComingSoonCarouselProps) => 
               {categories.map((category) => (
                 <div
                   key={category.id}
-                  className="group relative flex-none w-48 sm:w-52 snap-start"
+                  className="group relative flex-none w-28 sm:w-56 md:w-64 lg:w-72 snap-start"
                   style={{ transform: 'translateZ(0)' }}
                 >
                   {/* Compact Category Card */}
@@ -199,12 +199,6 @@ const ComingSoonCarouselComponent = ({ className }: ComingSoonCarouselProps) => 
           
           {/* Mobile-Optimized CTA */}
           <div className="flex flex-col items-center gap-3 mt-4 pt-4 border-t border-pink-200/30">
-            <p className="text-sm text-gray-500 text-center">
-              {locale === 'bg' 
-                ? `5 нови категории`
-                : `5 new categories`
-              }
-            </p>
             <Button 
               onClick={handleJoinWaitlist}
               className="h-11 px-6 bg-pink-500 text-white text-sm rounded-lg hover:bg-pink-600 shadow-sm hover:shadow-md flex items-center justify-center gap-2 font-medium transition-all"
