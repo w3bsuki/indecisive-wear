@@ -16,7 +16,7 @@ module.exports = defineConfig({
   },
   admin: {
     backendUrl: process.env.MEDUSA_ADMIN_BACKEND_URL || "http://localhost:9000",
-    path: process.env.MEDUSA_ADMIN_BASE_PATH || "/app",
+    path: (process.env.MEDUSA_ADMIN_BASE_PATH || "/app") as `/${string}`,
   },
   modules: {
     // Disable problematic modules for initial deployment
