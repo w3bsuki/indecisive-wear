@@ -88,8 +88,8 @@ const Navbar = React.memo(function Navbar() {
         aria-label="Site header"
         role="banner"
       >
-        <div className="w-full">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
             {/* Main navbar content */}
             <motion.div 
               className="relative"
@@ -112,8 +112,8 @@ const Navbar = React.memo(function Navbar() {
               "rounded-2xl overflow-hidden"
             )}>
               <div className={cn(
-                "h-18 sm:h-20 lg:h-[80px]", // Increased height for better proportion
-                "px-3 sm:px-6 md:px-10",
+                "h-16 sm:h-18 lg:h-20", // Mobile-perfect heights
+                "px-4 sm:px-6 lg:px-8",
                 "flex items-center justify-between", // Simple flex on mobile, grid on desktop
                 "lg:grid lg:grid-cols-[1fr_auto_1fr]",
                 "transition-all duration-300 ease-out"

@@ -129,24 +129,24 @@ const ComingSoonCarouselComponent = ({ className }: ComingSoonCarouselProps) => 
             </div>
           </div>
             
-          {/* Scrollable Categories - Edge to edge on mobile */}
-          <div className="overflow-x-auto pb-2 scrollbar-hide snap-x snap-mandatory -mx-6 sm:mx-0" style={{ 
+          {/* Scrollable Categories */}
+          <div className="overflow-x-auto pb-2 scrollbar-hide snap-x snap-mandatory" style={{ 
             WebkitOverflowScrolling: 'touch',
             scrollBehavior: 'smooth'
           }}>
-            <div className="flex gap-3 sm:gap-4 pb-2 min-w-full px-6"> {/* 12px/16px - PERFECT_SPACING scale */}
+            <div className="flex gap-4 pb-2" style={{ width: 'max-content' }}>
               {categories.map((category) => (
                 <div
                   key={category.id}
-                  className="group relative flex-none w-28 sm:w-56 md:w-64 lg:w-72 snap-start"
+                  className="group relative flex-none w-56 sm:w-64 snap-start"
                   style={{ transform: 'translateZ(0)' }}
                 >
                   {/* Compact Category Card */}
                   <div className="relative overflow-hidden">
-                    <div className="bg-white rounded-xl border border-gray-200/50 shadow-sm hover:shadow-md transition-all duration-200">
+                    <div className="bg-white rounded-xl border border-gray-200/50 shadow-sm hover:shadow-md transition-all duration-200 p-0.5 sm:p-2">
                         
                       {/* Compact Icon Section */}
-                      <div className="relative h-24 overflow-hidden rounded-t-xl bg-gradient-to-br from-pink-50/50 via-white to-gray-50/30">
+                      <div className="aspect-square relative overflow-hidden rounded-lg sm:rounded-xl bg-gradient-to-br from-pink-50/50 via-white to-gray-50/30">
                         <div className="absolute inset-0 flex items-center justify-center">
                           <span className="text-3xl group-hover:scale-110 transition-transform duration-200">
                             {category.icon}
@@ -172,12 +172,12 @@ const ComingSoonCarouselComponent = ({ className }: ComingSoonCarouselProps) => 
                         </div>
                       </div>
 
-                      {/* Compact Content Section */}
-                      <div className="p-3"> {/* 12px - PERFECT_SPACING.scale[1.5] */}
-                        <h3 className="text-sm font-semibold text-gray-900 mb-1 group-hover:text-pink-600 transition-colors truncate">
+                      {/* Text Content - Below icon section */}
+                      <div className="p-3 text-center">
+                        <h3 className="text-sm font-semibold text-gray-900 mb-1 group-hover:text-pink-600 transition-colors">
                           {locale === 'bg' ? category.titleBg : category.titleEn}
                         </h3>
-                        <p className="text-xs text-gray-500 mb-2 truncate">
+                        <p className="text-xs text-gray-500 mb-3">
                           {locale === 'bg' ? category.descBg : category.descEn}
                         </p>
                         
@@ -185,11 +185,12 @@ const ComingSoonCarouselComponent = ({ className }: ComingSoonCarouselProps) => 
                         <Button
                           onClick={() => handleNotifyMe(category.id)}
                           size="sm"
-                          className="w-full h-8 text-xs bg-white text-pink-600 border border-pink-200 hover:bg-pink-50 hover:border-pink-300 transition-all duration-200" // 32px height
+                          className="w-full h-8 text-xs bg-white text-pink-600 border border-pink-200 hover:bg-pink-50 hover:border-pink-300 transition-all duration-200"
                         >
                           {locale === 'bg' ? 'Уведоми ме' : 'Notify Me'}
                         </Button>
                       </div>
+
                     </div>
                   </div>
                 </div>

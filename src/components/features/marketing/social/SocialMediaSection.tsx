@@ -165,15 +165,16 @@ const SocialMediaSectionComponent = ({ className }: SocialMediaSectionProps) => 
               {[...currentPosts, ...currentPosts.slice(0, 2)].map((post, index) => (
                 <div
                   key={`${activeTab}-${post.id}-${index}`}
-                  className="group relative flex-none w-40 sm:w-44 snap-start"
+                  className="group relative flex-none w-56 sm:w-64 snap-start"
                   style={{ transform: 'translateZ(0)' }}
                 >
                   <div className={cn(
-                    "rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-200",
-                    activeTab === 'instagram' ? 'bg-white border border-gray-100' : 'bg-black'
+                    "bg-white rounded-xl border border-gray-200/50 shadow-sm hover:shadow-md transition-all duration-200",
+                    "hover:-translate-y-0.5",
+                    "p-0.5 sm:p-2"
                   )}>
-                    {/* Compact image */}
-                    <div className="aspect-square relative bg-gradient-to-br from-pink-50 to-purple-50 flex items-center justify-center">
+                    {/* Image section - Match hat card structure */}
+                    <div className="aspect-square relative overflow-hidden rounded-lg sm:rounded-xl bg-gradient-to-br from-pink-50 to-purple-50 flex items-center justify-center">
                       <div className="text-3xl">
                         {activeTab === 'instagram' ? '📸' : '🎵'}
                       </div>

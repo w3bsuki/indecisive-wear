@@ -30,20 +30,23 @@ const FooterComponent = () => {
 
   return (
     <footer className="relative">
-      <div className="space-y-6 sm:space-y-8">
-
+      {/* All-in-one Container matching other sections */}
+      <div className="relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-pink-500/5 via-transparent to-pink-500/5 rounded-2xl" />
+        <div className="relative bg-white/90 backdrop-blur-xl p-4 sm:p-6 md:p-8 rounded-3xl border border-pink-200/30 shadow-[0_0_30px_rgba(236,72,153,0.12)]">
+          
           {/* Brand Marquee at the top of footer container */}
           <div className={cn(
             "bg-white/80 backdrop-blur-sm",
             "border border-pink-200/30",
-            "rounded-xl overflow-hidden mb-6"
+            "rounded-xl overflow-hidden mb-4 sm:mb-6"
           )}>
             <BrandMarquee 
               text="INDECISIVE WEAR" 
               speed={40}
               textColor="text-pink-500"
               separatorColor="text-black"
-              className="py-5 sm:py-6 text-xl sm:text-2xl md:text-3xl font-black"
+              className="py-3 sm:py-4 text-lg sm:text-xl md:text-2xl font-black"
             />
           </div>
 
@@ -53,9 +56,9 @@ const FooterComponent = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-8"
+            className="text-center mb-4 sm:mb-6"
           >
-            <h2 className="text-xl sm:text-2xl font-bold mb-3 text-gray-900">
+            <h2 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-gray-900">
               {locale === 'bg' ? (
                 <>
                   <span className="text-gray-700">Присъедини се към </span>
@@ -86,33 +89,33 @@ const FooterComponent = () => {
                 </>
               )}
             </h2>
-            <p className="text-sm sm:text-base text-gray-600 mb-6 max-w-md mx-auto">
+            <p className="text-sm text-gray-600 mb-4 sm:mb-5 max-w-sm mx-auto">
               {locale === 'bg' 
                 ? 'Абонирай се за ексклузивни оферти и нови продукти'
                 : 'Subscribe for exclusive offers and new products'
               }
             </p>
             
-            {/* Newsletter Form */}
+            {/* Newsletter Form - Mobile-perfect */}
             <form 
-              className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-6" 
+              className="flex flex-col gap-2 max-w-xs mx-auto mb-4 sm:mb-5" 
               onSubmit={(e) => e.preventDefault()}
             >
               <Input
                 type="email"
                 placeholder={locale === 'bg' ? 'твоя@имейл.com' : 'your@email.com'}
                 className={cn(
-                  "flex-1 bg-white border-2 border-pink-200/50",
+                  "w-full bg-white border-2 border-pink-200/50",
                   "focus:border-pink-500 focus:ring-pink-500/20",
-                  "rounded-xl min-h-[44px]"
+                  "rounded-xl h-10 text-sm"
                 )}
               />
               <Button 
                 type="submit"
                 className={cn(
-                  "bg-pink-500 hover:bg-pink-600 text-white font-semibold",
+                  "w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold",
                   "border-2 border-white/30 hover:border-white/50",
-                  "min-h-[44px] px-6 rounded-xl",
+                  "h-10 px-4 rounded-xl text-sm",
                   "shadow-lg hover:shadow-xl transition-all duration-200"
                 )}
               >
@@ -120,35 +123,37 @@ const FooterComponent = () => {
               </Button>
             </form>
 
-            {/* Social Icons */}
+            {/* Social Icons - Mobile-perfect */}
             <div className="flex items-center justify-center gap-4">
               <button
                 type="button"
                 onClick={() => window.open('https://www.instagram.com/indecisive_wear/', '_blank')}
                 className={cn(
-                  "flex items-center justify-center w-12 h-12",
+                  "flex items-center justify-center w-10 h-10",
                   "bg-gradient-to-r from-pink-500/10 to-purple-500/10",
                   "border border-pink-200/50 rounded-xl",
                   "hover:border-pink-300 hover:bg-pink-50/50",
-                  "transition-all duration-200 group"
+                  "transition-all duration-200 group",
+                  "active:scale-95"
                 )}
                 aria-label="Follow us on Instagram"
               >
-                <Instagram className="w-5 h-5 text-pink-600 group-hover:text-pink-700 transition-colors" />
+                <Instagram className="w-4 h-4 text-pink-600 group-hover:text-pink-700 transition-colors" />
               </button>
               <button
                 type="button"
                 onClick={() => window.open('https://www.tiktok.com/@indecisive.wear', '_blank')}
                 className={cn(
-                  "flex items-center justify-center w-12 h-12",
+                  "flex items-center justify-center w-10 h-10",
                   "bg-gradient-to-r from-gray-500/10 to-gray-600/10",
                   "border border-gray-200/50 rounded-xl",
                   "hover:border-gray-300 hover:bg-gray-50/50",
-                  "transition-all duration-200 group"
+                  "transition-all duration-200 group",
+                  "active:scale-95"
                 )}
                 aria-label="Follow us on TikTok"
               >
-                <TikTokIcon className="w-5 h-5 text-gray-700 group-hover:text-black transition-colors" />
+                <TikTokIcon className="w-4 h-4 text-gray-700 group-hover:text-black transition-colors" />
               </button>
             </div>
           </motion.div>
@@ -159,13 +164,13 @@ const FooterComponent = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mb-8"
+            className="mb-4 sm:mb-6"
           >
             <div className={cn(
               "bg-gradient-to-r from-pink-50/50 to-purple-50/50",
-              "border border-pink-200/40 rounded-2xl p-4"
+              "border border-pink-200/40 rounded-2xl p-3"
             )}>
-              <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
                 {footerLinks.map((link, index) => (
                   <React.Fragment key={link.name}>
                     <Link 
@@ -206,7 +211,7 @@ const FooterComponent = () => {
               }
             </p>
           </motion.div>
-
+        </div>
       </div>
     </footer>
   )
