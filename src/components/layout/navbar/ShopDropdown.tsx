@@ -92,7 +92,7 @@ export function ShopDropdown({ onMenuClick }: ShopDropdownProps) {
       {/* Dropdown Menu */}
       <div
         className={cn(
-          "absolute top-full left-1/2 -translate-x-1/2 mt-2",
+          "absolute top-full left-1/2 -translate-x-1/2 mt-2 z-[100]",
           "transition-all duration-200 origin-top",
           isOpen ? "opacity-100 scale-100 visible" : "opacity-0 scale-95 invisible"
         )}

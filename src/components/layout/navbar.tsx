@@ -109,7 +109,7 @@ const Navbar = React.memo(function Navbar() {
             <div className={cn(
               "relative",
               "bg-gradient-to-r from-pink-50/30 via-white/50 to-pink-50/30",
-              "rounded-2xl overflow-hidden"
+              "rounded-2xl"
             )}>
               <div className={cn(
                 "h-18 sm:h-20 lg:h-[80px]", // Increased height for better proportion

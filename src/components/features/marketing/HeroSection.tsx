@@ -81,21 +81,11 @@ function HeroSectionComponent({ hatImages, scrollToProducts: _scrollToProducts, 
         <div className="absolute inset-0 bg-[radial-gradient(#ec4899_1px,transparent_1px)] [background-size:16px_16px]" />
       </div>
       
-      {/* ONE unified hero container */}
+      {/* Hero content - no extra container */}
       <div className={cn(
-        "relative z-10 h-full flex flex-col w-full",
-        "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+        "relative z-10 h-full flex flex-col justify-center",
         "pt-20 sm:pt-24 pb-4"
       )}>
-        
-        {/* Unified Hero Container */}
-        <div className={cn(
-          "bg-white/90 backdrop-blur-xl",
-          "border border-pink-200/30", 
-          "shadow-[0_0_30px_rgba(236,72,153,0.12)]",
-          "rounded-3xl p-6 sm:p-8 md:p-10",
-          "flex-1 flex flex-col justify-center"
-        )}>
           
           {/* Countdown timer */}
           <div className="flex justify-center mb-6">
@@ -224,8 +214,6 @@ function HeroSectionComponent({ hatImages, scrollToProducts: _scrollToProducts, 
             </div>
 
           </div>
-
-        </div>
 
       </div>
     </section>

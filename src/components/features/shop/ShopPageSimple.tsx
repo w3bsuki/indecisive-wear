@@ -157,22 +157,23 @@ export function ShopPageSimple() {
       {/* Shop Hero */}
       <ShopHero onScrollToProducts={scrollToProducts} />
 
-      {/* Filters Bar */}
-      <CleanShopFiltersBar
-        totalProducts={SHOP_PRODUCTS.length}
-        filteredProducts={filteredProducts.length}
-        searchQuery={searchQuery}
-        sortBy={sortBy}
-        gridLayout={gridLayout}
-        showFilters={showFilters}
-        onSearchChange={setSearchQuery}
-        onSortChange={setSortBy}
-        onGridLayoutChange={setGridLayout}
-        onToggleFilters={() => setShowFilters(!showFilters)}
-      />
-
-      {/* Main Content */}
+      {/* Main Content Container */}
       <div id="products-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-24 lg:pb-8">
+        {/* Filters Bar inside container */}
+        <div className="mb-6">
+          <CleanShopFiltersBar
+            totalProducts={SHOP_PRODUCTS.length}
+            filteredProducts={filteredProducts.length}
+            searchQuery={searchQuery}
+            sortBy={sortBy}
+            gridLayout={gridLayout}
+            showFilters={showFilters}
+            onSearchChange={setSearchQuery}
+            onSortChange={setSortBy}
+            onGridLayoutChange={setGridLayout}
+            onToggleFilters={() => setShowFilters(!showFilters)}
+          />
+        </div>
         {/* Glass morphism container matching main page */}
         <div className="bg-white/90 backdrop-blur-xl border border-pink-200/30 shadow-[0_0_20px_rgba(236,72,153,0.08)] rounded-3xl p-6 sm:p-8 md:p-10">
           {/* Breadcrumbs */}
