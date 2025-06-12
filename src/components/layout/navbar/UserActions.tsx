@@ -50,13 +50,13 @@ export const UserActions = React.memo(function UserActions({
           size="icon"
           aria-label="Open search"
           className={cn(
-            "w-12 h-12 lg:w-12 lg:h-12 rounded-full bg-transparent", // 48px minimum touch target
+            "w-9 h-9 rounded-full bg-transparent",
             "text-pink-500 hover:text-white hover:bg-pink-500/90",
             "transition-all duration-200 ease-mobile active:scale-95",
             "touch-manipulation transform-gpu shadow-sm hover:shadow-md"
           )}
         >
-          <Search className="h-5 w-5 lg:h-6 lg:w-6" strokeWidth={1.5} />
+          <Search className="h-4 w-4" strokeWidth={1.5} />
         </Button>
       </div>
 
@@ -69,14 +69,14 @@ export const UserActions = React.memo(function UserActions({
             type="button"
             aria-label={`Notifications${notificationCount > 0 ? ` (${notificationCount} unread)` : ''}`}
             className={cn(
-              "w-12 h-12 lg:w-12 lg:h-12 rounded-full bg-transparent", // 48px minimum touch target
+              "w-9 h-9 rounded-full bg-transparent",
               "text-pink-500 hover:text-white hover:bg-pink-500/90",
               "transition-all duration-200 ease-mobile active:scale-95",
               "touch-manipulation transform-gpu relative shadow-sm hover:shadow-md"
             )}
           >
-            <Bell className="h-5 w-5 lg:h-6 lg:w-6" strokeWidth={1.5} />
-            <NotificationBadge count={notificationCount} className="lg:scale-110" />
+            <Bell className="h-4 w-4" strokeWidth={1.5} />
+            <NotificationBadge count={notificationCount} />
           </Button>
         </HoverCardTrigger>
         <HoverCardContent 
@@ -126,7 +126,7 @@ export const UserActions = React.memo(function UserActions({
       {/* Shop Icons Badge */}
       <div className="relative">
         <div className="absolute inset-0 bg-pink-500/10 blur-md rounded-full" />
-        <div className="relative bg-white/80 backdrop-blur-sm px-4 py-2 lg:px-5 lg:py-2.5 rounded-full border border-pink-500/20 shadow-[0_0_10px_rgba(236,72,153,0.15)] flex items-center gap-3">
+        <div className="relative bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full border border-pink-500/20 shadow-[0_0_10px_rgba(236,72,153,0.15)] flex items-center gap-2">
           {/* Wishlist */}
           <HoverCard openDelay={0} closeDelay={100}>
             <HoverCardTrigger asChild>
@@ -136,15 +136,15 @@ export const UserActions = React.memo(function UserActions({
                 type="button"
                 aria-label={`Wishlist${wishlistCount > 0 ? ` (${wishlistCount} items)` : ''}`}
                 className={cn(
-                  "w-12 h-12 lg:w-11 lg:h-11 rounded-full bg-transparent", // 48px mobile, 44px desktop
+                  "w-8 h-8 rounded-full bg-transparent",
                   "text-pink-500 hover:text-white hover:bg-pink-500/90",
                   "border border-pink-500/50 hover:border-pink-500",
                   "transition-all duration-200 ease-mobile active:scale-95",
                   "touch-manipulation transform-gpu relative"
                 )}
               >
-                <Heart className="h-4 w-4 lg:h-5 lg:w-5" strokeWidth={1.5} />
-                <NotificationBadge count={wishlistCount} size="small" className="-top-2 -right-1 lg:scale-110" />
+                <Heart className="h-3.5 w-3.5" strokeWidth={1.5} />
+                <NotificationBadge count={wishlistCount} size="small" className="-top-2 -right-1" />
               </Button>
             </HoverCardTrigger>
             <HoverCardContent 
@@ -190,7 +190,7 @@ export const UserActions = React.memo(function UserActions({
             </HoverCardContent>
           </HoverCard>
 
-          <div className="h-5 lg:h-6 w-px bg-pink-500/20" />
+          <div className="h-5 w-px bg-pink-500/20" />
 
           {/* Account */}
           <SignedIn>
@@ -199,7 +199,7 @@ export const UserActions = React.memo(function UserActions({
                 elements: {
                   rootBox: "relative",
                   avatarBox: cn(
-                    "w-12 h-12 lg:w-11 lg:h-11 rounded-full",
+                    "w-8 h-8 rounded-full",
                     "ring-2 ring-pink-500/50 hover:ring-pink-500",
                     "transition-all duration-200 ease-mobile",
                     "shadow-sm hover:shadow-md"
@@ -228,19 +228,19 @@ export const UserActions = React.memo(function UserActions({
                 type="button"
                 aria-label="Sign in"
                 className={cn(
-                  "w-12 h-12 lg:w-11 lg:h-11 rounded-full bg-transparent",
+                  "w-8 h-8 rounded-full bg-transparent",
                   "text-pink-500 hover:text-white hover:bg-pink-500/90",
                   "border border-pink-500/50 hover:border-pink-500",
                   "transition-all duration-200 ease-mobile active:scale-95",
                   "touch-manipulation transform-gpu relative"
                 )}
               >
-                <User className="h-4 w-4 lg:h-5 lg:w-5" strokeWidth={1.5} />
+                <User className="h-3.5 w-3.5" strokeWidth={1.5} />
               </Button>
             </SignInButton>
           </SignedOut>
 
-          <div className="h-5 lg:h-6 w-px bg-pink-500/20" />
+          <div className="h-5 w-px bg-pink-500/20" />
 
           {/* Cart */}
           <HoverCard openDelay={0} closeDelay={100}>
@@ -251,15 +251,15 @@ export const UserActions = React.memo(function UserActions({
                 type="button"
                 aria-label={`Shopping cart${cartCount > 0 ? ` (${cartCount} items)` : ''}`}
                 className={cn(
-                  "w-12 h-12 lg:w-11 lg:h-11 rounded-full bg-transparent", // 48px mobile, 44px desktop
+                  "w-8 h-8 rounded-full bg-transparent",
                   "text-pink-500 hover:text-white hover:bg-pink-500/90",
                   "border border-pink-500/50 hover:border-pink-500",
                   "transition-all duration-200 ease-mobile active:scale-95",
                   "touch-manipulation transform-gpu relative"
                 )}
               >
-                <ShoppingBag className="h-4 w-4 lg:h-5 lg:w-5" strokeWidth={1.5} />
-                <NotificationBadge count={cartCount} size="small" className="-top-2 -right-1 lg:scale-110" />
+                <ShoppingBag className="h-3.5 w-3.5" strokeWidth={1.5} />
+                <NotificationBadge count={cartCount} size="small" className="-top-2 -right-1" />
               </Button>
             </HoverCardTrigger>
             <HoverCardContent 

@@ -53,6 +53,7 @@ const FooterComponent = () => {
               text="INDECISIVE WEAR" 
               speed={40}
               textColor="text-pink-500"
+              separatorColor="text-black"
               className="py-5 sm:py-6 text-xl sm:text-2xl md:text-3xl font-black"
             />
           </div>
