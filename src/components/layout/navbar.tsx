@@ -10,7 +10,7 @@ import { NavbarBrand } from "./navbar/NavbarBrand"
 import { DesktopNavigation } from "./navbar/DesktopNavigation"
 import { UserActions } from "./navbar/UserActions"
 import { MobileActions } from "./navbar/MobileActions"
-import { CleanMobileMenu } from "./navbar/CleanMobileMenu"
+import { MobileMenu } from "./navbar/MobileMenu"
 import { SearchDialog } from "./navbar/SearchDialog"
 import { semanticColors, componentTokens } from "@/lib/design-system/tokens-2025"
 import { motion } from "framer-motion"
@@ -162,7 +162,7 @@ const Navbar = React.memo(function Navbar() {
       </a>
 
       {/* Mobile Menu */}
-      <CleanMobileMenu 
+      <MobileMenu 
         isOpen={mobileMenu.isOpen}
         onClose={mobileMenu.close}
         onMenuClick={handleMenuClick}

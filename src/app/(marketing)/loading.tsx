@@ -22,7 +22,7 @@ export default function Loading() {
           </div>
           
           {/* Product grid skeleton */}
-          <ProductGridSkeleton itemCount={8} />
+          <ProductGridSkeleton items={8} />
         </div>
       </section>
       

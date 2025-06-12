@@ -15,8 +15,17 @@ export { BaseInput } from './BaseInput';
 export { EmailInput } from './EmailInput';
 export { TextInput } from './TextInput';
 
+// Modern form components with React Hook Form integration
+export { 
+  ModernTextField,
+  ModernTextareaField,
+  ModernSelectField,
+  ModernCheckboxField,
+  ModernSwitchField,
+  ModernFormSubmit
+} from './ModernFormField';
+
 // Form composition components
-export { FormField } from './FormField';
 export { FormActions } from './FormActions';
 
 // Re-export form types

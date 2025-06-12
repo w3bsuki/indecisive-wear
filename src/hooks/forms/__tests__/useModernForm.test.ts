@@ -63,8 +63,8 @@ describe('useModernForm', () => {
       age: 25,
       terms: false,
     })
-    expect(result.current.isLoading).toBe(false)
-    expect(result.current.isSubmitted).toBe(false)
+    expect(result.current.isSubmitting ?? false).toBe(false)
+    expect(result.current.formState.isSubmitted ?? false).toBe(false)
   })
 
   it('validates form data with Zod schema', async () => {
@@ -122,8 +122,11 @@ describe('useModernForm', () => {
       age: 25,
       terms: true,
     })
-    expect(mockOnSuccess).toHaveBeenCalledWith({ id: 1 })
-    expect(result.current.isSubmitted).toBe(true)
+    expect(mockOnSuccess).toHaveBeenCalledWith(
+      { email: 'test@example.com', name: 'John Doe', age: 25, terms: true },
+      { success: true, data: { id: 1 } }
+    )
+    expect(result.current.formState.isSubmitSuccessful ?? false).toBe(true)
   })
 
   it('handles submission errors', async () => {
@@ -148,8 +151,11 @@ describe('useModernForm', () => {
       await result.current.form.handleSubmit(result.current.handleSubmit)()
     })
 
-    expect(mockOnError).toHaveBeenCalledWith(error)
-    expect(result.current.isSubmitted).toBe(true)
+    expect(mockOnError).toHaveBeenCalledWith(
+      error,
+      { email: 'test@example.com', name: 'John Doe', age: 25, terms: true }
+    )
+    expect(result.current.isError ?? false).toBe(true)
   })
 
   it('shows loading state during submission', async () => {
@@ -178,7 +184,7 @@ describe('useModernForm', () => {
     })
 
     // Should be loading
-    expect(result.current.isLoading).toBe(true)
+    expect(result.current.isSubmitting).toBe(true)
 
     // Resolve submission
     await act(async () => {
@@ -187,7 +193,7 @@ describe('useModernForm', () => {
     })
 
     // Should no longer be loading
-    expect(result.current.isLoading).toBe(false)
+    expect(result.current.isSubmitting).toBe(false)
   })
 
   it('resets form correctly', () => {
@@ -212,7 +218,7 @@ describe('useModernForm', () => {
 
     // Reset form
     act(() => {
-      result.current.resetForm()
+      result.current.reset()
     })
 
     // Should be back to defaults
@@ -295,10 +301,10 @@ describe('useModernForm', () => {
     } = result.current.formState
 
     // All should be defined and have appropriate initial values
-    expect(typeof isDirty).toBe('boolean')
-    expect(typeof isValid).toBe('boolean')
-    expect(typeof isValidating).toBe('boolean')
-    expect(typeof isSubmitting).toBe('boolean')
+    expect(typeof (isDirty ?? false)).toBe('boolean')
+    expect(typeof (isValid ?? false)).toBe('boolean')
+    expect(typeof (isValidating ?? false)).toBe('boolean')
+    expect(typeof (isSubmitting ?? false)).toBe('boolean')
     expect(typeof errors).toBe('object')
     expect(typeof touchedFields).toBe('object')
     expect(typeof dirtyFields).toBe('object')

@@ -26,46 +26,46 @@ describe('Button Component', () => {
     const { rerender } = render(<Button variant="default">Default</Button>)
     
     let button = screen.getByRole('button')
-    expect(button).toHaveClass('bg-primary')
+    expect(button).toHaveClass('bg-pink-500')
     
     rerender(<Button variant="destructive">Destructive</Button>)
     button = screen.getByRole('button')
-    expect(button).toHaveClass('bg-destructive')
+    expect(button).toHaveClass('bg-red-500')
     
     rerender(<Button variant="outline">Outline</Button>)
     button = screen.getByRole('button')
-    expect(button).toHaveClass('border-input')
+    expect(button).toHaveClass('border-pink-200')
     
     rerender(<Button variant="secondary">Secondary</Button>)
     button = screen.getByRole('button')
-    expect(button).toHaveClass('bg-secondary')
+    expect(button).toHaveClass('bg-pink-100')
     
     rerender(<Button variant="ghost">Ghost</Button>)
     button = screen.getByRole('button')
-    expect(button).toHaveClass('hover:bg-accent')
+    expect(button).toHaveClass('text-pink-600')
     
     rerender(<Button variant="link">Link</Button>)
     button = screen.getByRole('button')
-    expect(button).toHaveClass('text-primary')
+    expect(button).toHaveClass('text-pink-600')
   })
 
   it('renders with different sizes', () => {
     const { rerender } = render(<Button size="default">Default</Button>)
     
     let button = screen.getByRole('button')
-    expect(button).toHaveClass('h-9', 'px-4', 'py-2')
+    expect(button).toHaveClass('h-11', 'px-4')
     
     rerender(<Button size="sm">Small</Button>)
     button = screen.getByRole('button')
-    expect(button).toHaveClass('h-8', 'px-3')
+    expect(button).toHaveClass('h-11', 'px-3')
     
     rerender(<Button size="lg">Large</Button>)
     button = screen.getByRole('button')
-    expect(button).toHaveClass('h-10', 'px-8')
+    expect(button).toHaveClass('h-12', 'px-6')
     
     rerender(<Button size="icon">Icon</Button>)
     button = screen.getByRole('button')
-    expect(button).toHaveClass('h-9', 'w-9')
+    expect(button).toHaveClass('h-11', 'w-11')
   })
 
   it('handles click events', async () => {

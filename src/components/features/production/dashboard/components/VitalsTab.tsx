@@ -8,7 +8,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { RefreshCw } from 'lucide-react'
-import { getRatingColor, getRatingIcon, formatMetricValue, type PerformanceMetric } from '../utils/dashboardUtils'
+import { getRatingColor, getRatingIcon, formatMetricValue, type PerformanceMetric } from '@/components/features/production/dashboard/utils/dashboardUtils'
 import type { VitalsData } from '@/lib/types/stores'
 
 interface VitalsTabProps {

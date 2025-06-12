@@ -1,19 +1,21 @@
 "use client"
 
-import React from "react"
+import React, { useMemo } from "react"
 import { cn } from "@/lib/utils"
 import { useResponsiveCard } from "@/hooks"
-import { CleanProductCard } from "./cards/CleanProductCard"
+import { ProductCard } from "./cards/ProductCard"
+import { VirtualizedProductGrid, useVirtualizedGrid } from "./VirtualizedProductGrid"
 
 interface Product {
-  id: number
-  name: string
+  id: number | string
+  name: string | { en: string; bg: string }
   price: number
   originalPrice?: number
   image: string
   category: string
   tags: string[]
   inStock: boolean
+  slogan?: string | { en: string; bg: string }
 }
 
 type GridLayout = "2" | "3" | "4"
@@ -22,10 +24,18 @@ interface ProductGridProps {
   products: Product[]
   layout?: GridLayout
   className?: string
+  virtualizeThreshold?: number
 }
 
-function ProductGridComponent({ products, layout = "3", className }: ProductGridProps) {
+function ProductGridComponent({ 
+  products, 
+  layout = "3", 
+  className,
+  virtualizeThreshold = 50 
+}: ProductGridProps) {
   const { isMobile, isLoaded } = useResponsiveCard()
+  const shouldVirtualize = useVirtualizedGrid(products.length, virtualizeThreshold)
+  
   const getGridCols = () => {
     switch (layout) {
       case "2":
@@ -52,6 +62,20 @@ function ProductGridComponent({ products, layout = "3", className }: ProductGrid
         return "gap-3 sm:gap-4 lg:gap-6"
     }
   }
+  
+  // Normalize products to match VirtualizedProductGrid expectations
+  const normalizedProducts = useMemo(() => {
+    return products.map(product => ({
+      ...product,
+      id: String(product.id),
+      name: typeof product.name === 'string' 
+        ? { en: product.name, bg: product.name } 
+        : product.name,
+      slogan: typeof product.slogan === 'string' 
+        ? { en: product.slogan || '', bg: product.slogan || '' } 
+        : product.slogan || { en: '', bg: '' }
+    }))
+  }, [products])
 
   // Prevent hydration mismatch by showing loading state until client-side detection is complete
   if (!isLoaded) {
@@ -59,7 +83,7 @@ function ProductGridComponent({ products, layout = "3", className }: ProductGrid
       <div className={cn("w-full", className)}>
         <div aria-live="polite" className="sr-only">Loading products...</div>
         <div className={cn("grid", getGridCols(), getGap())}>
-          {products.map((product) => (
+          {products.slice(0, 6).map((product) => (
             <div key={product.id} className="animate-pulse" aria-hidden="true">
               <div className="aspect-square bg-gray-200 rounded-lg mb-3" />
               <div className="space-y-2">
@@ -72,13 +96,30 @@ function ProductGridComponent({ products, layout = "3", className }: ProductGrid
       </div>
     )
   }
+  
+  // Use virtualized grid for large product lists
+  if (shouldVirtualize) {
+    return (
+      <VirtualizedProductGrid
+        products={normalizedProducts}
+        columns={parseInt(layout)}
+        className={className}
+        loading={!isLoaded}
+      />
+    )
+  }
 
+  // Standard grid for smaller product lists
   return (
     <div className={cn("w-full", className)}>
       <div className={cn("grid", getGridCols(), getGap())}>
-        {products.map((product) => (
+        {products.map((product, index) => (
           <div key={product.id}>
-            <CleanProductCard product={product} variant={isMobile ? 'mobile' : 'desktop'} />
+            <ProductCard 
+              product={product} 
+              variant={isMobile ? 'mobile' : 'desktop'}
+              priority={index < 6} // Priority load first 6 products
+            />
           </div>
         ))}
       </div>
@@ -92,6 +133,7 @@ export const ProductGrid = React.memo(ProductGridComponent, (prevProps, nextProp
   return (
     prevProps.layout === nextProps.layout &&
     prevProps.className === nextProps.className &&
+    prevProps.virtualizeThreshold === nextProps.virtualizeThreshold &&
     prevProps.products.length === nextProps.products.length &&
     prevProps.products.every((product, index) => 
       product.id === nextProps.products[index]?.id &&

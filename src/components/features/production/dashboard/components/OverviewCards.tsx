@@ -14,7 +14,7 @@ import { CheckCircle } from 'lucide-react'
 import { Gauge } from 'lucide-react'
 import { TrendingUp } from 'lucide-react'
 import { Eye } from 'lucide-react'
-import { getRatingColor, getRatingIcon, getOverallRating } from '../utils/dashboardUtils'
+import { getRatingColor, getRatingIcon, getOverallRating } from '@/components/features/production/dashboard/utils/dashboardUtils'
 import type { ErrorSummary, VitalsData } from '@/lib/types/stores'
 
 interface OverviewCardsProps {

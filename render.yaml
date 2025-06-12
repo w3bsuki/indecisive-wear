@@ -1,0 +1,41 @@
+services:
+  - type: web
+    name: indecisive-wear-medusa
+    runtime: node
+    rootDir: store
+    buildCommand: npm install && npm run build && npx medusa db:migrate
+    startCommand: npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 20
+      - key: DATABASE_URL
+        fromDatabase:
+          name: indecisive-wear-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: COOKIE_SECRET
+        generateValue: true
+      - key: STORE_CORS
+        value: http://localhost:3000,https://indecisive-wear.vercel.app
+      - key: ADMIN_CORS
+        value: https://*.onrender.com
+      - key: AUTH_CORS
+        value: https://*.onrender.com
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: indecisive-wear-redis
+          property: connectionString
+
+databases:
+  - name: indecisive-wear-db
+    databaseName: indecisive_wear_db
+    plan: starter
+
+redis:
+  - name: indecisive-wear-redis
+    plan: starter
+    maxmemoryPolicy: allkeys-lru

@@ -1,6 +1,52 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { describe, it, expect, vi, beforeEach, beforeAll } from 'vitest'
 import { render, screen, fireEvent, waitFor } from '@/lib/testing/test-wrapper'
 import { WaitlistDialog } from '../WaitlistDialog'
+
+// Mock ResizeObserver
+beforeAll(() => {
+  global.ResizeObserver = class ResizeObserver {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+  } as any
+})
+
+// Mock i18n
+vi.mock('@/hooks', () => ({
+  useSimpleI18n: () => ({
+    t: (key: string, variables?: Record<string, any>) => {
+      const translations: Record<string, string> = {
+        'waitlist.exclusiveAccess': 'Exclusive Access',
+        'waitlist.brandTitle': 'Indecisive Wear',
+        'waitlist.ctaTitle': 'Be the first to shop our exclusive collection',
+        'waitlist.form.firstName.label': 'Name',
+        'waitlist.form.firstName.placeholder': 'Enter your name',
+        'waitlist.form.email.label': 'Email',
+        'waitlist.form.email.placeholder': 'Enter your email',
+        'waitlist.form.marketingConsent.label': 'I agree to receive marketing emails',
+        'waitlist.form.submit': 'Join Waitlist',
+        'waitlist.successMessage': 'Thank you {name}!',
+        'waitlist.errors.general': 'Something went wrong',
+        'waitlist.errors.required': 'Please fill in all fields',
+        'waitlist.success.title': 'Welcome to the Family!',
+        'waitlist.success.message': 'Thank you for joining our waitlist, {name}!',
+        'waitlist.success.instagram': 'Follow us on Instagram',
+        'waitlist.success.tiktok': 'Follow us on TikTok',
+      }
+      let translation = translations[key] || key
+      
+      if (variables && translation.includes('{')) {
+        Object.entries(variables).forEach(([varKey, value]) => {
+          translation = translation.replace(`{${varKey}}`, String(value))
+        })
+      }
+      
+      return translation
+    },
+    locale: 'en',
+    formatPrice: (price: number) => `$${price}`,
+  }),
+}))
 
 describe('WaitlistDialog', () => {
   beforeEach(() => {
@@ -28,7 +74,7 @@ describe('WaitlistDialog', () => {
     fireEvent.click(trigger)
 
     await waitFor(() => {
-      expect(screen.getByText('Join Our Waitlist')).toBeInTheDocument()
+      expect(screen.getByText('Indecisive Wear')).toBeInTheDocument()
     })
   })
 
@@ -65,7 +111,8 @@ describe('WaitlistDialog', () => {
     fireEvent.click(submitButton)
 
     await waitFor(() => {
-      expect(screen.getByText('Please fill in all fields')).toBeInTheDocument()
+      // Form validation errors from Zod
+      expect(screen.getByText('Name is required')).toBeInTheDocument()
     })
   })
 

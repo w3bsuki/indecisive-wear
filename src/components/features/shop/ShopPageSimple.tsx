@@ -2,34 +2,43 @@
 
 import { useState, useMemo } from "react"
 import { ProductGrid } from "./ProductGrid"
-import { CleanProductFilters } from "./CleanProductFilters"
-import { CleanFilterDrawer } from "./filters/CleanFilterDrawer"
+import { ProductFilters } from "./ProductFilters"
+import { FilterDrawer } from "./filters/FilterDrawer"
 import { ShopHero } from "./components/ShopHero"
-import { CleanShopFiltersBar } from "./components/CleanShopFiltersBar"
+import { ShopFiltersBar } from "./components/ShopFiltersBar"
 import { BottomNavSheet } from "./BottomNavSheet"
 import { EmptyProductState } from "./components/EmptyProductState"
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs"
 import { useNavigationState } from "@/hooks/ui/useNavigationState"
 import { useSimpleI18n } from "@/hooks"
-import { hatsList } from "@/lib/constants/product-data"
+import { useMedusaProducts, useSearchMedusaProducts } from "@/hooks/api/useMedusaProducts"
+import { useSyncCartWithStore } from "@/hooks/api/useMedusaCart"
+import { useCartTotalItems } from "@/stores/cart-store"
 
-// Convert our product data to shop format
-const SHOP_PRODUCTS = hatsList.map(hat => ({
-  id: hat.id,
-  name: hat.name,
-  price: 17, // Fixed price in base currency
-  // originalPrice removed - no fake discounts
-  image: hat.image,
-  category: "Hats",
-  tags: [
-    ...(hat.isNew ? ["new"] : []),
-    ...(hat.isBestSeller ? ["bestseller"] : []),
-    "in-stock"
-  ],
-  inStock: true,
-  slogan: hat.slogan,
-  color: hat.color
-}))
+// Helper function to transform Medusa products to shop format
+const transformMedusaToShop = (medusaProducts: any[]) => {
+  return medusaProducts.map(product => {
+    const variant = product.variants?.[0]
+    const price = variant?.calculated_price?.calculated_amount || variant?.original_price || 1700
+    const priceInDollars = price / 100
+
+    return {
+      id: product.id.replace('prod_', ''), // Remove 'prod_' prefix for compatibility
+      name: product.title,
+      price: priceInDollars,
+      image: product.thumbnail || product.images?.[0]?.url || '/placeholder.jpg',
+      category: product.categories?.[0]?.name || "Hats",
+      tags: [
+        ...(product.tags?.some((tag: any) => tag.value === 'new') ? ["new"] : []),
+        ...(product.tags?.some((tag: any) => tag.value === 'bestseller') ? ["bestseller"] : []),
+        "in-stock"
+      ],
+      inStock: variant?.inventory_quantity > 0 || variant?.allow_backorder || true,
+      slogan: product.description || `Stylish ${product.title} perfect for any occasion`,
+      color: variant?.options?.find((opt: any) => opt.option_id.includes('color'))?.value || 'Pink'
+    }
+  })
+}
 
 
 type GridLayout = "2" | "3" | "4"
@@ -47,6 +56,12 @@ interface Filters {
 export function ShopPageSimple() {
   const { t: _t, formatPrice: _formatPrice } = useSimpleI18n()
   
+  // Sync Medusa cart with Zustand store
+  useSyncCartWithStore()
+  
+  // Get cart count from Zustand store
+  const cartCount = useCartTotalItems()
+  
   const [searchQuery, setSearchQuery] = useState("")
   const [sortBy, setSortBy] = useState<SortOption>("featured")
   const [gridLayout, setGridLayout] = useState<GridLayout>("3")
@@ -60,46 +75,28 @@ export function ShopPageSimple() {
     inStock: false,
   })
 
+  // Fetch all products for total count
+  const { data: allProductsData, isLoading: isLoadingAll, error: allProductsError } = useMedusaProducts({ limit: 100 })
+  
+  // Use search hook for filtered results
+  const { data: searchData, isLoading: isSearching, error: searchError } = useSearchMedusaProducts({
+    searchQuery: searchQuery || undefined,
+    category: filters.category,
+    priceRange: filters.priceRange[0] > 0 || filters.priceRange[1] < 100 ? filters.priceRange : undefined,
+    tags: filters.tags.length > 0 ? filters.tags : undefined,
+    colors: filters.colors.length > 0 ? filters.colors : undefined,
+    sizes: filters.sizes.length > 0 ? filters.sizes : undefined,
+    inStock: filters.inStock || undefined,
+  })
+
+  // Transform Medusa data to shop format
+  const allProducts = useMemo(() => {
+    return allProductsData?.products ? transformMedusaToShop(allProductsData.products) : []
+  }, [allProductsData])
+
   // Filter and sort products
   const filteredProducts = useMemo(() => {
-    let filtered = SHOP_PRODUCTS.filter((product) => {
-      // Search filter
-      if (searchQuery && !product.name.toLowerCase().includes(searchQuery.toLowerCase())) {
-        return false
-      }
-
-      // Category filter
-      if (filters.category !== "all" && product.category.toLowerCase() !== filters.category.toLowerCase()) {
-        return false
-      }
-
-      // Price filter
-      if (product.price < filters.priceRange[0] || product.price > filters.priceRange[1]) {
-        return false
-      }
-
-      // Tags filter
-      if (filters.tags.length > 0 && !filters.tags.some(tag => product.tags.includes(tag))) {
-        return false
-      }
-
-      // Color filter
-      if (filters.colors.length > 0 && !filters.colors.includes(product.color.toLowerCase())) {
-        return false
-      }
-
-      // Size filter - all hats are "One Size" for now
-      if (filters.sizes.length > 0 && !filters.sizes.includes("One Size")) {
-        return false
-      }
-
-      // Stock filter
-      if (filters.inStock && !product.inStock) {
-        return false
-      }
-
-      return true
-    })
+    let filtered = searchData?.products ? transformMedusaToShop(searchData.products) : []
 
     // Sort products
     filtered.sort((a, b) => {
@@ -109,7 +106,7 @@ export function ShopPageSimple() {
         case "price-high":
           return b.price - a.price
         case "newest":
-          return b.id - a.id // Assuming higher ID = newer
+          return Number(b.id) - Number(a.id) // Convert to number for sorting
         case "name":
           return a.name.localeCompare(b.name)
         default:
@@ -118,7 +115,20 @@ export function ShopPageSimple() {
     })
 
     return filtered
-  }, [searchQuery, sortBy, filters])
+  }, [searchData, sortBy])
+
+  const isLoading = isLoadingAll || isSearching
+
+  // Debug logging
+  console.log('🛒 Shop Debug:', {
+    allProductsData,
+    searchData,
+    isLoading,
+    allProductsError,
+    searchError,
+    allProducts: allProducts.length,
+    filteredProducts: filteredProducts.length
+  })
 
   const scrollToProducts = () => {
     document.getElementById('products-section')?.scrollIntoView({ 
@@ -159,8 +169,8 @@ export function ShopPageSimple() {
 
       {/* Filters Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <CleanShopFiltersBar
-          totalProducts={SHOP_PRODUCTS.length}
+        <ShopFiltersBar
+          totalProducts={allProducts.length}
           filteredProducts={filteredProducts.length}
           searchQuery={searchQuery}
           sortBy={sortBy}
@@ -184,7 +194,7 @@ export function ShopPageSimple() {
           {/* Desktop Sidebar Filters */}
           {showFilters && (
             <aside className="hidden lg:block w-64 flex-shrink-0">
-              <CleanProductFilters 
+              <ProductFilters 
                 filters={filters}
                 onFiltersChange={setFilters} 
               />
@@ -195,7 +205,13 @@ export function ShopPageSimple() {
           <main className="flex-1">
             <section aria-labelledby="products-heading">
               <h2 id="products-heading" className="sr-only">Products</h2>
-              {filteredProducts.length > 0 ? (
+              {isLoading ? (
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
+                  {Array.from({ length: 6 }).map((_, i) => (
+                    <div key={i} className="aspect-square bg-gray-200 animate-pulse rounded-lg" />
+                  ))}
+                </div>
+              ) : filteredProducts.length > 0 ? (
                 <ProductGrid products={filteredProducts} layout={gridLayout} />
               ) : (
                 <EmptyProductState onClearFilters={clearFilters} />
@@ -208,7 +224,7 @@ export function ShopPageSimple() {
 
       {/* Enhanced Mobile Filter Drawer - Only on mobile */}
       <div className="lg:hidden">
-        <CleanFilterDrawer
+        <FilterDrawer
           open={showFilters}
           onOpenChange={setShowFilters}
           filters={filters}
@@ -219,7 +235,7 @@ export function ShopPageSimple() {
       {/* Bottom Navigation Sheet - Mobile only */}
       <BottomNavSheet
         activeFilterCount={activeFilterCount}
-        cartCount={0} // TODO: Connect to cart store
+        cartCount={cartCount}
         showFilters={showFilters}
         onToggleFilters={() => setShowFilters(!showFilters)}
       />

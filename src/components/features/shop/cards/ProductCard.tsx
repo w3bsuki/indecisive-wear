@@ -7,32 +7,57 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { useSimpleI18n } from "@/hooks"
 import { useLocale } from "@/hooks/i18n/useLocale"
+import { useAddToCart } from "@/hooks/api/useMedusaCart"
 import { ShoppingCart } from "lucide-react"
 
 interface Product {
-  id: number
-  name: string
+  id: number | string
+  name: string | { en: string; bg: string }
   price: number
   originalPrice?: number
   image: string
   category: string
   tags: string[]
   inStock: boolean
-  slogan?: string
+  slogan?: string | { en: string; bg: string }
   color?: string
 }
 
-interface CleanProductCardProps {
+interface ProductCardProps {
   product: Product
   variant?: 'desktop' | 'mobile'
+  priority?: boolean
 }
 
-export function CleanProductCard({ product, variant = 'desktop' }: CleanProductCardProps) {
+export function ProductCard({ product, variant = 'desktop', priority = false }: ProductCardProps) {
   const { formatPrice } = useSimpleI18n()
   const { locale } = useLocale()
+  const addToCart = useAddToCart()
+  
+  // Get localized text
+  const productName = typeof product.name === 'string' 
+    ? product.name 
+    : product.name[locale as keyof typeof product.name] || product.name.en
+  
+  const productSlogan = typeof product.slogan === 'string'
+    ? product.slogan
+    : product.slogan?.[locale as keyof typeof product.slogan] || product.slogan?.en
   
   const isNew = product.tags.includes('new')
   const isBestSeller = product.tags.includes('bestseller')
+  
+  // Handle add to cart
+  const handleAddToCart = () => {
+    if (!product.inStock) return
+    
+    // Use product ID with variant prefix for Medusa
+    const variantId = `variant_${product.id}`
+    
+    addToCart.mutate({
+      variantId,
+      quantity: 1,
+    })
+  }
   
   return (
     <article 
@@ -49,14 +74,15 @@ export function CleanProductCard({ product, variant = 'desktop' }: CleanProductC
       <div className="aspect-square relative overflow-hidden rounded-t-xl bg-gradient-to-br from-pink-50/50 to-white">
         <Image
           src={product.image}
-          alt={product.name}
+          alt={productName}
           fill
           sizes={variant === 'desktop' 
             ? "(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
             : "(max-width: 640px) 50vw, 33vw"
           }
           className="object-contain p-4"
-          loading="lazy"
+          loading={priority ? "eager" : "lazy"}
+          priority={priority}
         />
         
         {/* Single badge - prioritize new over bestseller */}
@@ -94,13 +120,13 @@ export function CleanProductCard({ product, variant = 'desktop' }: CleanProductC
           "font-semibold text-gray-900 line-clamp-1 mb-1",
           variant === 'desktop' ? "text-base" : "text-sm"
         )}>
-          {product.name}
+          {productName}
         </h3>
         
         {/* Product Slogan - optional */}
-        {product.slogan && variant === 'desktop' && (
+        {productSlogan && variant === 'desktop' && (
           <p className="text-xs text-gray-500 line-clamp-2 mb-3">
-            {product.slogan}
+            {productSlogan}
           </p>
         )}
 
@@ -116,11 +142,11 @@ export function CleanProductCard({ product, variant = 'desktop' }: CleanProductC
           {variant === 'mobile' ? (
             // Mobile: Icon button
             <Button
-              disabled={!product.inStock}
+              disabled={!product.inStock || addToCart.isPending}
               size="icon"
               className={cn(
                 "h-9 w-9 rounded-xl",
-                product.inStock ? [
+                product.inStock && !addToCart.isPending ? [
                   "bg-pink-500 hover:bg-pink-600 text-white",
                   "border-2 border-white/30 hover:border-white/50",
                   "shadow-sm hover:shadow-md"
@@ -131,22 +157,20 @@ export function CleanProductCard({ product, variant = 'desktop' }: CleanProductC
               )}
               onClick={(e) => {
                 e.stopPropagation()
-                if (product.inStock) {
-                  // Add to cart logic here
-                }
+                handleAddToCart()
               }}
-              aria-label={product.inStock ? `Add ${product.name} to cart` : `${product.name} is out of stock`}
+              aria-label={product.inStock ? `Add ${productName} to cart` : `${productName} is out of stock`}
             >
               <ShoppingCart className="h-4 w-4" />
             </Button>
           ) : (
             // Desktop: Text button
             <Button
-              disabled={!product.inStock}
+              disabled={!product.inStock || addToCart.isPending}
               size="sm"
               className={cn(
                 "min-h-[36px] px-4 text-xs font-semibold rounded-xl",
-                product.inStock ? [
+                product.inStock && !addToCart.isPending ? [
                   "bg-pink-500 hover:bg-pink-600 text-white",
                   "border-2 border-white/30 hover:border-white/50",
                   "shadow-sm hover:shadow-md"
@@ -157,14 +181,14 @@ export function CleanProductCard({ product, variant = 'desktop' }: CleanProductC
               )}
               onClick={(e) => {
                 e.stopPropagation()
-                if (product.inStock) {
-                  // Add to cart logic here
-                }
+                handleAddToCart()
               }}
             >
-              {product.inStock 
-                ? (locale === 'bg' ? 'Добави' : 'Add to Cart')
-                : (locale === 'bg' ? 'Изчерпан' : 'Sold Out')
+              {addToCart.isPending
+                ? (locale === 'bg' ? 'Добавяне...' : 'Adding...')
+                : product.inStock 
+                  ? (locale === 'bg' ? 'Добави' : 'Add to Cart')
+                  : (locale === 'bg' ? 'Изчерпан' : 'Sold Out')
               }
             </Button>
           )}

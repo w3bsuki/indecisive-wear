@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import React, { useState } from 'react'
-import { Skeleton } from '../ui/skeleton'
+import { Skeleton } from '@/components/ui/skeleton'
 
 interface OptimizedImageProps extends Omit<React.ComponentProps<typeof Image>, 'onLoad' | 'onError'> {
   containerClassName?: string;

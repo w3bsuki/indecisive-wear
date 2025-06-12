@@ -28,4 +28,5 @@ export * from './ui/useSelection';
 export * from './ui/useSidebar';
 export * from './ui/useSwipe';
 export * from './ui/useToast';
-export * from './ui/useToggle'; 
+export * from './ui/useToggle';
+export * from './ui/useWindowSize'; 

@@ -1,18 +1,13 @@
 "use client"
 
-import * as React from "react"
-import { useEffect, useRef } from "react"
+import React from "react"
+import { X, Filter } from 'lucide-react'
 import { Drawer, DrawerContent } from "@/components/ui/drawer"
-import {
-  FilterHeader,
-  PriceRangeFilter,
-  ColorFilter,
-  SizeFilter,
-  CategoryFilter,
-  TagFilter,
-  StockFilter,
-  FilterFooter
-} from "./components"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { cn } from "@/lib/utils"
+import { useLocale } from "@/hooks/i18n/useLocale"
+import { ProductFilters } from "@/components/features/shop/ProductFilters"
 
 interface Filters {
   category: string
@@ -30,82 +25,23 @@ interface FilterDrawerProps {
   onFiltersChange: (filters: Filters) => void
 }
 
-
-export const FilterDrawer = React.memo(function FilterDrawer({ 
+export function FilterDrawer({ 
   open, 
   onOpenChange, 
   filters, 
   onFiltersChange,
 }: FilterDrawerProps) {
-  const drawerRef = useRef<HTMLDivElement>(null)
-  const previousActiveElement = useRef<HTMLElement | null>(null)
-
-  // Focus management and keyboard navigation
-  useEffect(() => {
-    if (open) {
-      // Store the element that had focus before opening
-      previousActiveElement.current = document.activeElement as HTMLElement
-      
-      // Focus the drawer content after a short delay to ensure it's rendered
-      setTimeout(() => {
-        const firstFocusableElement = drawerRef.current?.querySelector(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        ) as HTMLElement
-        
-        if (firstFocusableElement) {
-          firstFocusableElement.focus()
-        }
-      }, 100)
-
-      // Handle Escape key to close drawer
-      const handleKeyDown = (event: KeyboardEvent) => {
-        if (event.key === 'Escape') {
-          onOpenChange(false)
-        }
-        
-        // Tab focus trapping
-        if (event.key === 'Tab') {
-          const focusableElements = drawerRef.current?.querySelectorAll(
-            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-          ) as NodeListOf<HTMLElement>
-          
-          if (focusableElements && focusableElements.length > 0) {
-            const firstElement = focusableElements[0]
-            const lastElement = focusableElements[focusableElements.length - 1]
-            
-            if (event.shiftKey && document.activeElement === firstElement) {
-              event.preventDefault()
-              lastElement.focus()
-            } else if (!event.shiftKey && document.activeElement === lastElement) {
-              event.preventDefault()
-              firstElement.focus()
-            }
-          }
-        }
-      }
-
-      document.addEventListener('keydown', handleKeyDown)
-      return () => document.removeEventListener('keydown', handleKeyDown)
-    } else {
-      // Return focus to the previous element when closing
-      if (previousActiveElement.current) {
-        previousActiveElement.current.focus()
-        previousActiveElement.current = null
-      }
-    }
-  }, [open, onOpenChange])
-
-  const updateFilters = (updates: Partial<Filters>) => {
-    onFiltersChange({ ...filters, ...updates })
-  }
-
-  const toggleArrayFilter = (key: keyof Pick<Filters, 'tags' | 'colors' | 'sizes'>, value: string) => {
-    const currentArray = filters[key] as string[]
-    const newArray = currentArray.includes(value)
-      ? currentArray.filter(item => item !== value)
-      : [...currentArray, value]
-    updateFilters({ [key]: newArray })
-  }
+  const { locale } = useLocale()
+  const isEn = locale === 'en'
+  
+  const activeFilterCount = [
+    filters.category !== "all" ? 1 : 0,
+    filters.priceRange[0] > 0 || filters.priceRange[1] < 100 ? 1 : 0,
+    filters.tags.length,
+    filters.colors.length,
+    filters.sizes.length,
+    filters.inStock ? 1 : 0,
+  ].reduce((a, b) => a + b, 0)
 
   const clearAllFilters = () => {
     onFiltersChange({
@@ -118,80 +54,81 @@ export const FilterDrawer = React.memo(function FilterDrawer({
     })
   }
 
-  const hasActiveFilters = 
-    filters.category !== "all" ||
-    filters.priceRange[0] > 0 || 
-    filters.priceRange[1] < 100 ||
-    filters.tags.length > 0 ||
-    filters.colors.length > 0 ||
-    filters.sizes.length > 0 ||
-    filters.inStock
-
-  const activeFilterCount = [
-    filters.category !== "all" ? 1 : 0,
-    filters.priceRange[0] > 0 || filters.priceRange[1] < 100 ? 1 : 0,
-    filters.tags.length,
-    filters.colors.length,
-    filters.sizes.length,
-    filters.inStock ? 1 : 0,
-  ].reduce((a, b) => a + b, 0)
-
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
       <DrawerContent 
-        ref={drawerRef} 
         className="max-h-[92vh] bg-white/95 backdrop-blur-xl border-t-2 border-pink-200/30"
-        role="dialog"
-        aria-labelledby="filter-drawer-title"
-        aria-describedby="filter-drawer-description"
       >
-        <div id="filter-drawer-description" className="sr-only">
-          Filter products by price, color, size, category, and availability
-        </div>
-        <FilterHeader activeFilterCount={activeFilterCount} />
-
-        <div className="flex-1 overflow-y-auto px-6 pb-6">
-          <div className="space-y-8">
-            <PriceRangeFilter 
-              priceRange={filters.priceRange}
-              onPriceRangeChange={(range) => updateFilters({ priceRange: range })}
-            />
-
-            <ColorFilter
-              selectedColors={filters.colors}
-              onColorToggle={(colorId) => toggleArrayFilter('colors', colorId)}
-            />
-
-            <SizeFilter
-              selectedSizes={filters.sizes}
-              onSizeToggle={(sizeId) => toggleArrayFilter('sizes', sizeId)}
-            />
-
-            <CategoryFilter
-              selectedCategory={filters.category}
-              onCategoryChange={(categoryId) => updateFilters({ category: categoryId })}
-            />
-
-            <TagFilter
-              selectedTags={filters.tags}
-              onTagToggle={(tagId) => toggleArrayFilter('tags', tagId)}
-            />
-
-            <StockFilter
-              inStock={filters.inStock}
-              onStockToggle={() => updateFilters({ inStock: !filters.inStock })}
-            />
-
+        {/* Header */}
+        <div className="sticky top-0 z-10 bg-white/95 backdrop-blur-xl border-b border-pink-200/30">
+          <div className="flex items-center justify-between p-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center">
+                <Filter className="h-5 w-5 text-pink-600" />
+              </div>
+              <div>
+                <h2 className="font-semibold text-gray-900">
+                  {isEn ? 'Filters' : 'Филтри'}
+                </h2>
+                {activeFilterCount > 0 && (
+                  <p className="text-xs text-gray-500">
+                    {activeFilterCount} {isEn ? 'active' : 'активни'}
+                  </p>
+                )}
+              </div>
+            </div>
+            
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => onOpenChange(false)}
+              className="h-10 w-10 rounded-xl hover:bg-pink-50"
+            >
+              <X className="h-5 w-5" />
+            </Button>
           </div>
         </div>
 
-        <FilterFooter
-          hasActiveFilters={hasActiveFilters}
-          activeFilterCount={activeFilterCount}
-          onClearAll={clearAllFilters}
-          onClose={() => onOpenChange(false)}
-        />
+        {/* Content */}
+        <div className="flex-1 overflow-y-auto p-4">
+          <ProductFilters 
+            filters={filters}
+            onFiltersChange={onFiltersChange}
+          />
+        </div>
+
+        {/* Footer */}
+        <div className="sticky bottom-0 bg-white/95 backdrop-blur-xl border-t border-pink-200/30 p-4">
+          <div className="flex gap-3">
+            {activeFilterCount > 0 && (
+              <Button
+                variant="outline"
+                onClick={clearAllFilters}
+                className="flex-1 h-12 rounded-xl border-2 border-pink-200/50 text-pink-600 hover:bg-pink-50 hover:border-pink-300 font-medium"
+              >
+                {isEn ? 'Clear All' : 'Изчисти всички'}
+              </Button>
+            )}
+            <Button
+              onClick={() => onOpenChange(false)}
+              className={cn(
+                "h-12 rounded-xl font-medium",
+                activeFilterCount > 0 ? "flex-1" : "w-full",
+                "bg-pink-500 hover:bg-pink-600 text-white",
+                "border-2 border-white/30 hover:border-white/50",
+                "shadow-sm hover:shadow-md"
+              )}
+            >
+              {isEn ? 'View' : 'Виж'} {filters.category === "all" ? (isEn ? 'Products' : 'Продукти') : ''}
+              {activeFilterCount > 0 && (
+                <Badge className="ml-2 bg-white/20 text-white border-0">
+                  {activeFilterCount}
+                </Badge>
+              )}
+            </Button>
+          </div>
+        </div>
       </DrawerContent>
     </Drawer>
   )
-})
+}
