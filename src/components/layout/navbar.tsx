@@ -115,11 +115,13 @@ const Navbar = React.memo(function Navbar() {
                 "h-16 sm:h-18 lg:h-[72px]", // Increased mobile height from h-14 to h-16
                 "px-3 sm:px-6 md:px-10",
                 "flex items-center justify-between", // Simple flex on mobile, grid on desktop
-                "lg:grid lg:grid-cols-[auto_1fr_auto]",
+                "lg:grid lg:grid-cols-[1fr_auto_1fr]",
                 "transition-all duration-300 ease-out"
               )}>
                 {/* Logo - Always Left */}
-                <NavbarBrand />
+                <div className="flex items-center">
+                  <NavbarBrand />
+                </div>
 
                 {/* Desktop Navigation - Center (desktop only) */}
                 <div className="hidden lg:flex justify-center">
@@ -127,7 +129,7 @@ const Navbar = React.memo(function Navbar() {
                 </div>
 
                 {/* Right Side Actions */}
-                <div className="flex items-center">
+                <div className="flex items-center justify-end">
                   {/* Desktop Icons */}
                   <UserActions 
                     onSearchOpen={() => setIsSearchOpen(true)}

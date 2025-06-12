@@ -18,7 +18,6 @@ export const NavbarBrand = React.memo(function NavbarBrand({ className: _classNa
             <span className="relative inline-block px-2 sm:px-4 py-1 sm:py-1 bg-gradient-to-r from-pink-600 to-pink-400 rounded-lg text-white transform -skew-x-6 shadow-[0_0_10px_rgba(236,72,153,0.4)]">
               INDECISIVE
             </span>
-            <span className="ml-1 text-black hidden sm:inline">WEAR</span>
           </span>
         </Link>
       </div>
