@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { useSimpleI18n } from "@/hooks"
 import { useLocale } from "@/hooks/i18n/useLocale"
+import { ShoppingCart } from "lucide-react"
 
 interface Product {
   id: number
@@ -112,32 +113,61 @@ export function CleanProductCard({ product, variant = 'desktop' }: CleanProductC
             {formatPrice(product.price)}
           </span>
           
-          <Button
-            disabled={!product.inStock}
-            size={variant === 'desktop' ? "sm" : "sm"}
-            className={cn(
-              "min-h-[36px] px-4 text-xs font-semibold",
-              product.inStock ? [
-                "bg-pink-500 hover:bg-pink-600 text-white",
-                "border-2 border-white/30 hover:border-white/50",
-                "shadow-sm hover:shadow-md"
-              ] : [
-                "bg-gray-100 text-gray-400 border-2 border-gray-200",
-                "cursor-not-allowed"
-              ]
-            )}
-            onClick={(e) => {
-              e.stopPropagation()
-              if (product.inStock) {
-                // Add to cart logic here
+          {variant === 'mobile' ? (
+            // Mobile: Icon button
+            <Button
+              disabled={!product.inStock}
+              size="icon"
+              className={cn(
+                "h-9 w-9 rounded-xl",
+                product.inStock ? [
+                  "bg-pink-500 hover:bg-pink-600 text-white",
+                  "border-2 border-white/30 hover:border-white/50",
+                  "shadow-sm hover:shadow-md"
+                ] : [
+                  "bg-gray-100 text-gray-400 border-2 border-gray-200",
+                  "cursor-not-allowed"
+                ]
+              )}
+              onClick={(e) => {
+                e.stopPropagation()
+                if (product.inStock) {
+                  // Add to cart logic here
+                }
+              }}
+              aria-label={product.inStock ? `Add ${product.name} to cart` : `${product.name} is out of stock`}
+            >
+              <ShoppingCart className="h-4 w-4" />
+            </Button>
+          ) : (
+            // Desktop: Text button
+            <Button
+              disabled={!product.inStock}
+              size="sm"
+              className={cn(
+                "min-h-[36px] px-4 text-xs font-semibold rounded-xl",
+                product.inStock ? [
+                  "bg-pink-500 hover:bg-pink-600 text-white",
+                  "border-2 border-white/30 hover:border-white/50",
+                  "shadow-sm hover:shadow-md"
+                ] : [
+                  "bg-gray-100 text-gray-400 border-2 border-gray-200",
+                  "cursor-not-allowed"
+                ]
+              )}
+              onClick={(e) => {
+                e.stopPropagation()
+                if (product.inStock) {
+                  // Add to cart logic here
+                }
+              }}
+            >
+              {product.inStock 
+                ? (locale === 'bg' ? 'Добави' : 'Add to Cart')
+                : (locale === 'bg' ? 'Изчерпан' : 'Sold Out')
               }
-            }}
-          >
-            {product.inStock 
-              ? (locale === 'bg' ? 'Добави' : 'Add to Cart')
-              : (locale === 'bg' ? 'Изчерпан' : 'Sold Out')
-            }
-          </Button>
+            </Button>
+          )}
         </div>
       </div>
     </article>

@@ -2,10 +2,10 @@
 
 import { useState, useMemo } from "react"
 import { ProductGrid } from "./ProductGrid"
-import { ProductFilters } from "./ProductFilters"
-import { FilterDrawer } from "./filters/FilterDrawer"
+import { CleanProductFilters } from "./CleanProductFilters"
+import { CleanFilterDrawer } from "./filters/CleanFilterDrawer"
 import { ShopHero } from "./components/ShopHero"
-import { ShopFiltersBar } from "./components/ShopFiltersBar"
+import { CleanShopFiltersBar } from "./components/CleanShopFiltersBar"
 import { EmptyProductState } from "./components/EmptyProductState"
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs"
 import { useNavigationState } from "@/hooks/ui/useNavigationState"
@@ -82,6 +82,16 @@ export function ShopPageSimple() {
         return false
       }
 
+      // Color filter
+      if (filters.colors.length > 0 && !filters.colors.includes(product.color.toLowerCase())) {
+        return false
+      }
+
+      // Size filter - all hats are "One Size" for now
+      if (filters.sizes.length > 0 && !filters.sizes.includes("One Size")) {
+        return false
+      }
+
       // Stock filter
       if (filters.inStock && !product.inStock) {
         return false
@@ -134,7 +144,7 @@ export function ShopPageSimple() {
       <ShopHero onScrollToProducts={scrollToProducts} />
 
       {/* Filters Bar */}
-      <ShopFiltersBar
+      <CleanShopFiltersBar
         totalProducts={SHOP_PRODUCTS.length}
         filteredProducts={filteredProducts.length}
         searchQuery={searchQuery}
@@ -158,20 +168,9 @@ export function ShopPageSimple() {
           {/* Desktop Sidebar Filters */}
           {showFilters && (
             <aside className="hidden lg:block w-64 flex-shrink-0">
-              <ProductFilters 
-                filters={{
-                  category: filters.category,
-                  priceRange: filters.priceRange,
-                  tags: filters.tags,
-                  inStock: filters.inStock
-                }} 
-                onFiltersChange={(newFilters) => setFilters({
-                  ...filters,
-                  category: newFilters.category,
-                  priceRange: newFilters.priceRange,
-                  tags: newFilters.tags,
-                  inStock: newFilters.inStock
-                })} 
+              <CleanProductFilters 
+                filters={filters}
+                onFiltersChange={setFilters} 
               />
             </aside>
           )}
@@ -193,7 +192,7 @@ export function ShopPageSimple() {
 
       {/* Enhanced Mobile Filter Drawer - Only on mobile */}
       <div className="lg:hidden">
-        <FilterDrawer
+        <CleanFilterDrawer
           open={showFilters}
           onOpenChange={setShowFilters}
           filters={filters}
