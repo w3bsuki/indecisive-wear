@@ -5,6 +5,7 @@ import { SocialMediaSection } from "@/components/features/marketing/social/Socia
 import { HeroSection } from "@/components/features/marketing/HeroSection"
 import { FeaturedProducts } from "@/components/features/marketing/FeaturedProducts"
 import { ComingSoonCarousel } from "@/components/features/marketing/ComingSoonCarousel"
+import { Footer } from "@/components/features/footer/Footer"
 import { cleanDesignSystem } from "@/lib/design-system/clean-tokens"
 import { cn } from "@/lib/utils"
 
@@ -200,6 +201,16 @@ export function HomePage() {
                 )}>
                   <div className="px-4 sm:px-6 md:px-8 lg:px-12">
                     <SocialMediaSection />
+                  </div>
+                </section>
+
+                {/* Footer Section - Inside main container */}
+                <section className={cn(
+                  cleanDesignSystem.layouts.pageLayout.sectionPadding,
+                  "-mx-4 sm:-mx-6 md:-mx-8 lg:-mx-12"
+                )}>
+                  <div className="px-4 sm:px-6 md:px-8 lg:px-12">
+                    <Footer />
                   </div>
                 </section>
 

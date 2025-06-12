@@ -29,18 +29,8 @@ const FooterComponent = () => {
   const footerLinks = getFooterLinks(t, locale)
 
   return (
-    <footer className="relative bg-gradient-to-br from-gray-50 via-white to-pink-50/30">
-      <div className={cn(
-        "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
-        "pt-8 sm:pt-12 pb-6"
-      )}>
-        {/* Unified Footer Container */}
-        <div className={cn(
-          "bg-white/90 backdrop-blur-xl",
-          "border border-pink-200/30", 
-          "shadow-[0_0_30px_rgba(236,72,153,0.12)]",
-          "rounded-3xl p-6 sm:p-8 md:p-10"
-        )}>
+    <footer className="relative">
+      <div className="space-y-6 sm:space-y-8">
 
           {/* Brand Marquee at the top of footer container */}
           <div className={cn(
@@ -216,8 +206,6 @@ const FooterComponent = () => {
               }
             </p>
           </motion.div>
-
-        </div>
 
       </div>
     </footer>
