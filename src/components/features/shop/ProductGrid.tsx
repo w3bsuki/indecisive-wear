@@ -1,11 +1,9 @@
 "use client"
 
 import React from "react"
-import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { useResponsiveCard } from "@/hooks"
-import { MobileProductCard } from "./cards/MobileProductCard"
-import { DesktopProductCard } from "./cards/DesktopProductCard"
+import { CleanProductCard } from "./cards/CleanProductCard"
 
 interface Product {
   id: number
@@ -78,23 +76,10 @@ function ProductGridComponent({ products, layout = "3", className }: ProductGrid
   return (
     <div className={cn("w-full", className)}>
       <div className={cn("grid", getGridCols(), getGap())}>
-        {products.map((product, index) => (
-          <motion.div
-            key={product.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ 
-              duration: isMobile ? 0.3 : 0.5, 
-              delay: Math.min(index * (isMobile ? 0.05 : 0.1), 0.5),
-              ease: "easeOut"
-            }}
-          >
-            {isMobile ? (
-              <MobileProductCard product={product} />
-            ) : (
-              <DesktopProductCard product={product} />
-            )}
-          </motion.div>
+        {products.map((product) => (
+          <div key={product.id}>
+            <CleanProductCard product={product} variant={isMobile ? 'mobile' : 'desktop'} />
+          </div>
         ))}
       </div>
     </div>

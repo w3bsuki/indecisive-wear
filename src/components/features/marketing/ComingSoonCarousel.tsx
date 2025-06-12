@@ -107,7 +107,7 @@ const ComingSoonCarouselComponent = ({ className }: ComingSoonCarouselProps) => 
       {/* All-in-one Container */}
       <div className="relative">
         <div className="absolute inset-0 bg-gradient-to-r from-pink-500/5 via-transparent to-pink-500/5 rounded-2xl" />
-        <div className="relative bg-white/90 backdrop-blur-sm p-6 rounded-2xl border border-pink-200/30 shadow-[0_0_20px_rgba(236,72,153,0.08)]"> {/* 48px - PERFECT_SPACING.scale[6] */}
+        <div className="relative bg-white/90 backdrop-blur-xl p-6 sm:p-8 md:p-10 rounded-3xl border border-pink-200/30 shadow-[0_0_30px_rgba(236,72,153,0.12)] min-h-[500px] sm:min-h-[600px] flex flex-col justify-center">
           
           {/* Header inside container with marquee headline */}
           <div className="mb-4 space-y-3">
@@ -287,7 +287,7 @@ const SectionMarquee = React.memo(({ primaryText, secondaryText, speed = 25 }: S
   ))
 
   return (
-    <div className="w-full overflow-hidden py-2 sm:py-3">
+    <div className="w-full overflow-hidden py-5 sm:py-6">
       <div className="flex items-center w-full">
         <div 
           className="flex items-center animate-section-marquee will-change-transform"

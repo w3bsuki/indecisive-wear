@@ -140,7 +140,7 @@ export const FilterDrawer = React.memo(function FilterDrawer({
     <Drawer open={open} onOpenChange={onOpenChange}>
       <DrawerContent 
         ref={drawerRef} 
-        className="max-h-[92vh] bg-white"
+        className="max-h-[92vh] bg-white/95 backdrop-blur-xl border-t-2 border-pink-200/30"
         role="dialog"
         aria-labelledby="filter-drawer-title"
         aria-describedby="filter-drawer-description"

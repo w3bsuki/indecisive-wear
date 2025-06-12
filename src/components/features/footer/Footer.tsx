@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 import { useSimpleI18n } from "@/hooks/i18n/useSimpleI18n"
 import { useLocale } from "@/hooks/i18n/useLocale"
+import { BrandMarquee } from "@/components/features/marketing/BrandMarquee"
 
 // Type definitions
 type TranslationFunction = (key: string, params?: Record<string, string | number>) => string
@@ -42,6 +43,20 @@ const FooterComponent = () => {
           "rounded-3xl p-6 sm:p-8 md:p-10"
         )}>
 
+          {/* Brand Marquee at the top of footer container */}
+          <div className={cn(
+            "bg-white/80 backdrop-blur-sm",
+            "border border-pink-200/30",
+            "rounded-xl overflow-hidden mb-6"
+          )}>
+            <BrandMarquee 
+              text="INDECISIVE WEAR" 
+              speed={40}
+              textColor="text-pink-500"
+              className="py-5 sm:py-6 text-xl sm:text-2xl md:text-3xl font-black"
+            />
+          </div>
+
           {/* Newsletter Section */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -51,10 +66,35 @@ const FooterComponent = () => {
             className="text-center mb-8"
           >
             <h2 className="text-xl sm:text-2xl font-bold mb-3 text-gray-900">
-              {/* Simplified title without complex parsing */}
-              <span className="bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent">
-                {locale === 'bg' ? 'Нерешителният клуб' : 'The Indecisive Club'}
-              </span>
+              {locale === 'bg' ? (
+                <>
+                  <span className="text-gray-700">Присъедини се към </span>
+                  <span className={cn(
+                    "inline-block px-4 py-1 sm:px-5 sm:py-2",
+                    "bg-gradient-to-r from-pink-600 to-pink-400",
+                    "rounded-lg text-white transform -skew-x-3",
+                    "shadow-md shadow-pink-500/20",
+                    "text-lg sm:text-xl"
+                  )}>
+                    INDECISIVE
+                  </span>
+                  <span className="text-gray-700"> клуб</span>
+                </>
+              ) : (
+                <>
+                  <span className="text-gray-700">Join the </span>
+                  <span className={cn(
+                    "inline-block px-4 py-1 sm:px-5 sm:py-2",
+                    "bg-gradient-to-r from-pink-600 to-pink-400",
+                    "rounded-lg text-white transform -skew-x-3",
+                    "shadow-md shadow-pink-500/20",
+                    "text-lg sm:text-xl"
+                  )}>
+                    INDECISIVE
+                  </span>
+                  <span className="text-gray-700"> Club</span>
+                </>
+              )}
             </h2>
             <p className="text-sm sm:text-base text-gray-600 mb-6 max-w-md mx-auto">
               {locale === 'bg' 

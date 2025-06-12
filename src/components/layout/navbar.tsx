@@ -82,8 +82,8 @@ const Navbar = React.memo(function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-30 transition-all duration-300",
           isScrolled 
-            ? "py-1.5" // 12px - PERFECT_SPACING.scale[1.5]
-            : "py-2"   // 16px - PERFECT_SPACING.scale[2]
+            ? "py-2" // 16px - increased from 12px
+            : "py-3"   // 24px - increased from 16px for better mobile presence
         )}
         aria-label="Site header"
         role="banner"
@@ -99,11 +99,11 @@ const Navbar = React.memo(function Navbar() {
             {/* Enhanced glass morphism background */}
             <div className={cn(
               "absolute inset-0",
-              "bg-white/80 backdrop-blur-xl",
-              "border border-white/30",
+              "bg-white/90 backdrop-blur-xl",
+              "border-2 border-pink-200/40",
               "rounded-2xl",
-              "shadow-[0_8px_32px_rgba(0,0,0,0.1)]",
-              isScrolled && "shadow-[0_12px_40px_rgba(0,0,0,0.15)]"
+              "shadow-[0_8px_32px_rgba(236,72,153,0.08)]",
+              isScrolled && "shadow-[0_12px_40px_rgba(236,72,153,0.12)] border-pink-200/60"
             )} />
             <div className={cn(
               "relative",
@@ -111,7 +111,7 @@ const Navbar = React.memo(function Navbar() {
               "rounded-2xl overflow-hidden"
             )}>
               <div className={cn(
-                "h-14 sm:h-16 lg:h-[72px]", // Following component tokens
+                "h-16 sm:h-18 lg:h-[72px]", // Increased mobile height from h-14 to h-16
                 "px-3 sm:px-6 md:px-10",
                 "flex items-center justify-between", // Simple flex on mobile, grid on desktop
                 "lg:grid lg:grid-cols-[auto_1fr_auto]",

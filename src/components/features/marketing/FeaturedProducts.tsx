@@ -93,18 +93,18 @@ const FeaturedProductsComponent = ({ className }: FeaturedProductsProps) => {
 
   return (
     <div className={cn("w-full", className)}>
-      {/* All-in-one Container */}
+      {/* All-in-one Container - stable height */}
       <div className="relative">
         <div className="absolute inset-0 bg-gradient-to-r from-pink-500/5 via-transparent to-pink-500/5 rounded-2xl" />
-        <div className="relative bg-white/90 backdrop-blur-sm p-6 rounded-2xl border border-pink-200/30 shadow-[0_0_20px_rgba(236,72,153,0.08)]"> {/* 48px - PERFECT_SPACING.scale[6] */}
+        <div className="relative bg-white/90 backdrop-blur-sm p-6 rounded-2xl border border-pink-200/30 shadow-[0_0_20px_rgba(236,72,153,0.08)] min-h-[400px]"> {/* 48px - PERFECT_SPACING.scale[6] */}
           
           {/* Header inside container with marquee headline */}
           <div className="mb-4 space-y-3">
             {/* Animated Section Headline Marquee */}
             <div className="relative overflow-hidden rounded-lg bg-gradient-to-r from-pink-500/5 via-pink-400/10 to-pink-500/5 border border-pink-200/30">
               <SectionMarquee 
-                primaryText={locale === 'bg' ? 'Нашата колекция' : 'Our Collection'}
-                secondaryText={locale === 'bg' ? 'Избрани шапки, готови за пращане днес' : 'Selected hats ready to ship today'}
+                primaryText={locale === 'bg' ? 'НАШАТА КОЛЕКЦИЯ' : 'OUR COLLECTION'}
+                secondaryText={locale === 'bg' ? 'ИЗБРАНИ ШАПКИ, ГОТОВИ ЗА ПРАЩАНЕ ДНЕС' : 'SELECTED HATS READY TO SHIP TODAY'}
                 speed={35}
               />
             </div>

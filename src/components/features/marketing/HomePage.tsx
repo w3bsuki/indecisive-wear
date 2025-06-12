@@ -5,7 +5,6 @@ import { SocialMediaSection } from "@/components/features/marketing/social/Socia
 import { HeroSection } from "@/components/features/marketing/HeroSection"
 import { FeaturedProducts } from "@/components/features/marketing/FeaturedProducts"
 import { ComingSoonCarousel } from "@/components/features/marketing/ComingSoonCarousel"
-import { BrandMarquee } from "@/components/features/marketing/BrandMarquee"
 import { cleanDesignSystem } from "@/lib/design-system/clean-tokens"
 import { cn } from "@/lib/utils"
 
@@ -159,7 +158,7 @@ export function HomePage() {
               cleanDesignSystem.layouts.pageLayout.mainContainer,
               "px-0 sm:px-4"
             )}>
-              <div className={cleanDesignSystem.layouts.pageLayout.sectionSpacing}>
+              <div className="space-y-4 sm:space-y-6 md:space-y-8">
                 
                 {/* Hero Section - Full viewport on mobile */}
                 <section className="-mx-4 sm:-mx-6 md:-mx-8 lg:-mx-12">
@@ -205,21 +204,6 @@ export function HomePage() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      
-      {/* Brand Marquee - Outside main container */}
-      <div className="relative z-20 mt-12 sm:mt-16 md:mt-20">
-        <div className={cn(
-          "bg-white/90 backdrop-blur-xl",
-          "border-t border-gray-200/50"
-        )}>
-          <BrandMarquee 
-            text="INDECISIVE WEAR" 
-            speed={40}
-            textColor="text-pink-500"
-            className="py-4 sm:py-6"
-          />
         </div>
       </div>
     </main>

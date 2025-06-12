@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useMemo } from "react"
-import { motion } from "framer-motion"
 import { ProductGrid } from "./ProductGrid"
 import { ProductFilters } from "./ProductFilters"
 import { FilterDrawer } from "./filters/FilterDrawer"
@@ -130,7 +129,7 @@ export function ShopPageSimple() {
   }
 
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-pink-50/30 overflow-x-hidden">
       {/* Shop Hero */}
       <ShopHero onScrollToProducts={scrollToProducts} />
 
@@ -149,19 +148,16 @@ export function ShopPageSimple() {
       />
 
       {/* Main Content */}
-      <div id="products-section" className="max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 py-6 md:py-8">
-        {/* Breadcrumbs */}
-        <Breadcrumbs className="mb-6" showHome />
-        
-        <div className="flex gap-8">
+      <div id="products-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Glass morphism container matching main page */}
+        <div className="bg-white/90 backdrop-blur-xl border border-pink-200/30 shadow-[0_0_20px_rgba(236,72,153,0.08)] rounded-3xl p-6 sm:p-8 md:p-10">
+          {/* Breadcrumbs */}
+          <Breadcrumbs className="mb-6" showHome />
+          
+          <div className="flex gap-8">
           {/* Desktop Sidebar Filters */}
           {showFilters && (
-            <motion.aside
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="hidden lg:block w-64 flex-shrink-0"
-            >
+            <aside className="hidden lg:block w-64 flex-shrink-0">
               <ProductFilters 
                 filters={{
                   category: filters.category,
@@ -177,7 +173,7 @@ export function ShopPageSimple() {
                   inStock: newFilters.inStock
                 })} 
               />
-            </motion.aside>
+            </aside>
           )}
 
           {/* Product Grid */}
@@ -191,6 +187,7 @@ export function ShopPageSimple() {
               )}
             </section>
           </main>
+          </div>
         </div>
       </div>
 

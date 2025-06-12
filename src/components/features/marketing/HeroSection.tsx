@@ -195,8 +195,7 @@ function HeroSectionComponent({ hatImages, scrollToProducts: _scrollToProducts, 
             {/* Hat carousel */}
             <div className="relative w-full overflow-x-hidden">
               <NativeCarousel 
-                autoplay={true} 
-                autoplayDelay={3000}
+                autoplay={false} 
                 showIndicators={false}
                 className="w-full"
               >
