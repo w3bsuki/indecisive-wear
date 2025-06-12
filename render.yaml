@@ -3,7 +3,7 @@ services:
     name: indecisive-wear-medusa
     runtime: node
     rootDir: store
-    buildCommand: npm install && npm run build && npx medusa db:migrate
+    buildCommand: npm install && npm run build
     startCommand: npm run start
     envVars:
       - key: NODE_ENV
