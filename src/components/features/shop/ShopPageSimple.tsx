@@ -6,6 +6,7 @@ import { CleanProductFilters } from "./CleanProductFilters"
 import { CleanFilterDrawer } from "./filters/CleanFilterDrawer"
 import { ShopHero } from "./components/ShopHero"
 import { CleanShopFiltersBar } from "./components/CleanShopFiltersBar"
+import { BottomNavSheet } from "./BottomNavSheet"
 import { EmptyProductState } from "./components/EmptyProductState"
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs"
 import { useNavigationState } from "@/hooks/ui/useNavigationState"
@@ -137,6 +138,19 @@ export function ShopPageSimple() {
       inStock: false,
     })
   }
+  
+  // Calculate active filter count
+  const activeFilterCount = useMemo(() => {
+    let count = 0
+    if (filters.category !== "all") count++
+    if (filters.priceRange[0] > 0 || filters.priceRange[1] < 100) count++
+    count += filters.tags.length
+    count += filters.colors.length
+    count += filters.sizes.length
+    if (filters.inStock) count++
+    if (searchQuery) count++
+    return count
+  }, [filters, searchQuery])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-pink-50/30 overflow-x-hidden">
@@ -158,7 +172,7 @@ export function ShopPageSimple() {
       />
 
       {/* Main Content */}
-      <div id="products-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div id="products-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-24 lg:pb-8">
         {/* Glass morphism container matching main page */}
         <div className="bg-white/90 backdrop-blur-xl border border-pink-200/30 shadow-[0_0_20px_rgba(236,72,153,0.08)] rounded-3xl p-6 sm:p-8 md:p-10">
           {/* Breadcrumbs */}
@@ -199,6 +213,14 @@ export function ShopPageSimple() {
           onFiltersChange={setFilters}
         />
       </div>
+      
+      {/* Bottom Navigation Sheet - Mobile only */}
+      <BottomNavSheet
+        activeFilterCount={activeFilterCount}
+        cartCount={0} // TODO: Connect to cart store
+        showFilters={showFilters}
+        onToggleFilters={() => setShowFilters(!showFilters)}
+      />
     </div>
   )
 }

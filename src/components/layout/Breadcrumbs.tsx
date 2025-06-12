@@ -3,7 +3,6 @@
 import { Fragment } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { motion } from 'framer-motion'
 import { ChevronRight, Home } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useSimpleI18n } from '@/hooks'
@@ -20,29 +19,6 @@ interface BreadcrumbsProps {
   showHome?: boolean
 }
 
-// Animation variants
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.05,
-      delayChildren: 0.1,
-    }
-  }
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, x: -10 },
-  visible: { 
-    opacity: 1, 
-    x: 0,
-    transition: {
-      duration: 0.2,
-      ease: "easeOut"
-    }
-  }
-}
 
 export function Breadcrumbs({ items, className, showHome = true }: BreadcrumbsProps) {
   const pathname = usePathname()
@@ -53,7 +29,7 @@ export function Breadcrumbs({ items, className, showHome = true }: BreadcrumbsPr
   
   // Add home if requested and not already present
   const allItems = showHome && breadcrumbItems[0]?.href !== '/' 
-    ? [{ label: t('common.home'), href: '/' }, ...breadcrumbItems]
+    ? [{ label: t('home'), href: '/' }, ...breadcrumbItems]
     : breadcrumbItems
     
   if (allItems.length <= 1) return null
@@ -66,21 +42,17 @@ export function Breadcrumbs({ items, className, showHome = true }: BreadcrumbsPr
         className
       )}
     >
-      <motion.ol 
+      <ol 
         className="flex items-center space-x-1"
         role="list"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
       >
         {allItems.map((item, index) => {
           const isLast = index === allItems.length - 1
           
           return (
-            <motion.li 
+            <li 
               key={item.href}
               className="flex items-center"
-              variants={itemVariants}
             >
               {index > 0 && (
                 <ChevronRight 
@@ -120,10 +92,10 @@ export function Breadcrumbs({ items, className, showHome = true }: BreadcrumbsPr
                   </span>
                 </Link>
               )}
-            </motion.li>
+            </li>
           )
         })}
-      </motion.ol>
+      </ol>
     </nav>
   )
 }
@@ -161,20 +133,20 @@ function generateBreadcrumbsFromPath(
 // Map URL segments to readable labels
 function getSegmentLabel(segment: string, t: (key: string) => string): string {
   const labelMap: Record<string, string> = {
-    'shop': t('nav.shop'),
-    'products': t('nav.products'),
-    'collections': t('nav.collections'),
-    'about': t('nav.about'),
-    'contact': t('nav.contact'),
-    'cart': t('nav.cart'),
-    'checkout': t('nav.checkout'),
-    'account': t('nav.account'),
-    'orders': t('nav.orders'),
-    'wishlist': t('nav.wishlist'),
-    'search': t('nav.search'),
-    'privacy': t('nav.privacy'),
-    'terms': t('nav.terms'),
-    'returns': t('nav.returns'),
+    'shop': t('shop'),
+    'products': t('shop'),
+    'collections': t('shop'),
+    'about': t('about'),
+    'contact': t('contact'),
+    'cart': t('cart.title'),
+    'checkout': t('cart.checkout'),
+    'account': t('footer.company'),
+    'orders': t('footer.orderStatus'),
+    'wishlist': t('shop'),
+    'search': t('common:navigation.searchPlaceholder'),
+    'privacy': t('footer.privacy'),
+    'terms': t('footer.terms'),
+    'returns': t('footer.returns'),
   }
   
   // Try to get translated label
