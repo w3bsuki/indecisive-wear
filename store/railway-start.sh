@@ -6,17 +6,23 @@ echo "=== Railway Medusa Deployment Starting ==="
 echo "Building Medusa application..."
 npm run build
 
-# Wait a bit for database to be ready
-echo "Waiting for services to be ready..."
-sleep 10
+# Wait for database
+echo "Waiting for database..."
+sleep 15
 
-# Run migrations with retry logic
-echo "Running database migrations..."
-npx medusa db:migrate || (sleep 5 && npx medusa db:migrate) || (sleep 10 && npx medusa db:migrate)
+# Force create required tables using psql
+echo "Creating required tables..."
+if [ -n "$DATABASE_URL" ]; then
+    # Extract database URL components
+    DB_URL="$DATABASE_URL"
+    
+    # Run SQL directly to create tables
+    psql "$DB_URL" -f force-migrations.sql || echo "SQL execution warning - continuing"
+fi
 
-# Create admin user if it doesn't exist
-echo "Creating admin user..."
-npm run create-admin || true
+# Run official migrations
+echo "Running Medusa migrations..."
+npx medusa db:migrate || echo "Migrations may have warnings - continuing"
 
 # Start the application
 echo "Starting Medusa server..."

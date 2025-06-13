@@ -29,5 +29,7 @@ module.exports = defineConfig({
     path: "/app" as `/${string}`,
     disable: process.env.DISABLE_MEDUSA_ADMIN === "true",
   },
-  modules: process.env.MEDUSA_WORKER_MODE === "worker" ? {} : undefined
+  modules: {
+    // Temporarily disable modules until migrations run
+  }
 })
