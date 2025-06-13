@@ -1,6 +1,6 @@
-import { loadEnv, defineConfig } from '@medusajs/framework/utils'
+const { loadEnv, defineConfig } = require('@medusajs/framework/utils');
 
-loadEnv(process.env.NODE_ENV || 'development', process.cwd())
+loadEnv(process.env.NODE_ENV || 'development', process.cwd());
 
 // Helper to safely generate secrets
 const generateSecret = () => {
