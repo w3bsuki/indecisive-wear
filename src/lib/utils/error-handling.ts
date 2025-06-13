@@ -177,10 +177,7 @@ export async function withErrorHandling<T>(
     try {
       return await fallback()
     } catch (fallbackError) {
-      // Log fallback failure but don't throw
-      if (process.env.NODE_ENV === 'development') {
-        console.warn('Fallback failed:', fallbackError)
-      }
+      // Fallback failed, suppress error
     }
   }
   
@@ -192,13 +189,7 @@ export async function withErrorHandling<T>(
  * Error reporter for production monitoring
  */
 export function reportError(error: EnhancedError): void {
-  // In development, just log
-  if (process.env.NODE_ENV === 'development') {
-    console.error('Error reported:', error)
-    return
-  }
-  
-  // In production, send to monitoring service
+  // Send to monitoring service
   try {
     // Example: Send to Sentry, LogRocket, or custom service
     // Sentry.captureException(new Error(error.message), {

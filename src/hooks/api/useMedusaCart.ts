@@ -5,7 +5,7 @@
 
 import React from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { medusa, isMockMode } from '@/lib/medusa/client'
+import { medusa } from '@/lib/medusa/client'
 import { useCartStore } from '@/stores/cart-store'
 import { useUIActions } from '@/stores'
 
@@ -75,7 +75,7 @@ export function useMedusaCart() {
     queryFn: async () => {
       let cartId = getCartId()
       
-      console.log(isMockMode ? '🎭 Using mock cart' : '🔗 Using real Medusa cart')
+      // Fetch or create cart
       
       // If no cart ID, create a new cart
       if (!cartId) {
@@ -95,7 +95,7 @@ export function useMedusaCart() {
         return response
       } catch (error) {
         // If cart not found, create a new one
-        console.warn('Cart not found, creating new cart')
+        // Cart not found, create new cart
         const createResponse = await (medusa as any).store.cart.create()
         
         if (typeof window !== 'undefined') {
@@ -126,15 +126,11 @@ export function useAddToCart() {
         throw new Error('No cart available')
       }
       
-      const response = isMockMode 
-        ? await (medusa as any).store.cart.lineItems.create(cartId, {
-            variant_id: params.variantId,
-            quantity: params.quantity,
-          })
-        : await (medusa as any).store.cart.lineItems.create(cartId, {
-            variant_id: params.variantId,
-            quantity: params.quantity,
-          })
+      // Add item to cart - using type assertion due to SDK type limitations
+      const response = await (medusa.store as any).cart.lineItems.create(cartId, {
+        variant_id: params.variantId,
+        quantity: params.quantity,
+      })
       
       return response
     },
@@ -163,7 +159,7 @@ export function useAddToCart() {
       })
     },
     onError: (error) => {
-      console.error('Failed to add to cart:', error)
+      // Handle error in UI instead
       addToast({
         type: 'error',
         title: 'Failed to add to cart',
@@ -201,7 +197,7 @@ export function useUpdateCartItem() {
       queryClient.invalidateQueries({ queryKey: cartKeys.all })
     },
     onError: (error) => {
-      console.error('Failed to update cart item:', error)
+      // Handle error in UI instead
       addToast({
         type: 'error',
         title: 'Failed to update cart',
@@ -240,7 +236,7 @@ export function useRemoveFromCart() {
       })
     },
     onError: (error) => {
-      console.error('Failed to remove from cart:', error)
+      // Handle error in UI instead
       addToast({
         type: 'error',
         title: 'Failed to remove item',
@@ -284,7 +280,7 @@ export function useClearCart() {
       })
     },
     onError: (error) => {
-      console.error('Failed to clear cart:', error)
+      // Handle error in UI instead
       addToast({
         type: 'error',
         title: 'Failed to clear cart',

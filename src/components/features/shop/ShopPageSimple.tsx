@@ -15,27 +15,41 @@ import { useMedusaProducts, useSearchMedusaProducts } from "@/hooks/api/useMedus
 import { useSyncCartWithStore } from "@/hooks/api/useMedusaCart"
 import { useCartTotalItems } from "@/stores/cart-store"
 
+import type { StoreProduct } from '@medusajs/types'
+
+interface ShopProduct {
+  id: string
+  name: string
+  price: number
+  image: string
+  category: string
+  tags: string[]
+  inStock: boolean
+  slogan: string
+  color: string
+}
+
 // Helper function to transform Medusa products to shop format
-const transformMedusaToShop = (medusaProducts: any[]) => {
+const transformMedusaToShop = (medusaProducts: StoreProduct[]): ShopProduct[] => {
   return medusaProducts.map(product => {
     const variant = product.variants?.[0]
-    const price = variant?.calculated_price?.calculated_amount || variant?.original_price || 1700
-    const priceInDollars = price / 100
+    const price = variant?.calculated_price?.calculated_amount || 0
+    const priceInDollars = price > 0 ? price / 100 : 0
 
     return {
       id: product.id.replace('prod_', ''), // Remove 'prod_' prefix for compatibility
       name: product.title,
       price: priceInDollars,
-      image: product.thumbnail || product.images?.[0]?.url || '/placeholder.jpg',
-      category: product.categories?.[0]?.name || "Hats",
+      image: product.thumbnail || product.images?.[0]?.url || '',
+      category: product.categories?.[0]?.name || "Uncategorized",
       tags: [
-        ...(product.tags?.some((tag: any) => tag.value === 'new') ? ["new"] : []),
-        ...(product.tags?.some((tag: any) => tag.value === 'bestseller') ? ["bestseller"] : []),
-        "in-stock"
+        ...(product.tags?.some(tag => tag.value === 'new') ? ["new"] : []),
+        ...(product.tags?.some(tag => tag.value === 'bestseller') ? ["bestseller"] : []),
+        ...(variant && (variant.inventory_quantity > 0 || variant.allow_backorder) ? ["in-stock"] : [])
       ],
-      inStock: variant?.inventory_quantity > 0 || variant?.allow_backorder || true,
-      slogan: product.description || `Stylish ${product.title} perfect for any occasion`,
-      color: variant?.options?.find((opt: any) => opt.option_id.includes('color'))?.value || 'Pink'
+      inStock: variant ? (variant.inventory_quantity > 0 || variant.allow_backorder) : false,
+      slogan: product.description || '',
+      color: variant?.options?.find(opt => opt.option?.title?.toLowerCase() === 'color')?.value || ''
     }
   })
 }
@@ -118,17 +132,6 @@ export function ShopPageSimple() {
   }, [searchData, sortBy])
 
   const isLoading = isLoadingAll || isSearching
-
-  // Debug logging
-  console.log('🛒 Shop Debug:', {
-    allProductsData,
-    searchData,
-    isLoading,
-    allProductsError,
-    searchError,
-    allProducts: allProducts.length,
-    filteredProducts: filteredProducts.length
-  })
 
   const scrollToProducts = () => {
     document.getElementById('products-section')?.scrollIntoView({ 

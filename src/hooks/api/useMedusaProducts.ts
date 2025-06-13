@@ -4,18 +4,17 @@
  */
 
 import { useQuery, useInfiniteQuery } from '@tanstack/react-query'
-import { medusa, isMockMode } from '@/lib/medusa/client'
+import { medusa } from '@/lib/medusa/client'
+import type { StoreProduct } from '@medusajs/types'
 
 // Types for product queries
-interface ProductListParams {
-  q?: string // Search query
+export interface ProductListParams {
+  q?: string
   limit?: number
   offset?: number
   category_id?: string[]
   collection_id?: string[]
   tags?: string[]
-  price_min?: number
-  price_max?: number
   order?: string
 }
 
@@ -45,7 +44,6 @@ export function useMedusaProducts(params: ProductListParams = {}) {
   return useQuery({
     queryKey: productKeys.list(params),
     queryFn: async () => {
-      console.log(isMockMode ? '🎭 Using mock Medusa client' : '🔗 Using real Medusa client')
       const response = await medusa.store.product.list(params)
       return response
     },
@@ -112,14 +110,14 @@ export function useSearchMedusaProducts(filters: ProductFilters, enabled = true)
       const response = await medusa.store.product.list(params)
       
       // Apply client-side filters that Medusa doesn't support yet
-      let filtered = response.products as any[]
+      let filtered = response.products
       
       // Price range filter
       if (filters.priceRange) {
         const [min, max] = filters.priceRange
-        filtered = filtered.filter((product: any) => {
+        filtered = filtered.filter(product => {
           const variant = product.variants?.[0]
-          const price = variant?.calculated_price?.calculated_amount || variant?.original_price || 1700
+          const price = variant?.calculated_price?.calculated_amount || 0
           const priceInDollars = price / 100
           return priceInDollars >= min && priceInDollars <= max
         })
@@ -127,8 +125,8 @@ export function useSearchMedusaProducts(filters: ProductFilters, enabled = true)
       
       // Category filter
       if (filters.category && filters.category !== 'all') {
-        filtered = filtered.filter((product: any) =>
-          product.categories?.some((cat: any) => 
+        filtered = filtered.filter(product =>
+          product.categories?.some(cat => 
             cat.name.toLowerCase() === filters.category?.toLowerCase()
           )
         )
@@ -136,8 +134,8 @@ export function useSearchMedusaProducts(filters: ProductFilters, enabled = true)
       
       // Stock filter
       if (filters.inStock) {
-        filtered = filtered.filter((product: any) =>
-          product.variants?.some((variant: any) => 
+        filtered = filtered.filter(product =>
+          product.variants?.some(variant => 
             variant.inventory_quantity > 0 || variant.allow_backorder
           )
         )
@@ -145,7 +143,7 @@ export function useSearchMedusaProducts(filters: ProductFilters, enabled = true)
       
       return {
         ...response,
-        products: filtered as any,
+        products: filtered,
         count: filtered.length
       }
     },

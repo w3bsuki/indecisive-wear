@@ -47,11 +47,11 @@ function extractUTMParams(referrer: string | null): {
 
 // Allowed origins for CORS
 const ALLOWED_ORIGINS = [
+  process.env.NEXT_PUBLIC_APP_URL,
   'https://indecisive-wear.com',
   'https://www.indecisive-wear.com',
   'https://indecisive-wear.vercel.app',
-  ...(process.env.NODE_ENV === 'development' ? ['http://localhost:3000', 'http://127.0.0.1:3000'] : [])
-].filter(Boolean)
+].filter(Boolean) as string[]
 
 // Helper function to check if origin is allowed
 function isOriginAllowed(origin: string | null): boolean {
@@ -130,14 +130,7 @@ export async function POST(request: Request) {
     try {
       supabaseClient = createServerSupabaseClient()
     } catch (error) {
-      // Fallback: Log to console in development (in production, you'd want to save to a file or external service)
-      console.log('[Waitlist Signup - No Supabase]', {
-        email: body.email,
-        name: body.name,
-        timestamp: new Date().toISOString(),
-        source: body.source,
-        locale: body.locale,
-      })
+      // Fallback: Return success without logging sensitive data
       
       // Return success response even without database
       return NextResponse.json<WaitlistSignupResponse>({
@@ -257,7 +250,6 @@ export async function POST(request: Request) {
       return NextResponse.json<WaitlistSignupResponse>({
         success: false,
         message: 'Unable to join waitlist. Please try again later.',
-        ...(process.env.NODE_ENV === 'development' && { error: error.message }),
       }, { 
         status: 500,
         headers: {
@@ -291,7 +283,6 @@ export async function POST(request: Request) {
     return NextResponse.json<WaitlistSignupResponse>({
       success: false,
       message: 'An unexpected error occurred. Please try again later.',
-      ...(process.env.NODE_ENV === 'development' && error instanceof Error && { error: error.message }),
     }, { 
       status: 500,
       headers: {
