@@ -14,6 +14,7 @@ const generateSecret = () => {
 module.exports = defineConfig({
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
+    workerMode: process.env.MEDUSA_WORKER_MODE as "shared" | "worker" | "server",
     http: {
       storeCors: process.env.STORE_CORS || "http://localhost:3000,https://indecisive-wear.vercel.app",
       adminCors: process.env.ADMIN_CORS || "https://*.up.railway.app,http://localhost:9000", 
@@ -26,43 +27,7 @@ module.exports = defineConfig({
   admin: {
     backendUrl: process.env.MEDUSA_ADMIN_BACKEND_URL || process.env.MEDUSA_BACKEND_URL || "http://localhost:9000",
     path: "/app" as `/${string}`,
+    disable: process.env.DISABLE_MEDUSA_ADMIN === "true",
   },
-  modules: {
-    [Modules.TAX]: {
-      resolve: "@medusajs/medusa/tax",
-      options: {
-        providers: [
-          {
-            id: "tp_system",
-          }
-        ]
-      }
-    },
-    [Modules.PAYMENT]: {
-      resolve: "@medusajs/medusa/payment",
-      options: {
-        providers: [
-          {
-            id: "pp_system_default",
-          }
-        ]
-      }
-    },
-    [Modules.FULFILLMENT]: {
-      resolve: "@medusajs/medusa/fulfillment",
-      options: {
-        providers: [
-          {
-            id: "manual_manual",
-          }
-        ]
-      }
-    },
-    [Modules.STOCK_LOCATION]: {
-      resolve: "@medusajs/medusa/stock-location"
-    },
-    [Modules.INVENTORY]: {
-      resolve: "@medusajs/medusa/inventory"
-    },
-  }
+  modules: process.env.MEDUSA_WORKER_MODE === "worker" ? {} : undefined
 })
