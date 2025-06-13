@@ -5,9 +5,6 @@ const { execSync } = require('child_process');
 console.log('=== INIT BACKEND ===');
 
 try {
-  console.log('Building admin...');
-  execSync('npx medusa build', { stdio: 'inherit' });
-  
   console.log('Running migrations...');
   execSync('npx medusa db:migrate', { stdio: 'inherit' });
   
