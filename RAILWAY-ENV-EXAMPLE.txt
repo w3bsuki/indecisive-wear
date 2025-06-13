@@ -1,0 +1,13 @@
+IMPORTANT: Copy these EXACT values to Railway dashboard environment variables
+DO NOT include backticks or quotes around any values!
+
+DATABASE_URL=${{Postgres.DATABASE_PUBLIC_URL}}
+MEDUSA_WORKER_MODE=server
+DISABLE_MEDUSA_ADMIN=false
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+COOKIE_SECRET=your-super-secret-cookie-key-change-this-in-production
+ADMIN_EMAIL=admin@indecisive-wear.com
+ADMIN_PASSWORD=changethispassword123
+STORE_CORS=http://localhost:3000,https://indecisive-wear.vercel.app
+ADMIN_CORS=https://*.up.railway.app,http://localhost:9000
+AUTH_CORS=https://*.up.railway.app,http://localhost:9000

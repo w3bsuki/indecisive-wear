@@ -2,17 +2,18 @@
 
 ## CRITICAL: Set These Environment Variables in Railway Dashboard
 
-1. **DATABASE_URL** = `${{Postgres.DATABASE_PUBLIC_URL}}`
+1. **DATABASE_URL** = ${{Postgres.DATABASE_PUBLIC_URL}}
    - MUST use PUBLIC URL, not the default DATABASE_URL
+   - DO NOT include backticks or quotes around the value
    - This is the #1 cause of deployment failures
 
-2. **MEDUSA_WORKER_MODE** = `server`
+2. **MEDUSA_WORKER_MODE** = server
 
 3. **JWT_SECRET** = (generate a secure random string)
 
 4. **COOKIE_SECRET** = (generate a secure random string)
 
-5. **ADMIN_EMAIL** = `admin@indecisive-wear.com`
+5. **ADMIN_EMAIL** = admin@indecisive-wear.com
 
 6. **ADMIN_PASSWORD** = (set your admin password)
 
