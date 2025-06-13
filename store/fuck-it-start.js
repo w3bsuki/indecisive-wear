@@ -32,8 +32,9 @@ const start = async () => {
           res.send("Admin panel coming soon when this shit works");
         });
         
-        app.listen(9000, "0.0.0.0", () => {
-          console.log("Server started on port 9000");
+        const PORT = process.env.PORT || 9000;
+        app.listen(PORT, "0.0.0.0", () => {
+          console.log(`Server started on port ${PORT}`);
           console.log("At least something fucking works");
         });
       };
@@ -54,8 +55,9 @@ const start = async () => {
       });
     });
     
-    app.listen(9000, "0.0.0.0", () => {
-      console.log("Bare Express server running on 9000");
+    const PORT = process.env.PORT || 9000;
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`Bare Express server running on ${PORT}`);
     });
   }
 };
