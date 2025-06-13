@@ -6,7 +6,7 @@ console.log('=== INIT BACKEND ===');
 
 try {
   console.log('Building admin panel...');
-  execSync('npx medusa build --admin-only', { stdio: 'inherit' });
+  execSync('npx medusa build', { stdio: 'inherit' });
   
   console.log('Running migrations...');
   execSync('npx medusa db:migrate', { stdio: 'inherit' });
