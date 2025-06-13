@@ -15,7 +15,7 @@
   "scripts": {
     "build": "medusa build",
     "seed": "medusa exec ./src/scripts/seed.ts",
-    "start": "./start.sh",
+    "start": "medusa start",
     "migrate": "npx medusa db:migrate",
     "start:dev": "medusa develop",
     "start:prod": "NODE_ENV=production ./start-production.sh",
