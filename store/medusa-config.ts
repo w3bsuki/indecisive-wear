@@ -28,7 +28,10 @@ module.exports = defineConfig({
     path: "/app" as `/${string}`,
   },
   modules: {
-    // Modules will be enabled after migrations run
-    // For initial deployment, we disable them to prevent initialization errors
+    [Modules.TAX]: false,
+    [Modules.PAYMENT]: false,
+    [Modules.FULFILLMENT]: false,
+    [Modules.STOCK_LOCATION]: false,
+    [Modules.INVENTORY]: false,
   }
 })
