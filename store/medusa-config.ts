@@ -28,10 +28,41 @@ module.exports = defineConfig({
     path: "/app" as `/${string}`,
   },
   modules: {
-    [Modules.TAX]: false,
-    [Modules.PAYMENT]: false,
-    [Modules.FULFILLMENT]: false,
-    [Modules.STOCK_LOCATION]: false,
-    [Modules.INVENTORY]: false,
+    [Modules.TAX]: {
+      resolve: "@medusajs/medusa/tax",
+      options: {
+        providers: [
+          {
+            id: "tp_system",
+          }
+        ]
+      }
+    },
+    [Modules.PAYMENT]: {
+      resolve: "@medusajs/medusa/payment",
+      options: {
+        providers: [
+          {
+            id: "pp_system_default",
+          }
+        ]
+      }
+    },
+    [Modules.FULFILLMENT]: {
+      resolve: "@medusajs/medusa/fulfillment",
+      options: {
+        providers: [
+          {
+            id: "manual_manual",
+          }
+        ]
+      }
+    },
+    [Modules.STOCK_LOCATION]: {
+      resolve: "@medusajs/medusa/stock-location"
+    },
+    [Modules.INVENTORY]: {
+      resolve: "@medusajs/medusa/inventory"
+    },
   }
 })
