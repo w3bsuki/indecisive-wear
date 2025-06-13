@@ -1,4 +1,4 @@
-import { loadEnv, defineConfig, Modules } from '@medusajs/framework/utils'
+import { loadEnv, defineConfig } from '@medusajs/framework/utils'
 
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
@@ -29,7 +29,5 @@ module.exports = defineConfig({
     path: "/app" as `/${string}`,
     disable: process.env.DISABLE_MEDUSA_ADMIN === "true",
   },
-  modules: {
-    // Temporarily disable modules until migrations run
-  }
+  modules: []
 })
