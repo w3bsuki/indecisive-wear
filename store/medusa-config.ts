@@ -1,4 +1,4 @@
-const { loadEnv, defineConfig } = require('@medusajs/framework/utils');
+const { loadEnv, defineConfig, Modules } = require('@medusajs/framework/utils');
 
 loadEnv(process.env.NODE_ENV || 'development', process.cwd());
 
@@ -29,5 +29,26 @@ module.exports = defineConfig({
     path: "/app" as `/${string}`,
     disable: process.env.DISABLE_MEDUSA_ADMIN === "true",
   },
-  modules: []
+  modules: process.env.REDIS_URL ? [
+    {
+      resolve: "@medusajs/medusa/cache-redis",
+      options: { 
+        redisUrl: process.env.REDIS_URL 
+      }
+    },
+    {
+      resolve: "@medusajs/medusa/event-bus-redis", 
+      options: { 
+        redisUrl: process.env.REDIS_URL 
+      }
+    },
+    {
+      resolve: "@medusajs/medusa/workflow-engine-redis",
+      options: { 
+        redis: { 
+          url: process.env.REDIS_URL 
+        } 
+      }
+    }
+  ] : undefined
 })
