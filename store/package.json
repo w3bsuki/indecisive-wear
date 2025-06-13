@@ -14,9 +14,9 @@
   ],
   "scripts": {
     "build": "medusa build",
-    "build:render": "./render-build.sh",
     "seed": "medusa exec ./src/scripts/seed.ts",
-    "start": "medusa migrations run && medusa start",
+    "start": "./start.sh",
+    "migrate": "npx medusa db:migrate",
     "start:dev": "medusa develop",
     "start:prod": "NODE_ENV=production ./start-production.sh",
     "dev": "medusa develop",
