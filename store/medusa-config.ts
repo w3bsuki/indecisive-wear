@@ -20,10 +20,11 @@ module.exports = defineConfig({
     path: "/app" as `/${string}`,
   },
   modules: {
-    // Disable problematic modules for initial deployment
+    // Disable problematic modules that fail without migrations
     [Modules.STOCK_LOCATION]: false,
     [Modules.INVENTORY]: false,
     [Modules.FULFILLMENT]: false,
     [Modules.TAX]: false,
+    [Modules.PAYMENT]: false,
   }
 })
