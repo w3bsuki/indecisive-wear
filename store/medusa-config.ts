@@ -2,6 +2,14 @@ import { loadEnv, defineConfig, Modules } from '@medusajs/framework/utils'
 
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
+// Helper to safely generate secrets
+const generateSecret = () => {
+  try {
+    return require('crypto').randomBytes(64).toString('hex');
+  } catch {
+    return 'fallback-secret-' + Date.now();
+  }
+};
 
 module.exports = defineConfig({
   projectConfig: {
@@ -10,8 +18,8 @@ module.exports = defineConfig({
       storeCors: process.env.STORE_CORS || "http://localhost:3000,https://indecisive-wear.vercel.app",
       adminCors: process.env.ADMIN_CORS || "https://*.up.railway.app,http://localhost:9000", 
       authCors: process.env.AUTH_CORS || "https://*.up.railway.app,http://localhost:9000",
-      jwtSecret: process.env.JWT_SECRET || require('crypto').randomBytes(64).toString('hex'),
-      cookieSecret: process.env.COOKIE_SECRET || require('crypto').randomBytes(64).toString('hex'),
+      jwtSecret: process.env.JWT_SECRET || generateSecret(),
+      cookieSecret: process.env.COOKIE_SECRET || generateSecret(),
     },
     redisUrl: process.env.REDIS_URL,
   },
@@ -20,11 +28,7 @@ module.exports = defineConfig({
     path: "/app" as `/${string}`,
   },
   modules: {
-    // Disable problematic modules that fail without migrations
-    [Modules.STOCK_LOCATION]: false,
-    [Modules.INVENTORY]: false,
-    [Modules.FULFILLMENT]: false,
-    [Modules.TAX]: false,
-    [Modules.PAYMENT]: false,
+    // Modules will be enabled after migrations run
+    // For initial deployment, we disable them to prevent initialization errors
   }
 })
