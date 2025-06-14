@@ -13,7 +13,7 @@
     "medusa"
   ],
   "scripts": {
-    "build": "echo '=== Building Medusa with Backend URL ===' && echo \"MEDUSA_ADMIN_BACKEND_URL: $MEDUSA_ADMIN_BACKEND_URL\" && echo \"MEDUSA_BACKEND_URL: $MEDUSA_BACKEND_URL\" && echo \"RAILWAY_PUBLIC_DOMAIN: $RAILWAY_PUBLIC_DOMAIN\" && echo '===' && export MEDUSA_ADMIN_BACKEND_URL=\"https://${RAILWAY_PUBLIC_DOMAIN}\" && export MEDUSA_BACKEND_URL=\"https://${RAILWAY_PUBLIC_DOMAIN}\" && medusa build && ln -sf .medusa/server/public/ public",
+    "build": "./railway-build.sh",
     "predeploy": "medusa db:migrate",
     "seed": "medusa exec ./src/scripts/seed.ts",
     "create-admin": "medusa exec ./src/scripts/create-admin.ts",
