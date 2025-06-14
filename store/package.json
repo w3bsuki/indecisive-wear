@@ -13,11 +13,11 @@
     "medusa"
   ],
   "scripts": {
-    "build": "echo '=== Building Medusa with Backend URL ===' && echo \"MEDUSA_ADMIN_BACKEND_URL: $MEDUSA_ADMIN_BACKEND_URL\" && echo \"MEDUSA_BACKEND_URL: $MEDUSA_BACKEND_URL\" && echo \"BACKEND_URL: $BACKEND_URL\" && echo \"RAILWAY_PUBLIC_DOMAIN: $RAILWAY_PUBLIC_DOMAIN\" && echo '===' && export MEDUSA_ADMIN_BACKEND_URL=\"https://${RAILWAY_PUBLIC_DOMAIN}\" && export MEDUSA_BACKEND_URL=\"https://${RAILWAY_PUBLIC_DOMAIN}\" && medusa build && ln -sf .medusa/server/public/ public && node verify-admin-build.js",
+    "build": "echo '=== Building Medusa with Backend URL ===' && echo \"MEDUSA_ADMIN_BACKEND_URL: $MEDUSA_ADMIN_BACKEND_URL\" && echo \"MEDUSA_BACKEND_URL: $MEDUSA_BACKEND_URL\" && echo \"RAILWAY_PUBLIC_DOMAIN: $RAILWAY_PUBLIC_DOMAIN\" && echo '===' && export MEDUSA_ADMIN_BACKEND_URL=\"https://${RAILWAY_PUBLIC_DOMAIN}\" && export MEDUSA_BACKEND_URL=\"https://${RAILWAY_PUBLIC_DOMAIN}\" && medusa build && ln -sf .medusa/server/public/ public",
     "predeploy": "medusa db:migrate",
     "seed": "medusa exec ./src/scripts/seed.ts",
     "create-admin": "medusa exec ./src/scripts/create-admin.ts",
-    "start": "node verify-admin-runtime.js && medusa start",
+    "start": "medusa start",
     "ib": "node init-backend.js",
     "init-backend": "node init-backend.js",
     "minimal-seed": "medusa exec ./src/scripts/minimal-seed.ts",
