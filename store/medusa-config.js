@@ -14,12 +14,12 @@ const generateSecret = () => {
 module.exports = defineConfig({
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
-    workerMode: process.env.MEDUSA_WORKER_MODE as "shared" | "worker" | "server",
+    workerMode: process.env.MEDUSA_WORKER_MODE,
     http: {
       port: parseInt(process.env.PORT || "9000"),
       storeCors: process.env.STORE_CORS || "http://localhost:3000,https://indecisive-wear.vercel.app",
-      adminCors: process.env.ADMIN_CORS || "https://*.up.railway.app,http://localhost:9000", 
-      authCors: process.env.AUTH_CORS || "https://*.up.railway.app,http://localhost:9000",
+      adminCors: process.env.ADMIN_CORS || "https://*.onrender.com,http://localhost:9000", 
+      authCors: process.env.AUTH_CORS || "https://*.onrender.com,http://localhost:9000",
       jwtSecret: process.env.JWT_SECRET || generateSecret(),
       cookieSecret: process.env.COOKIE_SECRET || generateSecret(),
     },
@@ -27,7 +27,7 @@ module.exports = defineConfig({
   },
   admin: {
     backendUrl: process.env.MEDUSA_ADMIN_BACKEND_URL || process.env.MEDUSA_BACKEND_URL || "http://localhost:9000",
-    path: "/app" as `/${string}`,
+    path: "/app",
     disable: process.env.DISABLE_MEDUSA_ADMIN === "true",
   },
   modules: process.env.REDIS_URL ? [
