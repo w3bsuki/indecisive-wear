@@ -33,5 +33,5 @@ RUN npm prune --production
 # Expose port
 EXPOSE 8080
 
-# Start the application
-CMD ["npm", "run", "start"]
+# Start the application (diagnostic mode to debug 502)
+CMD ["npm", "run", "start:diagnostic"]
