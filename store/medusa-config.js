@@ -29,6 +29,7 @@ module.exports = defineConfig({
     backendUrl: process.env.MEDUSA_ADMIN_BACKEND_URL || process.env.MEDUSA_BACKEND_URL || "http://localhost:9000",
     path: "/app",
     disable: false,
+    outDir: ".medusa/admin",
   },
   modules: process.env.REDIS_URL ? [
     {
