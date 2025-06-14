@@ -16,6 +16,7 @@ module.exports = defineConfig({
     databaseUrl: process.env.DATABASE_URL,
     workerMode: process.env.MEDUSA_WORKER_MODE as "shared" | "worker" | "server",
     http: {
+      port: parseInt(process.env.PORT || "9000"),
       storeCors: process.env.STORE_CORS || "http://localhost:3000,https://indecisive-wear.vercel.app",
       adminCors: process.env.ADMIN_CORS || "https://*.up.railway.app,http://localhost:9000", 
       authCors: process.env.AUTH_CORS || "https://*.up.railway.app,http://localhost:9000",
