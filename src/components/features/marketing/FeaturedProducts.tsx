@@ -212,9 +212,9 @@ const FeaturedProductsComponent = ({ className }: FeaturedProductsProps) => {
     <div className={cn("w-full", className)}>
       <div className="relative">
         <div className="absolute inset-0 bg-gradient-to-r from-pink-500/5 via-transparent to-pink-500/5 rounded-2xl" />
-        <div className="relative bg-white/90 backdrop-blur-sm p-6 rounded-2xl border border-pink-200/30 shadow-[0_0_20px_rgba(236,72,153,0.08)] min-h-[400px]">
+        <div className="relative bg-white/90 backdrop-blur-sm p-6 sm:p-8 lg:p-10 rounded-2xl border border-pink-200/30 shadow-[0_0_20px_rgba(236,72,153,0.08)]">
           
-          <div className="mb-4 space-y-3">
+          <div className="mb-6 lg:mb-8 space-y-4 lg:space-y-6">
             <div className="relative overflow-hidden rounded-lg bg-gradient-to-r from-pink-500/5 via-pink-400/10 to-pink-500/5 border border-pink-200/30">
               <SectionMarquee 
                 primaryText={locale === 'bg' ? 'НАШАТА КОЛЕКЦИЯ' : 'OUR COLLECTION'}
@@ -224,8 +224,8 @@ const FeaturedProductsComponent = ({ className }: FeaturedProductsProps) => {
             </div>
             
             <div className="flex justify-center">
-              <Tabs defaultValue="hats" className="w-full max-w-md">
-                <TabsList className="grid w-full grid-cols-2 bg-white/80 backdrop-blur-sm border border-pink-200/30">
+              <Tabs defaultValue="hats" className="w-full max-w-lg">
+                <TabsList className="grid w-full grid-cols-2 bg-white/80 backdrop-blur-sm border border-pink-200/30 h-11 lg:h-12">
                   <TabsTrigger 
                     value="hats" 
                     className="data-[state=active]:bg-pink-500 data-[state=active]:text-white font-semibold"
@@ -240,7 +240,7 @@ const FeaturedProductsComponent = ({ className }: FeaturedProductsProps) => {
                   </TabsTrigger>
                 </TabsList>
                 
-                <TabsContent value="hats" className="mt-4">
+                <TabsContent value="hats" className="mt-6">
                   <div className="overflow-x-auto pb-2 scrollbar-hide">
                     <div className="flex gap-4 pb-2" style={{ width: 'max-content' }}>
                       {featuredHats.map(renderProductCard)}
@@ -248,7 +248,7 @@ const FeaturedProductsComponent = ({ className }: FeaturedProductsProps) => {
                   </div>
                 </TabsContent>
                 
-                <TabsContent value="tshirts" className="mt-4">
+                <TabsContent value="tshirts" className="mt-6">
                   <div className="overflow-x-auto pb-2 scrollbar-hide">
                     <div className="flex gap-4 pb-2" style={{ width: 'max-content' }}>
                       {featuredTshirts.map(renderProductCard)}
@@ -259,14 +259,14 @@ const FeaturedProductsComponent = ({ className }: FeaturedProductsProps) => {
             </div>
           </div>
           
-          <div className="flex justify-center mt-4 pt-4 border-t border-pink-200/30">
+          <div className="flex justify-center mt-6 lg:mt-8 pt-6 lg:pt-8 border-t border-pink-200/30">
             <button 
               onClick={handleViewCollection}
               aria-label={locale === 'bg' ? 'Виж всички продукти в магазина' : 'View all products in shop'}
-              className="h-12 px-6 bg-pink-500 hover:bg-pink-600 border-2 border-white/30 hover:border-white/50 text-white text-sm rounded-lg shadow-lg hover:shadow-xl flex items-center justify-center gap-2 font-semibold transition-all duration-200 min-h-[44px]"
+              className="h-12 lg:h-14 px-6 lg:px-8 bg-pink-500 hover:bg-pink-600 border-2 border-white/30 hover:border-white/50 text-white text-sm lg:text-base rounded-lg shadow-lg hover:shadow-xl flex items-center justify-center gap-2 font-semibold transition-all duration-200 min-h-[44px]"
             >
               {locale === 'bg' ? 'Виж всички' : 'View All'}
-              <ArrowRight className="h-3.5 w-3.5" />
+              <ArrowRight className="h-4 w-4 lg:h-5 lg:w-5" />
             </button>
           </div>
         </div>
