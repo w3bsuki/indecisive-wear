@@ -1,0 +1,80 @@
+{
+  "hero": {
+    "title": "¿No Puedes Decidir Qué Ponerte?",
+    "subtitle": "Perfecto.",
+    "description": "Ropa urbana premium para momentos bellamente indecisos. Expresa tu yo auténtico.",
+    "ctaPrimary": "Ver Colección",
+    "ctaSecondary": "Ver Lookbook",
+    "badge": "Nueva Colección Disponible"
+  },
+  "features": {
+    "quality": {
+      "title": "Calidad Premium",
+      "description": "Cada pieza está elaborada con atención al detalle usando los mejores materiales."
+    },
+    "comfort": {
+      "title": "Comodidad Máxima", 
+      "description": "Diseñado para usar todo el día con tejidos transpirables y ajustes perfectos."
+    },
+    "style": {
+      "title": "Estilo Auténtico",
+      "description": "Expresa tu personalidad única con diseños que hablan a tu alma."
+    },
+    "community": {
+      "title": "Comunidad Inclusiva",
+      "description": "Únete a miles que abrazan sus momentos bellamente indecisos."
+    }
+  },
+  "testimonials": {
+    "title": "Lo Que Dicen Nuestros Clientes",
+    "subtitle": "Reseñas reales de personas reales",
+    "items": [
+      {
+        "name": "Sarah M.",
+        "location": "Madrid",
+        "rating": 5,
+        "text": "¡Por fin, una marca que lo entiende! Me encanta mi gorro Indecisive - es exactamente como me siento cada mañana. ¡La calidad también es increíble! 💜"
+      },
+      {
+        "name": "Alex K.",
+        "location": "Barcelona", 
+        "rating": 5,
+        "text": "La comodidad y el estilo son incomparables. ¡Recibo cumplidos cada vez que uso mis piezas Indecisive!"
+      },
+      {
+        "name": "Jamie R.",
+        "location": "Valencia",
+        "rating": 5,
+        "text": "Me encanta el mensaje detrás de la marca. Está bien ser indeciso - ¡esta ropa lo celebra!"
+      }
+    ]
+  },
+  "collections": {
+    "title": "Explora Nuestras Colecciones",
+    "subtitle": "Encuentra tu momento indeciso perfecto",
+    "hats": {
+      "title": "Gorros y Gorras",
+      "description": "Sombrería premium para cada estado de ánimo"
+    },
+    "apparel": {
+      "title": "Ropa",
+      "description": "Ropa cómoda que habla tu idioma"
+    },
+    "accessories": {
+      "title": "Accesorios", 
+      "description": "Toques finales perfectos para cualquier outfit"
+    }
+  },
+  "newsletter": {
+    "title": "Mantente al Día",
+    "subtitle": "Sé el primero en conocer nuevos lanzamientos, ofertas exclusivas y momentos indecisos.",
+    "placeholder": "Introduce tu dirección de correo",
+    "ctaButton": "Suscribirse",
+    "successMessage": "¡Gracias por suscribirte! Revisa tu correo para un regalo de bienvenida 🎁"
+  },
+  "comingSoon": {
+    "title": "Qué Viene",
+    "subtitle": "Estamos creando piezas premium para cada momento indeciso. Sé el primero en saber cuándo lleguen.",
+    "ctaButton": "Unirse a la Lista de Espera"
+  }
+}

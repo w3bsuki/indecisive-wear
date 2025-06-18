@@ -1,0 +1,72 @@
+{
+  "common": {
+    "unknown": "Възникна неочаквана грешка",
+    "network": "Проблем с мрежовата връзка",
+    "timeout": "Заявката изтече",
+    "server": "Проблем със сървъра",
+    "notFound": "Не е намерено",
+    "unauthorized": "Нямате разрешение",
+    "forbidden": "Забранен достъп",
+    "tryAgain": "Моля опитай отново",
+    "contactSupport": "Свържи се с поддръжката"
+  },
+  "validation": {
+    "required": "Това поле е задължително",
+    "email": "Моля въведи валиден имейл адрес",
+    "phone": "Моля въведи валиден телефонен номер",
+    "minLength": "Трябва да бъде поне {{count}} символа",
+    "maxLength": "Трябва да бъде не повече от {{count}} символа",
+    "password": "Паролата трябва да съдържа поне 8 символа",
+    "confirmPassword": "Паролите не съвпадат",
+    "url": "Моля въведи валиден URL",
+    "number": "Моля въведи валидно число",
+    "date": "Моля въведи валидна дата"
+  },
+  "forms": {
+    "submissionFailed": "Неуспешно изпращане на формата",
+    "invalidData": "Невалидни данни",
+    "processingError": "Грешка при обработката"
+  },
+  "cart": {
+    "addFailed": "Неуспешно добавяне в количката",
+    "updateFailed": "Неуспешно обновяване на количката",
+    "removeFailed": "Неуспешно премахване от количката",
+    "outOfStock": "Продуктът вече не е наличен",
+    "limitExceeded": "Надвишихте максималното количество"
+  },
+  "checkout": {
+    "paymentFailed": "Плащането неуспешно",
+    "addressInvalid": "Невалиден адрес",
+    "shippingUnavailable": "Доставката не е налична за този адрес",
+    "taxCalculationFailed": "Неуспешно изчисляване на данъци"
+  },
+  "user": {
+    "loginFailed": "Неуспешно влизане",
+    "registrationFailed": "Неуспешна регистрация",
+    "profileUpdateFailed": "Неуспешно обновяване на профила",
+    "passwordResetFailed": "Неуспешна смяна на паролата",
+    "emailExists": "Имейлът вече се използва",
+    "invalidCredentials": "Невалидни данни за вход"
+  },
+  "product": {
+    "notFound": "Продуктът не е намерен",
+    "loadingFailed": "Неуспешно зареждане на продукта",
+    "variantUnavailable": "Този вариант не е наличен",
+    "reviewSubmissionFailed": "Неуспешно изпращане на отзива"
+  },
+  "search": {
+    "failed": "Неуспешно търсене",
+    "noResults": "Няма резултати",
+    "filterError": "Грешка при филтрирането"
+  },
+  "wishlist": {
+    "addFailed": "Неуспешно добавяне в любими",
+    "removeFailed": "Неуспешно премахване от любими",
+    "loadingFailed": "Неуспешно зареждане на любими"
+  },
+  "newsletter": {
+    "subscriptionFailed": "Неуспешно абониране",
+    "alreadySubscribed": "Вече сте абонирани",
+    "unsubscribeFailed": "Неуспешно отписване"
+  }
+}

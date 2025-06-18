@@ -1,0 +1,195 @@
+{
+  "title": "Shop",
+  "subtitle": "Express your beautifully indecisive style",
+  "banner": {
+    "title": "Can't Decide What to Wear? Perfect.",
+    "description": "Premium streetwear for beautifully indecisive moments. Express your authentic self.",
+    "trustSignals": {
+      "freeShipping": "Free Shipping",
+      "returns": "30-Day Returns", 
+      "reviews": "4.9/5 (5k+ reviews)"
+    }
+  },
+  "filters": {
+    "title": "Filters",
+    "clear": "Clear All",
+    "apply": "Apply Filters",
+    "category": {
+      "title": "Category",
+      "all": "All Categories",
+      "hats": "Hats & Caps",
+      "apparel": "Apparel",
+      "accessories": "Accessories"
+    },
+    "size": {
+      "title": "Size",
+      "oneSize": "One Size",
+      "xs": "XS",
+      "s": "S", 
+      "m": "M",
+      "l": "L",
+      "xl": "XL",
+      "xxl": "XXL"
+    },
+    "color": {
+      "title": "Color",
+      "black": "Black",
+      "white": "White",
+      "gray": "Gray",
+      "navy": "Navy",
+      "red": "Red",
+      "pink": "Pink",
+      "purple": "Purple",
+      "blue": "Blue",
+      "green": "Green",
+      "yellow": "Yellow",
+      "orange": "Orange"
+    },
+    "price": {
+      "title": "Price Range",
+      "under25": "Under $25",
+      "25to50": "$25 - $50",
+      "50to100": "$50 - $100", 
+      "over100": "Over $100",
+      "min": "Min",
+      "max": "Max"
+    },
+    "availability": {
+      "title": "Availability",
+      "inStock": "In Stock Only",
+      "onSale": "On Sale",
+      "newArrivals": "New Arrivals"
+    },
+    "brand": {
+      "title": "Brand",
+      "indecisiveWear": "Indecisive Wear"
+    }
+  },
+  "sorting": {
+    "title": "Sort by",
+    "featured": "Featured",
+    "newest": "Newest",
+    "priceAsc": "Price: Low to High",
+    "priceDesc": "Price: High to Low",
+    "name": "Name",
+    "popularity": "Popularity",
+    "rating": "Customer Rating"
+  },
+  "grid": {
+    "layout": "Grid Layout",
+    "columns2": "2 Columns",
+    "columns3": "3 Columns", 
+    "columns4": "4 Columns",
+    "list": "List View"
+  },
+  "results": {
+    "showing": "Showing {{start}}-{{end}} of {{total}} products",
+    "found": "{{count}} products found",
+    "noResults": "No products found",
+    "noResultsDesc": "Try adjusting your search or filters to find what you're looking for.",
+    "clearFilters": "Clear all filters",
+    "loadMore": "Load More Products"
+  },
+  "product": {
+    "quickView": "Quick View",
+    "addToWishlist": "Add to Wishlist",
+    "removeFromWishlist": "Remove from Wishlist",
+    "addToCompare": "Add to Compare",
+    "removeFromCompare": "Remove from Compare",
+    "originalPrice": "Original Price",
+    "salePrice": "Sale Price",
+    "saveAmount": "Save {{amount}}",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "limitedStock": "Only {{count}} left!",
+    "backorder": "Available on backorder",
+    "preorder": "Pre-order",
+    "comingSoon": "Coming Soon",
+    "freeShipping": "Free Shipping",
+    "fastDelivery": "Fast Delivery",
+    "ecoFriendly": "Eco-Friendly",
+    "newArrival": "New Arrival",
+    "bestseller": "Bestseller", 
+    "onSale": "On Sale",
+    "exclusive": "Exclusive",
+    "limitedEdition": "Limited Edition",
+    "reviews": {
+      "rating": "{{rating}} out of 5 stars",
+      "count": "{{count}} reviews",
+      "noReviews": "No reviews yet",
+      "writeReview": "Write a Review",
+      "readReviews": "Read Reviews"
+    },
+    "variants": {
+      "color": "Color",
+      "size": "Size",
+      "selectColor": "Select a color",
+      "selectSize": "Select a size"
+    },
+    "quantity": {
+      "label": "Quantity",
+      "increase": "Increase quantity",
+      "decrease": "Decrease quantity",
+      "max": "Maximum {{max}} per order"
+    },
+    "actions": {
+      "addToCart": "Add to Cart",
+      "buyNow": "Buy Now",
+      "notify": "Notify When Available",
+      "preorder": "Pre-order Now"
+    },
+    "details": {
+      "description": "Description",
+      "specifications": "Specifications",
+      "shipping": "Shipping & Returns",
+      "sizeGuide": "Size Guide",
+      "careInstructions": "Care Instructions"
+    },
+    "share": {
+      "title": "Share this product",
+      "facebook": "Share on Facebook",
+      "twitter": "Share on Twitter", 
+      "pinterest": "Share on Pinterest",
+      "email": "Share via Email",
+      "copyLink": "Copy Link"
+    }
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "emptyDesc": "Looks like you haven't added anything yet.",
+    "continueShopping": "Continue Shopping",
+    "item": "item",
+    "items": "items",
+    "subtotal": "Subtotal",
+    "tax": "Tax",
+    "shipping": "Shipping",
+    "total": "Total",
+    "remove": "Remove",
+    "update": "Update",
+    "moveToWishlist": "Move to Wishlist",
+    "quantity": "Qty",
+    "checkout": "Proceed to Checkout",
+    "estimatedDelivery": "Estimated delivery: {{date}}",
+    "freeShippingNote": "You qualify for free shipping!",
+    "almostFreeShipping": "Add {{amount}} more for free shipping"
+  },
+  "wishlist": {
+    "title": "Wishlist",
+    "empty": "Your wishlist is empty",
+    "emptyDesc": "Save items you love for later.",
+    "addToCart": "Add to Cart",
+    "remove": "Remove",
+    "share": "Share Wishlist",
+    "itemCount": "{{count}} items"
+  },
+  "compare": {
+    "title": "Compare Products",
+    "empty": "No products to compare",
+    "emptyDesc": "Add products to compare their features.",
+    "clear": "Clear All",
+    "addToCart": "Add to Cart",
+    "remove": "Remove",
+    "maxItems": "You can compare up to {{max}} products"
+  }
+}

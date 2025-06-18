@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generate Icons</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .icon-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .icon-item {
+      text-align: center;
+    }
+    canvas {
+      border: 1px solid #ddd;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Icon Generator for INDECISIVEWEAR</h1>
+  <p>This page generates the required icons for the PWA manifest. Right-click on each canvas and select "Save Image As..." to save the PNG files.</p>
+  
+  <div class="icon-container" id="icons"></div>
+  
+  <script>
+    // Icon sizes required by the manifest
+    const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+    const iconContainer = document.getElementById('icons');
+    
+    // Load the SVG source
+    fetch('/icons/icon.svg')
+      .then(response => response.text())
+      .then(svgText => {
+        // Create icons for each size
+        sizes.forEach(size => {
+          // Create container
+          const container = document.createElement('div');
+          container.className = 'icon-item';
+          
+          // Create canvas
+          const canvas = document.createElement('canvas');
+          canvas.width = size;
+          canvas.height = size;
+          container.appendChild(canvas);
+          
+          // Create label
+          const label = document.createElement('div');
+          label.textContent = `${size}x${size}`;
+          container.appendChild(label);
+          
+          // Add to page
+          iconContainer.appendChild(container);
+          
+          // Draw SVG to canvas
+          const ctx = canvas.getContext('2d');
+          const img = new Image();
+          img.onload = () => {
+            ctx.drawImage(img, 0, 0, size, size);
+          };
+          img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgText);
+        });
+        
+        // Also create favicon.ico
+        const faviconCanvas = document.createElement('canvas');
+        faviconCanvas.width = 32;
+        faviconCanvas.height = 32;
+        const faviconContainer = document.createElement('div');
+        faviconContainer.className = 'icon-item';
+        faviconContainer.appendChild(faviconCanvas);
+        
+        const faviconLabel = document.createElement('div');
+        faviconLabel.textContent = 'favicon.ico (32x32)';
+        faviconContainer.appendChild(faviconLabel);
+        
+        iconContainer.appendChild(faviconContainer);
+        
+        // Draw SVG to favicon canvas
+        fetch('/favicon.svg')
+          .then(response => response.text())
+          .then(faviconSvg => {
+            const ctx = faviconCanvas.getContext('2d');
+            const img = new Image();
+            img.onload = () => {
+              ctx.drawImage(img, 0, 0, 32, 32);
+            };
+            img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(faviconSvg);
+          });
+      });
+  </script>
+</body>
+</html> 

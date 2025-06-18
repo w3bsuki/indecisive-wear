@@ -1,0 +1,145 @@
+{
+  "hero": {
+    "title": "Indecisively Yours",
+    "subtitle": "Where maybe meets definitely maybe.",
+    "description": "Premium streetwear for those beautifully uncertain moments. Because choosing is overrated anyway.",
+    "ctaPrimary": "Shop Collection",
+    "ctaSecondary": "Browse the Chaos",
+    "badge": "New Collection Available",
+    "joinWaitlist": "Join the Maybe List",
+    "previewCollections": "Peek at the Goods",
+    "launchingIn": "Launching in"
+  },
+  "features": {
+    "quality": {
+      "title": "Premium Quality",
+      "description": "Every piece is crafted with attention to detail using the finest materials."
+    },
+    "comfort": {
+      "title": "Ultimate Comfort", 
+      "description": "Designed for all-day wear with breathable fabrics and perfect fits."
+    },
+    "style": {
+      "title": "Authentic Style",
+      "description": "Express your unique personality with designs that speak to your soul."
+    },
+    "community": {
+      "title": "Inclusive Community",
+      "description": "Join thousands who embrace their beautifully indecisive moments."
+    }
+  },
+  "testimonials": {
+    "title": "What Our Customers Say",
+    "subtitle": "Real reviews from real people",
+    "items": [
+      {
+        "name": "Sarah M.",
+        "location": "New York",
+        "rating": 5,
+        "text": "Finally, a brand that gets it! Love my Indecisive hat - it's exactly how I feel every morning. Quality is amazing too! 💜"
+      },
+      {
+        "name": "Alex K.",
+        "location": "Los Angeles", 
+        "rating": 5,
+        "text": "The comfort and style are unmatched. I get compliments every time I wear my Indecisive pieces!"
+      },
+      {
+        "name": "Jamie R.",
+        "location": "Chicago",
+        "rating": 5,
+        "text": "Love the message behind the brand. It's okay to be indecisive - this clothing celebrates that!"
+      }
+    ]
+  },
+  "collections": {
+    "title": "Explore Our Collections",
+    "subtitle": "Find your perfect indecisive moment",
+    "hats": {
+      "title": "Hats & Caps",
+      "description": "Premium headwear for every mood"
+    },
+    "apparel": {
+      "title": "Apparel",
+      "description": "Comfortable clothing that speaks your language"
+    },
+    "accessories": {
+      "title": "Accessories", 
+      "description": "Perfect finishing touches for any outfit"
+    }
+  },
+  "socialProof": {
+    "customersCount": "{{count}}+ Happy Customers",
+    "reviewsAverage": "{{rating}}/5 Average Rating",
+    "reviewsCount": "Based on {{count}} reviews",
+    "countriesServed": "Shipping to {{count}} Countries",
+    "socialFollowers": "{{count}}+ Social Followers"
+  },
+  "newsletter": {
+    "title": "Stay in the Loop",
+    "subtitle": "Be the first to know about new drops, exclusive offers, and indecisive moments.",
+    "placeholder": "Enter your email address",
+    "ctaButton": "Subscribe",
+    "successMessage": "Thanks for subscribing! Check your email for a welcome gift 🎁",
+    "benefits": [
+      "Early access to new collections",
+      "Exclusive subscriber-only discounts", 
+      "Style tips and inspiration",
+      "Behind-the-scenes content"
+    ]
+  },
+  "comingSoon": {
+    "title": "What's Next",
+    "subtitle": "We're crafting premium pieces for every indecisive moment. Be the first to know when they drop.",
+    "ctaButton": "Join the Waitlist",
+    "categories": {
+      "tshirts": "T-Shirts",
+      "hoodies": "Hoodies",
+      "bags": "Bags", 
+      "shoes": "Shoes",
+      "jewelry": "Jewelry"
+    }
+  },
+  "about": {
+    "title": "About Indecisive Wear",
+    "subtitle": "Celebrating the beauty of uncertainty",
+    "story": "We believe that being indecisive isn't a flaw - it's a superpower. It means you see possibilities everywhere, you're thoughtful about your choices, and you embrace the beautiful complexity of being human.",
+    "mission": "Our mission is to create premium streetwear that celebrates authenticity, embraces uncertainty, and builds a community of beautifully indecisive souls.",
+    "values": {
+      "authenticity": {
+        "title": "Authenticity",
+        "description": "We celebrate real emotions and genuine moments"
+      },
+      "quality": {
+        "title": "Quality",
+        "description": "Every piece is crafted to last and made with care"
+      },
+      "inclusivity": {
+        "title": "Inclusivity", 
+        "description": "Everyone belongs in our community"
+      },
+      "sustainability": {
+        "title": "Sustainability",
+        "description": "We're committed to responsible manufacturing"
+      }
+    }
+  },
+  "trust": {
+    "shipping": {
+      "title": "Free Worldwide Shipping",
+      "description": "On all orders over $50"
+    },
+    "returns": {
+      "title": "30-Day Returns",
+      "description": "Hassle-free returns and exchanges"
+    },
+    "security": {
+      "title": "Secure Payments",
+      "description": "SSL protected checkout"
+    },
+    "support": {
+      "title": "24/7 Support", 
+      "description": "We're here to help anytime"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "title": "Tienda",
+  "subtitle": "Expresa tu estilo bellamente indeciso",
+  "banner": {
+    "title": "¿No Puedes Decidir Qué Ponerte? Perfecto.",
+    "description": "Ropa urbana premium para momentos bellamente indecisos. Expresa tu yo auténtico.",
+    "trustSignals": {
+      "freeShipping": "Envío Gratis",
+      "returns": "Devoluciones 30 Días", 
+      "reviews": "4.9/5 (5k+ reseñas)"
+    }
+  },
+  "filters": {
+    "title": "Filtros",
+    "clear": "Limpiar Todo",
+    "apply": "Aplicar Filtros",
+    "category": {
+      "title": "Categoría",
+      "all": "Todas las Categorías",
+      "hats": "Gorros y Gorras",
+      "apparel": "Ropa",
+      "accessories": "Accesorios"
+    },
+    "price": {
+      "title": "Rango de Precio",
+      "under25": "Menos de €25",
+      "25to50": "€25 - €50",
+      "50to100": "€50 - €100", 
+      "over100": "Más de €100"
+    }
+  },
+  "sorting": {
+    "title": "Ordenar por",
+    "featured": "Destacados",
+    "newest": "Más Nuevos",
+    "priceAsc": "Precio: Menor a Mayor",
+    "priceDesc": "Precio: Mayor a Menor",
+    "name": "Nombre"
+  },
+  "results": {
+    "showing": "Mostrando {{start}}-{{end}} de {{total}} productos",
+    "found": "{{count}} productos encontrados",
+    "noResults": "No se encontraron productos",
+    "noResultsDesc": "Intenta ajustar tu búsqueda o filtros para encontrar lo que buscas.",
+    "clearFilters": "Limpiar todos los filtros"
+  },
+  "product": {
+    "quickView": "Vista Rápida",
+    "addToWishlist": "Añadir a Favoritos",
+    "inStock": "En Stock",
+    "outOfStock": "Agotado",
+    "freeShipping": "Envío Gratis",
+    "addToCart": "Añadir al Carrito",
+    "buyNow": "Comprar Ahora"
+  }
+}

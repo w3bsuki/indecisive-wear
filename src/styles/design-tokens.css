@@ -1,0 +1,24 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --global-color-brand-primary: #d459a7;
+  --global-color-brand-secondary: #b62f85;
+  --global-color-neutral-0: #ffffff;
+  --global-color-neutral-50: #f8fafc;
+  --global-color-neutral-900: #020817;
+  --global-spacing-scale-4: 4px;
+  --global-spacing-scale-8: 8px;
+  --global-spacing-scale-16: 16px;
+  --global-spacing-scale-24: 24px;
+  --global-spacing-scale-32: 32px;
+  --global-spacing-scale-48: 48px;
+  --global-radius-sm: 4px;
+  --global-radius-md: 8px;
+  --global-radius-lg: 12px;
+  --light-semantic-surface-primary: #ffffff;
+  --light-semantic-text-primary: #020817;
+  --dark-semantic-surface-primary: #020817;
+  --dark-semantic-text-primary: #ffffff;
+}
