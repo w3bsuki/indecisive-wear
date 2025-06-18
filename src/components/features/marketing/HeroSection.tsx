@@ -204,7 +204,7 @@ function HeroSectionComponent({ hatImages, scrollToProducts: _scrollToProducts, 
               </NativeCarousel>
             </div>
 
-            {/* Brand marquee below the carousel - same style as above */}
+            {/* Brand marquee below the carousel - same style as above but reversed */}
             <div className={cn(
               "bg-white/80 backdrop-blur-sm",
               "border border-pink-200/30",
@@ -216,6 +216,7 @@ function HeroSectionComponent({ hatImages, scrollToProducts: _scrollToProducts, 
                 textColor="text-pink-500"
                 separatorColor="text-black"
                 className="py-5 sm:py-6 text-xl sm:text-2xl md:text-3xl font-black"
+                reverse={true}
               />
             </div>
 

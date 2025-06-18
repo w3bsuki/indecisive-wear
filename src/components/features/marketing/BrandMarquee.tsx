@@ -11,6 +11,7 @@ interface BrandMarqueeProps {
   separatorColor?: string
   showBorders?: boolean
   repeat?: number
+  reverse?: boolean
 }
 
 function BrandMarqueeComponent({ 
@@ -20,7 +21,8 @@ function BrandMarqueeComponent({
   textColor = "text-pink-500/70",
   separatorColor = "text-pink-500/70",
   showBorders: _showBorders = true,
-  repeat = 3
+  repeat = 3,
+  reverse = false
 }: BrandMarqueeProps) {
   
   // Create the text content - mobile optimized
@@ -60,7 +62,10 @@ function BrandMarqueeComponent({
     >
       <div className="flex items-center w-full">
         <div 
-          className="flex items-center animate-marquee will-change-transform"
+          className={cn(
+            "flex items-center will-change-transform",
+            reverse ? "animate-marquee-reverse" : "animate-marquee"
+          )}
           style={{
             animationDuration: `${speed}s`
           }}
@@ -83,8 +88,21 @@ function BrandMarqueeComponent({
           }
         }
         
+        @keyframes marquee-reverse {
+          0% { 
+            transform: translateX(-50%) translateZ(0); 
+          }
+          100% { 
+            transform: translateX(0%) translateZ(0); 
+          }
+        }
+        
         .animate-marquee {
           animation: marquee linear infinite;
+        }
+        
+        .animate-marquee-reverse {
+          animation: marquee-reverse linear infinite;
         }
       `}</style>
     </div>
