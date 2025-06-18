@@ -9,7 +9,6 @@ import { Badge } from "@/components/ui/badge"
 import { useLocale } from "@/hooks/i18n/useLocale"
 import { ShoppingBag } from 'lucide-react'
 import { ArrowRight } from 'lucide-react'
-import { Star } from 'lucide-react'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import type { Product } from "@/lib/constants/product-data"
 import { LazyQuickViewDialog } from '@/components/features/shop/LazyQuickViewDialog'
@@ -94,7 +93,7 @@ const FeaturedProductsComponent = ({ className }: FeaturedProductsProps) => {
       name: "Basic Tee №1",
       slogan: "Comfortable cotton tee for everyday wear.",
       price: "25 лв",
-      image: "/placeholder.jpg", // Placeholder for now
+      image: "/placeholder.jpg",
       color: "White",
       category: "tshirts",
       isNew: true,
@@ -104,7 +103,7 @@ const FeaturedProductsComponent = ({ className }: FeaturedProductsProps) => {
       name: "Basic Tee №2",
       slogan: "Soft cotton tee with perfect fit.",
       price: "25 лв",
-      image: "/placeholder.jpg", // Placeholder for now
+      image: "/placeholder.jpg",
       color: "Black",
       category: "tshirts",
       isBestSeller: true,
@@ -123,16 +122,99 @@ const FeaturedProductsComponent = ({ className }: FeaturedProductsProps) => {
     window.location.href = '/shop'
   }
 
+  const renderProductCard = (product: any) => (
+    <div
+      key={product.id}
+      className="group relative flex-none w-56 sm:w-64 cursor-pointer"
+      onClick={() => handleViewProduct(product.id)}
+    >
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-pink-500/10 blur-md rounded-2xl" />
+        <div className="relative bg-white/90 backdrop-blur-sm rounded-2xl border border-pink-200/50 shadow-[0_0_15px_rgba(236,72,153,0.1)] group-hover:shadow-[0_0_25px_rgba(236,72,153,0.2)] transition-all duration-300">
+          
+          <div className="relative overflow-hidden rounded-t-2xl bg-gradient-to-br from-pink-50/50 to-white">
+            <AspectRatio ratio={4/3}>
+              <Image
+                src={product.image}
+                alt={product.name}
+                fill
+                sizes="(max-width: 640px) 256px, 288px"
+                className="object-contain group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+              />
+            
+              <div className="absolute top-3 left-3 flex flex-col gap-1">
+                {product.isNew && (
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-pink-500/20 blur-sm rounded-full" />
+                    <Badge className="relative bg-pink-500 text-white border-0 text-xs px-2 py-1 shadow-sm whitespace-nowrap">
+                      {locale === 'bg' ? 'Ново' : 'New'}
+                    </Badge>
+                  </div>
+                )}
+                {product.isBestSeller && (
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-orange-500/20 blur-sm rounded-full" />
+                    <Badge className="relative bg-orange-500 text-white border-0 text-xs px-2 py-1 shadow-sm whitespace-nowrap">
+                      {locale === 'bg' ? 'Хит' : 'Hit'}
+                    </Badge>
+                  </div>
+                )}
+              </div>
+
+              <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <Button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    handleViewProduct(product.id)
+                  }}
+                  size="sm"
+                  aria-label={`Quick view ${product.name}`}
+                  className="w-12 h-12 rounded-full bg-white/90 text-pink-500 hover:bg-pink-500 hover:text-white border border-pink-500/50 shadow-lg"
+                >
+                  <ShoppingBag className="h-3 w-3" />
+                </Button>
+              </div>
+            </AspectRatio>
+          </div>
+
+          <div className="p-4">
+            <h3 className="text-base font-semibold text-gray-900 mb-1 group-hover:text-pink-600 transition-colors truncate">
+              {product.name}
+            </h3>
+            <p className="text-xs text-gray-500 mb-3 line-clamp-2 leading-relaxed">
+              {product.slogan}
+            </p>
+            
+            <div className="flex items-center justify-between">
+              <span className="text-lg font-bold text-pink-600">
+                {product.price}
+              </span>
+              <Button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  handleViewProduct(product.id)
+                }}
+                size="sm"
+                aria-label={`Quick view ${product.name}`}
+                className="h-10 px-4 text-xs bg-transparent text-pink-500 hover:text-white hover:bg-pink-500/90 border border-pink-500/50 hover:border-pink-500 transition-all duration-200"
+              >
+                {locale === 'bg' ? 'Бърз преглед' : 'Quick View'}
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+
   return (
     <div className={cn("w-full", className)}>
-      {/* All-in-one Container - stable height */}
       <div className="relative">
         <div className="absolute inset-0 bg-gradient-to-r from-pink-500/5 via-transparent to-pink-500/5 rounded-2xl" />
-        <div className="relative bg-white/90 backdrop-blur-sm p-6 rounded-2xl border border-pink-200/30 shadow-[0_0_20px_rgba(236,72,153,0.08)] min-h-[400px]"> {/* 48px - PERFECT_SPACING.scale[6] */}
+        <div className="relative bg-white/90 backdrop-blur-sm p-6 rounded-2xl border border-pink-200/30 shadow-[0_0_20px_rgba(236,72,153,0.08)] min-h-[400px]">
           
-          {/* Header inside container with marquee headline */}
           <div className="mb-4 space-y-3">
-            {/* Animated Section Headline Marquee */}
             <div className="relative overflow-hidden rounded-lg bg-gradient-to-r from-pink-500/5 via-pink-400/10 to-pink-500/5 border border-pink-200/30">
               <SectionMarquee 
                 primaryText={locale === 'bg' ? 'НАШАТА КОЛЕКЦИЯ' : 'OUR COLLECTION'}
@@ -141,7 +223,6 @@ const FeaturedProductsComponent = ({ className }: FeaturedProductsProps) => {
               />
             </div>
             
-            {/* Product Tabs */}
             <div className="flex justify-center">
               <Tabs defaultValue="hats" className="w-full max-w-md">
                 <TabsList className="grid w-full grid-cols-2 bg-white/80 backdrop-blur-sm border border-pink-200/30">
@@ -160,206 +241,24 @@ const FeaturedProductsComponent = ({ className }: FeaturedProductsProps) => {
                 </TabsList>
                 
                 <TabsContent value="hats" className="mt-4">
-                  {/* Hat Products */}
-            <div className="overflow-x-auto pb-2 scrollbar-hide">
-              <div className="flex gap-4 pb-2" style={{ width: 'max-content' }}> {/* 16px gap - PERFECT_SPACING.scale[2] */}
-                {featuredHats.map((product) => (
-                  <div
-                    key={product.id}
-                    className="group relative flex-none w-56 sm:w-64 cursor-pointer"
-                    onClick={() => handleViewProduct(product.id)}
-                  >
-                    {/* Product Card with Navbar-style Design */}
-                    <div className="relative overflow-hidden">
-                      <div className="absolute inset-0 bg-pink-500/10 blur-md rounded-2xl" />
-                      <div className="relative bg-white/90 backdrop-blur-sm rounded-2xl border border-pink-200/50 shadow-[0_0_15px_rgba(236,72,153,0.1)] group-hover:shadow-[0_0_25px_rgba(236,72,153,0.2)] transition-all duration-300">
-                        
-                        {/* Image Section with Aspect Ratio */}
-                        <div className="relative overflow-hidden rounded-t-2xl bg-gradient-to-br from-pink-50/50 to-white">
-                          <AspectRatio ratio={4/3}>
-                            <Image
-                              src={product.image}
-                              alt={product.name}
-                              fill
-                              sizes="(max-width: 640px) 256px, 288px"
-                              className="object-contain group-hover:scale-105 transition-transform duration-300"
-                              loading="lazy"
-                            />
-                          
-                          {/* Floating Badges */}
-                          <div className="absolute top-3 left-3 flex flex-col gap-1"> {/* 12px positioning, 8px gap - PERFECT_SPACING */}
-                            {product.isNew && (
-                              <div className="relative">
-                                <div className="absolute inset-0 bg-pink-500/20 blur-sm rounded-full" />
-                                <Badge className="relative bg-pink-500 text-white border-0 text-xs px-2 py-1 shadow-sm whitespace-nowrap">
-                                  {locale === 'bg' ? 'Ново' : 'New'}
-                                </Badge>
-                              </div>
-                            )}
-                            {product.isBestSeller && (
-                              <div className="relative">
-                                <div className="absolute inset-0 bg-orange-500/20 blur-sm rounded-full" />
-                                <Badge className="relative bg-orange-500 text-white border-0 text-xs px-2 py-1 shadow-sm whitespace-nowrap">
-                                  {locale === 'bg' ? 'Хит' : 'Hit'}
-                                </Badge>
-                              </div>
-                            )}
-                          </div>
-
-                          {/* Quick Action Button */}
-                          <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <Button
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                handleViewProduct(product.id)
-                              }}
-                              size="sm"
-                              aria-label={`Quick view ${product.name}`}
-                              className="w-12 h-12 rounded-full bg-white/90 text-pink-500 hover:bg-pink-500 hover:text-white border border-pink-500/50 shadow-lg" // 48px - minimum touch target
-                            >
-                              <ShoppingBag className="h-3 w-3" />
-                            </Button>
-                          </div>
-                          </AspectRatio>
-                        </div>
-
-                        {/* Content Section */}
-                        <div className="p-4"> {/* 16px - PERFECT_SPACING.scale[2] */}
-                          <h3 className="text-base font-semibold text-gray-900 mb-1 group-hover:text-pink-600 transition-colors truncate"> {/* 8px - PERFECT_SPACING.scale[1] */}
-                            {product.name}
-                          </h3>
-                          <p className="text-xs text-gray-500 mb-3 line-clamp-2 leading-relaxed"> {/* 24px - PERFECT_SPACING.scale[3] */}
-                            {product.slogan}
-                          </p>
-                          
-                          {/* Price and Action */}
-                          <div className="flex items-center justify-between">
-                            <span className="text-lg font-bold text-pink-600">
-                              {product.price}
-                            </span>
-                            <Button
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                handleViewProduct(product.id)
-                              }}
-                              size="sm"
-                              aria-label={`Quick view ${product.name}`}
-                              className="h-10 px-4 text-xs bg-transparent text-pink-500 hover:text-white hover:bg-pink-500/90 border border-pink-500/50 hover:border-pink-500 transition-all duration-200" // 40px height, 16px padding
-                            >
-                              {locale === 'bg' ? 'Бърз преглед' : 'Quick View'}
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
+                  <div className="overflow-x-auto pb-2 scrollbar-hide">
+                    <div className="flex gap-4 pb-2" style={{ width: 'max-content' }}>
+                      {featuredHats.map(renderProductCard)}
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
                 </TabsContent>
                 
                 <TabsContent value="tshirts" className="mt-4">
-                  {/* T-shirt Products */}
                   <div className="overflow-x-auto pb-2 scrollbar-hide">
                     <div className="flex gap-4 pb-2" style={{ width: 'max-content' }}>
-                      {featuredTshirts.map((product) => (
-                        <div
-                          key={product.id}
-                          className="group relative flex-none w-56 sm:w-64 cursor-pointer"
-                          onClick={() => handleViewProduct(product.id)}
-                        >
-                          {/* Same card design as hats but for t-shirts */}
-                          <div className="relative overflow-hidden">
-                            <div className="absolute inset-0 bg-pink-500/10 blur-md rounded-2xl" />
-                            <div className="relative bg-white/90 backdrop-blur-sm rounded-2xl border border-pink-200/50 shadow-[0_0_15px_rgba(236,72,153,0.1)] group-hover:shadow-[0_0_25px_rgba(236,72,153,0.2)] transition-all duration-300">
-                              
-                              {/* Image Section with Aspect Ratio */}
-                              <div className="relative overflow-hidden rounded-t-2xl bg-gradient-to-br from-pink-50/50 to-white">
-                                <AspectRatio ratio={4/3}>
-                                  <Image
-                                    src={product.image}
-                                    alt={product.name}
-                                    fill
-                                    sizes="(max-width: 640px) 256px, 288px"
-                                    className="object-contain group-hover:scale-105 transition-transform duration-300"
-                                    loading="lazy"
-                                  />
-                                
-                                {/* Floating Badges */}
-                                <div className="absolute top-3 left-3 flex flex-col gap-1">
-                                  {product.isNew && (
-                                    <div className="relative">
-                                      <div className="absolute inset-0 bg-pink-500/20 blur-sm rounded-full" />
-                                      <Badge className="relative bg-pink-500 text-white border-0 text-xs px-2 py-1 shadow-sm whitespace-nowrap">
-                                        {locale === 'bg' ? 'Ново' : 'New'}
-                                      </Badge>
-                                    </div>
-                                  )}
-                                  {product.isBestSeller && (
-                                    <div className="relative">
-                                      <div className="absolute inset-0 bg-orange-500/20 blur-sm rounded-full" />
-                                      <Badge className="relative bg-orange-500 text-white border-0 text-xs px-2 py-1 shadow-sm whitespace-nowrap">
-                                        {locale === 'bg' ? 'Хит' : 'Hit'}
-                                      </Badge>
-                                    </div>
-                                  )}
-                                </div>
-
-                                {/* Quick Action Button */}
-                                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                  <Button
-                                    onClick={(e) => {
-                                      e.stopPropagation()
-                                      handleViewProduct(product.id)
-                                    }}
-                                    size="sm"
-                                    aria-label={`Quick view ${product.name}`}
-                                    className="w-12 h-12 rounded-full bg-white/90 text-pink-500 hover:bg-pink-500 hover:text-white border border-pink-500/50 shadow-lg"
-                                  >
-                                    <ShoppingBag className="h-3 w-3" />
-                                  </Button>
-                                </div>
-                                </AspectRatio>
-                              </div>
-
-                              {/* Content Section */}
-                              <div className="p-4">
-                                <h3 className="text-base font-semibold text-gray-900 mb-1 group-hover:text-pink-600 transition-colors truncate">
-                                  {product.name}
-                                </h3>
-                                <p className="text-xs text-gray-500 mb-3 line-clamp-2 leading-relaxed">
-                                  {product.slogan}
-                                </p>
-                                
-                                {/* Price and Action */}
-                                <div className="flex items-center justify-between">
-                                  <span className="text-lg font-bold text-pink-600">
-                                    {product.price}
-                                  </span>
-                                  <Button
-                                    onClick={(e) => {
-                                      e.stopPropagation()
-                                      handleViewProduct(product.id)
-                                    }}
-                                    size="sm"
-                                    aria-label={`Quick view ${product.name}`}
-                                    className="h-10 px-4 text-xs bg-transparent text-pink-500 hover:text-white hover:bg-pink-500/90 border border-pink-500/50 hover:border-pink-500 transition-all duration-200"
-                                  >
-                                    {locale === 'bg' ? 'Бърз преглед' : 'Quick View'}
-                                  </Button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
+                      {featuredTshirts.map(renderProductCard)}
                     </div>
                   </div>
                 </TabsContent>
               </Tabs>
             </div>
+          </div>
           
-          {/* CTA inside container - centered, no unnecessary text */}
           <div className="flex justify-center mt-4 pt-4 border-t border-pink-200/30">
             <button 
               onClick={handleViewCollection}
@@ -373,7 +272,6 @@ const FeaturedProductsComponent = ({ className }: FeaturedProductsProps) => {
         </div>
       </div>
       
-      {/* Global scrollbar styles */}
       <style jsx global>{`
         .scrollbar-hide {
           -ms-overflow-style: none;
@@ -384,7 +282,6 @@ const FeaturedProductsComponent = ({ className }: FeaturedProductsProps) => {
         }
       `}</style>
       
-      {/* Quick View Dialog */}
       {selectedProduct && (
         <LazyQuickViewDialog 
           product={{
@@ -419,25 +316,20 @@ interface SectionMarqueeProps {
 }
 
 const SectionMarquee = React.memo(({ primaryText, secondaryText, speed = 25 }: SectionMarqueeProps) => {
-  // Create alternating content pattern
   const marqueeContent = Array(3).fill(null).map((_, index) => (
     <div key={index} className="flex items-center shrink-0">
-      {/* Primary text (title) */}
       <span className="font-bold text-base sm:text-lg md:text-xl bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent whitespace-nowrap">
         {primaryText}
       </span>
       
-      {/* Separator */}
       <span className="mx-3 sm:mx-4 text-pink-400/60 text-sm">
         ★
       </span>
       
-      {/* Secondary text (description) */}
       <span className="font-medium text-sm sm:text-base text-gray-600/80 whitespace-nowrap">
         {secondaryText}
       </span>
       
-      {/* Separator */}
       <span className="mx-3 sm:mx-4 text-pink-400/60 text-sm">
         ★
       </span>
@@ -453,14 +345,11 @@ const SectionMarquee = React.memo(({ primaryText, secondaryText, speed = 25 }: S
             animationDuration: `${speed}s`
           }}
         >
-          {/* First set */}
           {marqueeContent}
-          {/* Duplicate set for seamless loop */}
           {marqueeContent}
         </div>
       </div>
       
-      {/* CSS Animation - GPU accelerated */}
       <style jsx>{`
         @keyframes section-marquee {
           0% { 
