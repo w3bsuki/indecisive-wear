@@ -13,6 +13,7 @@ import { Star } from 'lucide-react'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import type { Product } from "@/lib/constants/product-data"
 import { LazyQuickViewDialog } from '@/components/features/shop/LazyQuickViewDialog'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 
 interface FeaturedProductsProps {
   className?: string;
@@ -86,8 +87,32 @@ const FeaturedProductsComponent = ({ className }: FeaturedProductsProps) => {
     }
   ]
 
+  // Featured t-shirts for the tab
+  const featuredTshirts: Product[] = [
+    {
+      id: 101,
+      name: "Basic Tee №1",
+      slogan: "Comfortable cotton tee for everyday wear.",
+      price: "25 лв",
+      image: "/placeholder.jpg", // Placeholder for now
+      color: "White",
+      category: "tshirts",
+      isNew: true,
+    },
+    {
+      id: 102,
+      name: "Basic Tee №2",
+      slogan: "Soft cotton tee with perfect fit.",
+      price: "25 лв",
+      image: "/placeholder.jpg", // Placeholder for now
+      color: "Black",
+      category: "tshirts",
+      isBestSeller: true,
+    }
+  ]
+
   const handleViewProduct = (productId: number) => {
-    const product = featuredHats.find(p => p.id === productId)
+    const product = [...featuredHats, ...featuredTshirts].find(p => p.id === productId)
     if (product) {
       setSelectedProduct(product)
       setShowQuickView(true)
@@ -116,16 +141,26 @@ const FeaturedProductsComponent = ({ className }: FeaturedProductsProps) => {
               />
             </div>
             
-            {/* In Stock Badge */}
+            {/* Product Tabs */}
             <div className="flex justify-center">
-              <Badge className="bg-green-500 text-white border-0 text-xs px-2 py-1 whitespace-nowrap">
-                <Star className="h-3 w-3 mr-1 flex-shrink-0" />
-                {locale === 'bg' ? 'Налични' : 'In Stock'}
-              </Badge>
-            </div>
-          </div>
-            
-            {/* Scrollable Products */}
+              <Tabs defaultValue="hats" className="w-full max-w-md">
+                <TabsList className="grid w-full grid-cols-2 bg-white/80 backdrop-blur-sm border border-pink-200/30">
+                  <TabsTrigger 
+                    value="hats" 
+                    className="data-[state=active]:bg-pink-500 data-[state=active]:text-white font-semibold"
+                  >
+                    {locale === 'bg' ? 'Шапки' : 'Hats'}
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="tshirts"
+                    className="data-[state=active]:bg-pink-500 data-[state=active]:text-white font-semibold"
+                  >
+                    {locale === 'bg' ? 'Тениски' : 'T-shirts'}
+                  </TabsTrigger>
+                </TabsList>
+                
+                <TabsContent value="hats" className="mt-4">
+                  {/* Hat Products */}
             <div className="overflow-x-auto pb-2 scrollbar-hide">
               <div className="flex gap-4 pb-2" style={{ width: 'max-content' }}> {/* 16px gap - PERFECT_SPACING.scale[2] */}
                 {featuredHats.map((product) => (
@@ -220,6 +255,108 @@ const FeaturedProductsComponent = ({ className }: FeaturedProductsProps) => {
                   </div>
                 ))}
               </div>
+            </div>
+                </TabsContent>
+                
+                <TabsContent value="tshirts" className="mt-4">
+                  {/* T-shirt Products */}
+                  <div className="overflow-x-auto pb-2 scrollbar-hide">
+                    <div className="flex gap-4 pb-2" style={{ width: 'max-content' }}>
+                      {featuredTshirts.map((product) => (
+                        <div
+                          key={product.id}
+                          className="group relative flex-none w-56 sm:w-64 cursor-pointer"
+                          onClick={() => handleViewProduct(product.id)}
+                        >
+                          {/* Same card design as hats but for t-shirts */}
+                          <div className="relative overflow-hidden">
+                            <div className="absolute inset-0 bg-pink-500/10 blur-md rounded-2xl" />
+                            <div className="relative bg-white/90 backdrop-blur-sm rounded-2xl border border-pink-200/50 shadow-[0_0_15px_rgba(236,72,153,0.1)] group-hover:shadow-[0_0_25px_rgba(236,72,153,0.2)] transition-all duration-300">
+                              
+                              {/* Image Section with Aspect Ratio */}
+                              <div className="relative overflow-hidden rounded-t-2xl bg-gradient-to-br from-pink-50/50 to-white">
+                                <AspectRatio ratio={4/3}>
+                                  <Image
+                                    src={product.image}
+                                    alt={product.name}
+                                    fill
+                                    sizes="(max-width: 640px) 256px, 288px"
+                                    className="object-contain group-hover:scale-105 transition-transform duration-300"
+                                    loading="lazy"
+                                  />
+                                
+                                {/* Floating Badges */}
+                                <div className="absolute top-3 left-3 flex flex-col gap-1">
+                                  {product.isNew && (
+                                    <div className="relative">
+                                      <div className="absolute inset-0 bg-pink-500/20 blur-sm rounded-full" />
+                                      <Badge className="relative bg-pink-500 text-white border-0 text-xs px-2 py-1 shadow-sm whitespace-nowrap">
+                                        {locale === 'bg' ? 'Ново' : 'New'}
+                                      </Badge>
+                                    </div>
+                                  )}
+                                  {product.isBestSeller && (
+                                    <div className="relative">
+                                      <div className="absolute inset-0 bg-orange-500/20 blur-sm rounded-full" />
+                                      <Badge className="relative bg-orange-500 text-white border-0 text-xs px-2 py-1 shadow-sm whitespace-nowrap">
+                                        {locale === 'bg' ? 'Хит' : 'Hit'}
+                                      </Badge>
+                                    </div>
+                                  )}
+                                </div>
+
+                                {/* Quick Action Button */}
+                                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                  <Button
+                                    onClick={(e) => {
+                                      e.stopPropagation()
+                                      handleViewProduct(product.id)
+                                    }}
+                                    size="sm"
+                                    aria-label={`Quick view ${product.name}`}
+                                    className="w-12 h-12 rounded-full bg-white/90 text-pink-500 hover:bg-pink-500 hover:text-white border border-pink-500/50 shadow-lg"
+                                  >
+                                    <ShoppingBag className="h-3 w-3" />
+                                  </Button>
+                                </div>
+                                </AspectRatio>
+                              </div>
+
+                              {/* Content Section */}
+                              <div className="p-4">
+                                <h3 className="text-base font-semibold text-gray-900 mb-1 group-hover:text-pink-600 transition-colors truncate">
+                                  {product.name}
+                                </h3>
+                                <p className="text-xs text-gray-500 mb-3 line-clamp-2 leading-relaxed">
+                                  {product.slogan}
+                                </p>
+                                
+                                {/* Price and Action */}
+                                <div className="flex items-center justify-between">
+                                  <span className="text-lg font-bold text-pink-600">
+                                    {product.price}
+                                  </span>
+                                  <Button
+                                    onClick={(e) => {
+                                      e.stopPropagation()
+                                      handleViewProduct(product.id)
+                                    }}
+                                    size="sm"
+                                    aria-label={`Quick view ${product.name}`}
+                                    className="h-10 px-4 text-xs bg-transparent text-pink-500 hover:text-white hover:bg-pink-500/90 border border-pink-500/50 hover:border-pink-500 transition-all duration-200"
+                                  >
+                                    {locale === 'bg' ? 'Бърз преглед' : 'Quick View'}
+                                  </Button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </TabsContent>
+              </Tabs>
             </div>
           
           {/* CTA inside container - centered, no unnecessary text */}

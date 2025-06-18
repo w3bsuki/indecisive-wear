@@ -120,12 +120,34 @@ const ComingSoonCarouselComponent = ({ className }: ComingSoonCarouselProps) => 
               />
             </div>
             
-            {/* Coming Soon Badge */}
+            {/* Countdown Timer */}
             <div className="flex justify-center">
-              <Badge className="bg-pink-500 text-white border-0 text-xs px-3 py-1 whitespace-nowrap shadow-sm">
-                <Sparkles className="h-3 w-3 mr-1 flex-shrink-0" />
-                {locale === 'bg' ? 'Скоро' : 'Coming Soon'}
-              </Badge>
+              <div className={cn(
+                "bg-pink-50/80 border border-pink-200/50",
+                "rounded-full px-5 py-2 sm:px-6 sm:py-2.5"
+              )}>
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-pink-500 rounded-full animate-pulse" />
+                    <span className="text-sm sm:text-base font-medium text-gray-700">
+                      {locale === 'bg' ? 'Нови продукти в' : 'New products in'}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1.5 font-mono">
+                    <span className="px-2 py-1 rounded-md bg-white text-gray-900 text-xs sm:text-sm font-semibold">
+                      15D
+                    </span>
+                    <span className="text-gray-400 font-semibold">:</span>
+                    <span className="px-2 py-1 rounded-md bg-white text-gray-900 text-xs sm:text-sm font-semibold">
+                      8H
+                    </span>
+                    <span className="text-gray-400 font-semibold">:</span>
+                    <span className="px-2 py-1 rounded-md bg-white text-gray-900 text-xs sm:text-sm font-semibold">
+                      30M
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
             
