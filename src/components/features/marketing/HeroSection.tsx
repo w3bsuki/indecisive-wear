@@ -204,21 +204,19 @@ function HeroSectionComponent({ hatImages, scrollToProducts: _scrollToProducts, 
               </NativeCarousel>
             </div>
 
-            {/* Shop CTA button below carousel - centered with border */}
-            <div className="flex justify-center">
-              <Button
-                onClick={() => window.location.href = '/shop'}
-                className={cn(
-                  "bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700",
-                  "border-2 border-white/30 hover:border-white/50",
-                  "text-white font-semibold",
-                  "min-h-[44px] h-11 px-8 text-sm sm:text-base",
-                  "rounded-xl shadow-lg hover:shadow-xl",
-                  "transition-all duration-200"
-                )}
-              >
-                {locale === 'bg' ? 'Магазин' : 'Shop'}
-              </Button>
+            {/* Brand marquee below the carousel - same style as above */}
+            <div className={cn(
+              "bg-white/80 backdrop-blur-sm",
+              "border border-pink-200/30",
+              "rounded-xl overflow-hidden"
+            )}>
+              <BrandMarquee 
+                text="INDECISIVE WEAR" 
+                speed={25}
+                textColor="text-pink-500"
+                separatorColor="text-black"
+                className="py-5 sm:py-6 text-xl sm:text-2xl md:text-3xl font-black"
+              />
             </div>
 
           </div>
