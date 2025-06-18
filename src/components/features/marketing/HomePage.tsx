@@ -154,11 +154,8 @@ export function HomePage() {
         <div className={cleanDesignSystem.layouts.pageLayout.superWide}>
           
           {/* ONE BIG CONTAINER FOR EVERYTHING */}
-          <div className={cleanDesignSystem.layouts.pageLayout.contentArea}>
-            <div className={cn(
-              cleanDesignSystem.layouts.pageLayout.mainContainer,
-              "px-0 sm:px-4"
-            )}>
+          <div className="w-full">
+            <div className="w-full">
               <div className="space-y-4 sm:space-y-6 md:space-y-8">
                 
                 {/* Hero Section - Full viewport on mobile */}
