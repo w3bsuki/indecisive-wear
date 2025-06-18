@@ -125,7 +125,7 @@ const FeaturedProductsComponent = ({ className }: FeaturedProductsProps) => {
   const renderProductCard = (product: any) => (
     <div
       key={product.id}
-      className="group relative flex-none w-56 sm:w-64 cursor-pointer"
+      className="group relative flex-none w-44 sm:w-48 lg:w-44 xl:w-48 cursor-pointer"
       onClick={() => handleViewProduct(product.id)}
     >
       <div className="relative overflow-hidden">
@@ -212,7 +212,7 @@ const FeaturedProductsComponent = ({ className }: FeaturedProductsProps) => {
     <div className={cn("w-full", className)}>
       <div className="relative">
         <div className="absolute inset-0 bg-gradient-to-r from-pink-500/5 via-transparent to-pink-500/5 rounded-2xl" />
-        <div className="relative bg-white/90 backdrop-blur-sm p-4 sm:p-6 lg:p-8 rounded-2xl border border-pink-200/30 shadow-[0_0_20px_rgba(236,72,153,0.08)]">
+        <div className="relative bg-white/90 backdrop-blur-sm p-2 sm:p-4 lg:p-6 rounded-2xl border border-pink-200/30 shadow-[0_0_20px_rgba(236,72,153,0.08)]">
           
           <div className="mb-6 lg:mb-8 space-y-4 lg:space-y-6">
             <div className="relative overflow-hidden rounded-lg bg-gradient-to-r from-pink-500/5 via-pink-400/10 to-pink-500/5 border border-pink-200/30">
