@@ -172,8 +172,13 @@ export function HomePage() {
                 </section>
 
                 {/* Featured Products Section */}
-                <section className="w-full">
-                  <FeaturedProducts />
+                <section className={cn(
+                  cleanDesignSystem.layouts.pageLayout.sectionPadding,
+                  "-mx-4 sm:-mx-6 md:-mx-8 lg:-mx-16 xl:-mx-24"
+                )}>
+                  <div className="px-4 sm:px-6 md:px-8 lg:px-12">
+                    <FeaturedProducts />
+                  </div>
                 </section>
 
                 {/* Coming Soon Section */}
